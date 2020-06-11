@@ -1,34 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    
-    <h1>Blog</h1>
-   <table border="1">
-       <thead>
-           <tr>
-                <th>Id</th>
-                <th>Tiêu Đề</th>
-                <th>Nội Dung</th>
-                <th>Hành Động</th>
-            </tr>
-       </thead>
-       <tbody>
-       @foreach ($results as $item)
-           <tr>
-                <td>{{ $item->id }}</td>
-                <td>{{ $item->title }}</td>
-                <td>{{ $item->content }}</td>
-                <td><a href="{!! route('blog.list') !!}/edit/{!! $item->id !!}">Chỉnh Sửa</a></td>
-            </tr>
-       @endforeach
-   </tbody>
-   </table>
-   
-</body>
-</html>
+@extends('admin.master')
+@section('title')
+    Blog
+@endsection
+
+@section('main-content')
+    <!-- Main Content -->
+    <div id="content">
+
+        @include('admin.public.topbar')
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>Tiêu Đề</th>
+                      <th>Nội Dung</th>
+                      <th>Xuất Bản</th>
+                      <th>Hành Động</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Tiêu Đề</th>
+                        <th>Nội Dung</th>
+                        <th>Xuất Bản</th>
+                        <th>Hành Động</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    @foreach ($results as $item)
+                        <tr>
+                             <td>{{ $item->id }}</td>
+                             <td>{{ $item->title }}</td>
+                             <td>{{ $item->content }}</td>
+                             <td>{{ $item->created_at }}</td>
+                             <td><a href="{!! route('blog.list') !!}/edit/{!! $item->id !!}">Chỉnh Sửa</a></td>
+                         </tr>
+                    @endforeach
+                   
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function(){
+            //
+        });
+    </script>
+@endsection
