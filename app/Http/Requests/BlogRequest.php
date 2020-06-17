@@ -32,11 +32,11 @@ class BlogRequest extends FormRequest
     public function messages()
     {
         return [
-            'title.required' => 'Bạn chưa nhập tiêu đề.',
-            'title.min' => 'Tiêu đề phải có ít nhất 20 lý tự.',
-            'title.max' => 'Tiêu đề phải có tối đa 255 lý tự.',
-            'content.required' => 'Bạn chưa nhập nội dung.',
-            'content.min' => 'Nội dung phải có ít nhất 50 lý tự.',
+            'title.required' => 'Please provide a valid city.',
+            'title.min' => 'Title must be at least 10 characters.',
+            'title.max' => 'Title must be at most 255 characters.',
+            'content.required' => 'Please provide a valid city.',
+            'content.min' => 'Title must be at least 50 characters.',
         ];
     }
 }

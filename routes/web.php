@@ -25,9 +25,11 @@ Route::group(['prefix' => $prefixAdmin], function () {
         Route::get('/', $controller.'@get_all_blog')->name('blog.list');
         Route::get('/add', $controller.'@get_add_blog')->name('blog.add');
         Route::get('/edit/{id}', $controller.'@get_blog_by_id')->name('blog.edit');
+        Route::get('/delete/{id}', $controller.'@get_delete_blog_by_id');
 
         Route::post('/add', $controller.'@post_add_blog');
         Route::post('/edit/{id}', $controller.'@post_edit_blog_by_id');
+        
     });
     
 });

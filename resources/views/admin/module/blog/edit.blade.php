@@ -1,23 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    
-    <h1>Chỉnh Sửa Blog</h1>
+@extends('admin.master')
+@section('title')
+    Blog
+@endsection
 
-    @include('admin.public.error')
-    @include('admin.public.message')
+@section('main-content')
+    <!-- Main Content -->
+    <div id="content">
 
-    <form action="{{ route('blog.edit', ['id'=>$blogs->id]) }}" method="post">
-        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <input type="text" name="title" id="txt-title" placeholder="title" value="{{ $blogs->title }}">
-        <textarea name="content" id="txt-content"  cols="30" rows="5">{{ $blogs->content }}</textarea>
-        <button id="btn-add" >Add</button>
-    </form>
-</body>
-</html>
+        @include('admin.public.topbar')
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Blogs</h1>
+          
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Edit</h6>
+            </div>
+            <div class="card-body col-lg-8">
+                @include('admin.public.error')
+                @include('admin.public.message')
+
+                <form action="{{ route('blog.edit', ['id'=>$blogs->id]) }}" method="post">
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Title</label>
+                        <input type="text" class="form-control" name="title" id="txt-title" value="{{ $blogs->title }}">
+                      </div>
+                      <div class="form-group">
+                        <label for="exampleFormControlTextarea3">Content</label>
+                        <textarea class="form-control" name="content" id="txt-content" rows="7">{{ $blogs->content }}</textarea>
+                      </div>
+                      
+                    <button class="btn btn-primary" type="submit">Update</button>
+                  </form>
+            </div>
+            <div class="card-body col-lg-4"></div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function(){
+            //
+        });
+    </script>
+@endsection

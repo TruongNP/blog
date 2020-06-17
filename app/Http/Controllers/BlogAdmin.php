@@ -55,6 +55,14 @@ class BlogAdmin extends Controller
         $blog->content = $request->content;
         
         $blog->save();
-        return redirect()->route('blog.edit', ['id'=>$blog->id])->with('message' , 'Đã cập nhật blog');
+        return redirect()->route('blog.edit', ['id'=>$blog->id])->with('message' , 'Blog updated');
+    }
+
+    public function get_delete_blog_by_id($id) 
+    {
+        $blog = Blog::find($id);
+        
+        $blog->delete();
+        return redirect()->route('blog.list')->with('message' , 'Blog deleted');
     }
 }
