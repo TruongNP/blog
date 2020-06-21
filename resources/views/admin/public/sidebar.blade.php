@@ -38,6 +38,7 @@
           <h6 class="collapse-header">Action:</h6>
           <a class="collapse-item" href="{{ route('blog.list') }}">All Blog</a>
           <a class="collapse-item" href="{{ route('blog.add') }}">Add</a>
+          <a class="collapse-item" href="{{ route('blog.categories') }}">Categories</a>
         </div>
       </div>
     </li>

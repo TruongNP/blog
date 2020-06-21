@@ -17,11 +17,12 @@
           
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Add</h6>
+            <div class="card-header py-3 mb-3">
+              <h6 class="m-0 font-weight-bold text-primary">Add New</h6>
             </div>
+            @include('admin.public.message')  
+            @include('admin.public.error')
             <div class="card-body col-lg-8">
-                @include('admin.public.error')
                 <form action="{{ route('blog.add') }}" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">

@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('title')
-    Blog
+    Blog Categories
 @endsection
 
 @section('main-content')
@@ -13,32 +13,32 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Blogs</h1>
+          <h1 class="h3 mb-2 text-gray-800">Categories</h1>
           
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3 mb-3">
               <h6 class="m-0 font-weight-bold text-primary">Edit</h6>
             </div>
-            <div class="card-body col-lg-8">
-                @include('admin.public.error')
-                @include('admin.public.message')
+            @include('admin.public.message')  
+            <div class="card-body col-lg-4">
 
-                <form action="{{ route('blog.edit', ['id'=>$blogs->id]) }}" method="post">
+                @include('admin.public.error')
+
+                <form action="{{ route('blog.categories.edit', ['id'=>$blog_categories->id]) }}" method="post">
                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                     <div class="form-group">
                         <label for="formGroupExampleInput">Title</label>
-                        <input type="text" class="form-control" name="title" id="txt-title" value="{{ $blogs->title }}">
+                        <input type="text" class="form-control" name="title" id="txt-title" value="{!! $blog_categories->title !!}">
                       </div>
                       <div class="form-group">
-                        <label for="exampleFormControlTextarea3">Content</label>
-                        <textarea class="form-control" name="content" id="txt-content" rows="7">{{ $blogs->content }}</textarea>
+                        <label for="formGroupExampleInput">Slug</label>
+                        <input type="text" class="form-control" name="slugs" id="txt-slug" value="{!! $blog_categories->slugs !!}">
                       </div>
                       
                     <button class="btn btn-primary" type="submit">Update</button>
                   </form>
             </div>
-            <div class="card-body col-lg-4"></div>
           </div>
 
         </div>
@@ -49,6 +49,7 @@
 @endsection
 
 @section('script')
+<script> CKEDITOR.replace('txt-content'); </script>
     <script>
         $(document).ready(function(){
             //

@@ -7,8 +7,6 @@ use App\Http\Requests\BlogRequest;
 use Illuminate\Support\Facades\DB;
 use App\Blog;
 
-$blog = new Blog();
-
 class BlogAdmin extends Controller
 {
     //
@@ -21,7 +19,7 @@ class BlogAdmin extends Controller
 
     public function get_all_blog() 
     {
-        $results = Blog::all();
+        $results = Blog::all()->sortByDesc('id');
 
         return view($this->path_view .'list', ['results' => $results]);
     }
@@ -38,7 +36,7 @@ class BlogAdmin extends Controller
         $blog->content = $request->content;
         
         $blog->save();
-        return redirect()->route('blog.add');
+        return redirect()->route('blog.add')->with('message' , 'Blog created');
     }
 
     public function get_blog_by_id($id)
