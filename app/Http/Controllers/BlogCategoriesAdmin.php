@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\BlogCategoriesRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
-use App\BlogCategories;
+use App\Models\BlogCategories;
+use App\Models\BlogChildCategories;
 
 class BlogCategoriesAdmin extends Controller
 {
@@ -28,12 +29,21 @@ class BlogCategoriesAdmin extends Controller
 
     public function post_add_blog_categories(BlogCategoriesRequest $request) 
     {
-        $blog_categories = new BlogCategories();
+        if( $request->parent_categories == 0 )
+        {
+            $blog_categories = new BlogCategories();
+        }
+        else 
+        {
+            $blog_categories = new BlogChildCategories();
+            $blog_categories->parent_cat_id = $request->parent_categories;
+        }
+        
         $blog_categories->title = $request->title;
         $blog_categories->slugs = $request->slugs;
         
         $blog_categories->save();
-        return redirect()->route('blog.categories')->with('message' , 'Categories created');;
+        return redirect()->route('blog.categories')->with('message' , 'Categories created');
     }
 
     public function get_delete_blog_categories_by_id($id) 
