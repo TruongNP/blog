@@ -34,6 +34,15 @@
                         <label for="formGroupExampleInput">Slug</label>
                         <input type="text" class="form-control" name="slugs" id="txt-slug">
                       </div>
+                      <div class="form-group">
+                        <label for="formGroupExampleInput">Parent Categories</label>
+                        <select class="form-control" name="parent_categories" id="drop-parent-categories">
+                          <option value="0">None</option>
+                          @foreach ($results as $parent_cat)
+                            <option value={{ $parent_cat->id }}>{{ $parent_cat->title }}</option>
+                          @endforeach
+                        </select>
+                      </div>
                     <button class="btn btn-primary" type="submit">Add</button>
                   </form>
             </div>
