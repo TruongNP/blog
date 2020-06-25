@@ -25,6 +25,8 @@ class BlogCategoriesAdmin extends Controller
         $results = BlogCategories::all()->sortByDesc('id');
 
         return $results;
+        // $data = BlogCategories::find(5)->get_parent_categories->toArray();
+        // dd($data);
     }
 
     public function post_add_blog_categories(BlogCategoriesRequest $request) 
