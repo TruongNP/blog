@@ -79,20 +79,37 @@
                   <tbody>
                     @foreach ($results as $item)
                         <tr>
-                             <td scope="row">
-                              <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="{!! $item->id !!}">
-                                <label class="custom-control-label" for="tableDefaultCheck2"></label>
-                              </div>
-                             </td>
-                             <td>
-                               <p>{{ $item->title }}</p>
-                               <a href="{!! route('blog.categories') !!}/edit/{!! $item->id !!}" class="border-right pl-1 pr-1">Edit</a>
-                               <a href="{!! route('blog.categories') !!}/delete/{!! $item->id !!}">Delete</a>
-                             </td>
-                             <td>{{ $item->slugs }}</td>
-                             <td><p>{{ $item->created_at->format('Y-m-d') }}</p></td>
-                         </tr>
+                          <td scope="row">
+                          <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="{!! $item->id !!}">
+                            <label class="custom-control-label" for="tableDefaultCheck2"></label>
+                          </div>
+                          </td>
+                          <td>
+                            <p>{{ $item->title }}</p>
+                            <a href="{!! route('blog.categories') !!}/edit/{!! $item->id !!}" class="border-right pl-1 pr-1">Edit</a>
+                            <a href="{!! route('blog.categories') !!}/delete/{!! $item->id !!}">Delete</a>
+                          </td>
+                          <td>{{ $item->slugs }}</td>
+                          <td><p>{{ $item->created_at->format('Y-m-d') }}</p></td>
+                      </tr>
+                        @foreach ($item->get_child_categories as $child_cat)
+                          <tr>
+                            <td scope="row">
+                            <div class="custom-control custom-checkbox">
+                              <input type="checkbox" class="custom-control-input" id="{!! $child_cat->id !!}">
+                              <label class="custom-control-label" for="tableDefaultCheck2"></label>
+                            </div>
+                            </td>
+                            <td>
+                              <p>{{ $child_cat->title }}</p>
+                              <a href="{!! route('blog.categories') !!}/edit/{!! $child_cat->id !!}" class="border-right pl-1 pr-1">Edit</a>
+                              <a href="{!! route('blog.categories') !!}/delete/{!! $child_cat->id !!}">Delete</a>
+                            </td>
+                            <td>{{ $child_cat->slugs }}</td>
+                            <td><p>{{ $child_cat->created_at->format('Y-m-d') }}</p></td>
+                          </tr>
+                        @endforeach
                     @endforeach
                    
                   </tbody>
