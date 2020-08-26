@@ -39,6 +39,7 @@
 </div>
   <!-- Bootstrap core JavaScript-->
   <script src="{{ asset('js/admin/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('js/admin/custom.js') }}"></script>
   <script src="{{ asset('js/admin/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
   <!-- Core plugin JavaScript-->

@@ -17,8 +17,9 @@
           
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
-            <div class="card-header py-3 mb-3">
-              <h6 class="m-0 font-weight-bold text-primary">Add New</h6>
+            <div class="card-header d-flex align-items-center py-3 mb-3">
+              <h6 class="font-weight-bold border-right border-primary text-primary text-capitalize pl-2 pr-2 m-0">View all</h6>
+              <h6 class="font-weight-bold text-primary text-capitalize pl-2 pr-2 m-0">Add new</h6>
             </div>
             @include('admin.public.message')  
             @include('admin.public.error')
@@ -43,12 +44,12 @@
                           @endforeach
                         </select>
                       </div>
-                    <button class="btn btn-primary" type="submit">Add</button>
+                    <button class="btn btn-success" type="submit">Add</button>
                   </form>
             </div>
             <div class="card-body col-lg-12">
               <div class="table-responsive">
-                <table class="table table-hover" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-hover" id="" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th scope="col">
@@ -86,32 +87,32 @@
                           </div>
                           </td>
                           <td>
-                            <p>{{ $item->title }}</p>
-                            <a href="{!! route('blog.categories') !!}/edit/{!! $item->id !!}" class="border-right pl-1 pr-1">Edit</a>
-                            <a href="{!! route('blog.categories') !!}/delete/{!! $item->id !!}">Delete</a>
+                            <a href="{!! route('blog.categories.edit', ['id'=>$item->id]) !!}" class="font-weight-bold text-primary text-decoration-none clearfix">{{ $item->title }}</a>
+                            <a href="{!! route('blog.categories.edit', ['id'=>$item->id]) !!}" class="border-right pl-1 pr-1"><small>Edit</small></a>
+                            <a href="{!! route('blog.categories.delete', ['id'=>$item->id]) !!}" class="text-danger"><small>Delete</small></a>
                           </td>
                           <td>{{ $item->slugs }}</td>
                           <td><p>{{ $item->created_at->format('Y-m-d') }}</p></td>
                       </tr>
-                        @foreach ($item->get_child_categories as $child_cat)
+                        @foreach ($item->get_sub_categories as $sub_cat)
                           <tr>
                             <td scope="row">
                             <div class="custom-control custom-checkbox">
-                              <input type="checkbox" class="custom-control-input" id="{!! $child_cat->id !!}">
+                              <input type="checkbox" class="custom-control-input" id="{!! $sub_cat->id !!}">
                               <label class="custom-control-label" for="tableDefaultCheck2"></label>
                             </div>
                             </td>
-                            <td>
-                              <p>{{ $child_cat->title }}</p>
-                              <a href="{!! route('blog.categories') !!}/edit/{!! $child_cat->id !!}" class="border-right pl-1 pr-1">Edit</a>
-                              <a href="{!! route('blog.categories') !!}/delete/{!! $child_cat->id !!}">Delete</a>
+                            <td class="pl-4">
+                              <a href="{!! route('blog.subcategories.edit', ['id'=>$sub_cat->id]) !!}" class="font-weight-bold text-primary text-decoration-none clearfix">__{{ $sub_cat->title }}</a></a>
+                              <a href="{!! route('blog.subcategories.edit', ['id'=>$sub_cat->id]) !!}" class="border-right pl-1 pr-1"><small>Edit</small></a>
+                              <a href="{!! route('blog.subcategories.delete', ['id'=>$sub_cat->id]) !!}" class="text-danger"><small>Delete</small></a>
                             </td>
-                            <td>{{ $child_cat->slugs }}</td>
-                            <td><p>{{ $child_cat->created_at->format('Y-m-d') }}</p></td>
+                            <td>{{ $sub_cat->slugs }}</td>
+                            <td><p>{{ $sub_cat->created_at->format('Y-m-d') }}</p></td>
                           </tr>
                         @endforeach
+                        
                     @endforeach
-                   
                   </tbody>
                 </table>
               </div>

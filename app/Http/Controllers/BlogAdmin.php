@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\BlogRequest;
 use Illuminate\Support\Facades\DB;
 use App\Models\Blog;
+use App\Models\BlogSubCategories;
 
 class BlogAdmin extends Controller
 {
@@ -20,6 +21,8 @@ class BlogAdmin extends Controller
     public function get_all_blog() 
     {
         $results = Blog::all()->sortByDesc('id');
+        // $data = Blog::find(2)->get_categories->toArray();
+        // dd($data);
 
         return view($this->path_view .'list', ['results' => $results]);
     }

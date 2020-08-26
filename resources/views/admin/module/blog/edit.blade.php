@@ -17,8 +17,9 @@
           
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
-            <div class="card-header py-3 mb-3">
-              <h6 class="m-0 font-weight-bold text-primary">Edit</h6>
+            <div class="card-header d-flex align-items-center py-3 mb-3">
+              <h6 class=" m-0"><a href={{ route('blog.list') }} class="border-right border-primary text-decoration-none font-weight-bold text-primary text-capitalize pr-2 m-0">View all</a></h6>
+              <h6 class="font-weight-bold text-primary text-capitalize pl-2 pr-2 m-0">Edit</h6>
             </div>
             <div class="card-body col-lg-8">
                 @include('admin.public.error')

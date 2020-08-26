@@ -17,8 +17,9 @@
           
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
-            <div class="card-header py-3 mb-3">
-              <h6 class="m-0 font-weight-bold text-primary">All Blogs</h6>
+            <div class="card-header d-flex align-items-center py-3 mb-3">
+              <h6 class="font-weight-bold text-primary border-right border-primary text-capitalize pr-2 m-0">View all</h6>
+              <h6 class=" m-0"><a href={{ route('blog.add') }} class="text-decoration-none font-weight-bold text-primary text-capitalize pl-2 pr-2">Add new</a></h6>
             </div>
             @include('admin.public.message')  
             <div class="card-body">
@@ -33,6 +34,7 @@
                         </div>
                       </th>
                       <th scope="col">Title</th>
+                      <th scope="col">Categoties</th>
                       <th scope="col">Publish</th>
                     </tr>
                   </thead>
@@ -45,6 +47,7 @@
                         </div>
                       </th>
                       <th scope="col">Title</th>
+                      <th scope="col">Categoties</th>
                       <th scope="col">Publish</th>
                     </tr>
                   </tfoot>
@@ -58,10 +61,11 @@
                               </div>
                              </td>
                              <td>
-                               <p>{{ $item->title }}</p>
-                               <a href="{!! route('blog.list') !!}/edit/{!! $item->id !!}" class="border-right pl-1 pr-1">Edit</a>
-                               <a href="{!! route('blog.list') !!}/delete/{!! $item->id !!}">Delete</a>
+                               <a href="{!! route('blog.edit', ['id' => $item->id]) !!}" class="font-weight-bold texy-primary text-decoration-none clearfix">{{ $item->title }}</a>
+                               <a href="{!! route('blog.edit', ['id' => $item->id]) !!}" class="border-right pl-1 pr-1"><small>Edit</small></a>
+                               <a href="{!! route('blog.delete', ['id' => $item->id]) !!}" class="text-danger"><small>Delete</small></a>
                              </td>
+                             <td><p>{{ $item->get_categories->title }}</p></td>
                              <td><p>{{ $item->created_at->format('Y-m-d') }}</p></td>
                          </tr>
                     @endforeach

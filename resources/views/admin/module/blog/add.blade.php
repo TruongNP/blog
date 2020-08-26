@@ -17,8 +17,9 @@
           
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
-            <div class="card-header py-3 mb-3">
-              <h6 class="m-0 font-weight-bold text-primary">Add New</h6>
+            <div class="card-header d-flex align-items-center py-3 mb-3">
+              <h6 class=" m-0"><a href={{ route('blog.list') }} class="border-right border-primary text-decoration-none font-weight-bold text-primary text-capitalize pr-2 m-0">View all</a></h6>
+              <h6 class="font-weight-bold text-primary text-capitalize pl-2 pr-2 m-0">Add new</h6>
             </div>
             @include('admin.public.message')  
             @include('admin.public.error')
@@ -34,7 +35,7 @@
                         <textarea class="form-control ckeditor" name="content" id="txt-content" rows="7"></textarea>
                       </div>
                       
-                    <button class="btn btn-primary" type="submit">Add</button>
+                    <button class="btn btn-success" type="submit">Add</button>
                   </form>
             </div>
             <div class="card-body col-lg-4"></div>

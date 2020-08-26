@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\BlogSubCategories;
 
 class BlogCategories extends Model
 {
@@ -10,8 +11,9 @@ class BlogCategories extends Model
     protected $primaryKey = 'id';
     protected $guarded = [];
 
-    public function get_child_categories()
+    public function get_sub_categories()
     {
-        return $this->hasMany('App\Models\BlogChildCategories', 'parent_cat_id');
+        $sub_cat = new BlogSubCategories();
+        return $this->hasMany($sub_cat, 'parent_cat_id');
     }
 }
