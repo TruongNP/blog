@@ -12,23 +12,37 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//login page 
+Route::get('/admin/login', 'UserController@getLogin')->name('admin.login');
+Route::post('/admin/login', 'UserController@postLogin');
+
+Route::get('/admin/logout', 'UserController@getLogout')->name('admin.logout');
 
 // admin
 $prefixAdmin = 'admin';
-Route::group(['prefix' => $prefixAdmin], function () {
-    $prefix = 'blog';
-    Route::group(['prefix' => $prefix], function () {
+
+Route::group(['prefix' => $prefixAdmin, 'middleware' => 'adminLogin'], function () {
+
+    Route::group(['prefix' => 'dashboard'], function () {
+        $controller = 'DashboardAdmin';
+        Route::get('/', $controller.'@getIndex')->name('dashboard.index');
+    });
+
+    Route::group(['prefix' => 'products'], function () {
+        $controller = 'ProductAdmin';
+        Route::get('/', $controller.'@getIndex')->name('products.index');
+        Route::get('/add', $controller.'@getAdd')->name('products.add');
+        Route::get('/edit', $controller.'@getEdit')->name('products.edit');
+    });
+    
+    Route::group(['prefix' => 'blog'], function () {
         $controller = 'BlogAdmin';
         $controller_cat = 'BlogCategoriesAdmin';
 
         // blog
-        Route::get('/', $controller.'@get_all_blog')->name('blog.list');
-        Route::get('/add', $controller.'@get_add_blog')->name('blog.add');
-        Route::get('/edit/{id}', $controller.'@get_blog_by_id')->name('blog.edit');
-        Route::get('/delete/{id}', $controller.'@get_delete_blog_by_id');
-
-        Route::post('/add', $controller.'@post_add_blog');
-        Route::post('/edit/{id}', $controller.'@post_edit_blog_by_id');
+        Route::get('/', $controller.'@getIndex')->name('blog.index');
+        Route::get('/add', $controller.'@getAdd')->name('blog.add');
+        Route::get('/edit/{id}', $controller.'@getEdit')->name('blog.edit');
 
         // catrgories
         Route::get('/categories', $controller_cat.'@index')->name('blog.categories');

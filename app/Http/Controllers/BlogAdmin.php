@@ -11,56 +11,54 @@ class BlogAdmin extends Controller
 {
     //
     private $path_view = 'admin.module.blog.';
-    
-    public function __construct()
+
+    public function getIndex() 
     {
-        
+        return view($this->path_view .'list');
     }
 
-    public function get_all_blog() 
-    {
-        $results = Blog::all()->sortByDesc('id');
-
-        return view($this->path_view .'list', ['results' => $results]);
-    }
-
-    public function get_add_blog() 
+    public function getAdd() 
     {
         return view($this->path_view .'add');
     }
+
+    public function getEdit() 
+    {
+        return view($this->path_view .'edit');
+    }
     
-    public function post_add_blog(BlogRequest $request) 
-    {
-        $blog = new Blog();
-        $blog->title = $request->title;
-        $blog->content = $request->content;
+    // public function post_add_blog(BlogRequest $request) 
+    // {
+    //     $blog = new Blog();
+    //     $blog->title = $request->title;
+    //     $blog->content = $request->content;
         
-        $blog->save();
-        return redirect()->route('blog.add')->with('message' , 'Blog created');
-    }
+    //     $blog->save();
+    //     return redirect()->route('blog.add')->with('message' , 'Blog created');
+    // }
 
-    public function get_blog_by_id($id)
-    {
-        $blogs = Blog::find($id);
+    // public function get_blog_by_id($id)
+    // {
+    //     $blogs = Blog::find($id);
 
-        return view($this->path_view .'edit', ['blogs' => $blogs]);
-    }
+    //     return view($this->path_view .'edit', ['blogs' => $blogs]);
+    // }
 
-    public function post_edit_blog_by_id(BlogRequest $request, $id) 
-    {
-        $blog = Blog::find($id);
-        $blog->title = $request->title;
-        $blog->content = $request->content;
+    // public function post_edit_blog_by_id(BlogRequest $request, $id) 
+    // {
+    //     $blog = Blog::find($id);
+    //     $blog->title = $request->title;
+    //     $blog->content = $request->content;
         
-        $blog->save();
-        return redirect()->route('blog.edit', ['id'=>$blog->id])->with('message' , 'Blog updated');
-    }
+    //     $blog->save();
+    //     return redirect()->route('blog.edit', ['id'=>$blog->id])->with('message' , 'Blog updated');
+    // }
 
-    public function get_delete_blog_by_id($id) 
-    {
-        $blog = Blog::find($id);
+    // public function get_delete_blog_by_id($id) 
+    // {
+    //     $blog = Blog::find($id);
         
-        $blog->delete();
-        return redirect()->route('blog.list')->with('message' , 'Blog deleted');
-    }
+    //     $blog->delete();
+    //     return redirect()->route('blog.list')->with('message' , 'Blog deleted');
+    // }
 }
