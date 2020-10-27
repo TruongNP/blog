@@ -39,19 +39,6 @@
         </div>
       </div>
     </li>
-    <li class="nav-item">
-      <a class="nav-link collapsed" href="{{ route('blog.index') }}" data-toggle="collapse" data-target="#collapseBlogs" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-cog"></i>
-        <span>Blogs</span>
-      </a>
-      <div id="collapseBlogs" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" href="{{ route('blog.index') }}">All Blog</a>
-          <a class="collapse-item" href="{{ route('blog.add') }}">Add</a>
-          <a class="collapse-item" href="{{ route('blog.categories') }}">Categories</a>
-        </div>
-      </div>
-    </li>
 
     <!-- Nav Item - Utilities Collapse Menu -->
     <li class="nav-item">
