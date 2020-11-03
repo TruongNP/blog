@@ -29,13 +29,13 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-      <a class="nav-link collapsed" href="{{ route('products.index') }}" data-toggle="collapse" data-target="#collapseProducts" aria-expanded="true" aria-controls="collapseTwo">
+      <a class="nav-link collapsed" href="{{ route('products.index', ['path' => 'all']) }}" data-toggle="collapse" data-target="#collapseProducts" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-fw fa-cog"></i>
         <span>Product</span>
       </a>
       <div id="collapseProducts" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
-          <a class="collapse-item" href="{{ route('products.index') }}">All Product</a>
+          <a class="collapse-item" href="{{ route('products.index', ['path' => 'all']) }}">All Product</a>
         </div>
       </div>
     </li>

@@ -25,13 +25,13 @@ Route::group(['prefix' => $prefixAdmin, 'middleware' => 'adminLogin'], function 
 
     Route::group(['prefix' => 'dashboard'], function () {
         Route::get('/', function () {
-            return view('admin.module.dashboard');
+            return view('admin.module.dashboard.index');
         })->name('dashboard.index');
     });
 
     Route::group(['prefix' => 'products'], function () {
         Route::get('/{path}', function () {
-            return view('admin.module.products');
+            return view('admin.module.products.index');
         })->where('path', '.*')->name('products.index');
     });
     

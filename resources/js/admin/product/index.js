@@ -9,13 +9,13 @@ class Product extends Component {
         return (
             <Router>
                 <Switch>
-                    <Route exact path="/admin/product/all">
+                    <Route exact path="/admin/products/all">
                         <MainPage />
                     </Route>
-                    <Route path="/admin/product/add">
+                    <Route path="/admin/products/add">
                         <MainPage />
                     </Route>
-                    <Route path="/admin/product/edit/:id">
+                    <Route path="/admin/products/edit/:id">
                         <EditPage />
                     </Route>
                 </Switch>
