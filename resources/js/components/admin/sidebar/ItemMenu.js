@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 
 function ItemMenu(props) {
     return (
-        <Link to={`${props.slug}`} className={`collapsible-header navbar-link-2 waves-effect arrow-r d-flex align-items-center`} >
-            <i className="fas fa-gem dark-blue-text"></i> {props.name}
+        <Link to={props.slug} className={`nav-link collapsed`}  data-toggle="collapse" data-target={`#menu-${props.id}`} aria-expanded="true" aria-controls="collapseTwo">
+            <i className="fas fa-fw fa-cog"></i>
+            <span>{props.name}</span> 
         </Link>
     )
 };

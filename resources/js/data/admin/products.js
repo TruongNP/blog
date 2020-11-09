@@ -4,16 +4,16 @@ export const Products = [
         id: 1,
         handle: 'product-1',
         title: 'Product 1',
-        feature_image: '/uploads/product-demo.jpg',
+        feature_image: '/uploads/asset/product-demo.jpg',
         images_info: [
             {
-                src: '/uploads/product-demo.jpg',
+                src: '/uploads/asset/product-demo.jpg',
             },
             {
-                src: '/uploads/product-demo.jpg',
+                src: '/uploads/asset/product-demo.jpg',
             },
             {
-                src: '/uploads/product-demo.jpg'
+                src: '/uploads/asset/product-demo.jpg'
             }
         ],
         options_with_values: [
@@ -64,16 +64,16 @@ export const Products = [
         id: 2,
         handle: 'product-1',
         title: 'Product 1',
-        feature_image: '/uploads/product-demo.jpg',
+        feature_image: '/uploads/asset/product-demo.jpg',
         images_info: [
             {
-                src: '/uploads/product-demo.jpg',
+                src: '/uploads/asset/product-demo.jpg',
             },
             {
-                src: '/uploads/product-demo.jpg',
+                src: '/uploads/asset/product-demo.jpg',
             },
             {
-                src: '/uploads/product-demo.jpg'
+                src: '/uploads/asset/product-demo.jpg'
             }
         ],
         options_with_values: [

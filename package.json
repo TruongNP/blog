@@ -11,7 +11,7 @@
     },
     "devDependencies": {
         "@babel/preset-react": "^7.0.0",
-        "axios": "^0.19",
+        "axios": "^0.21.0",
         "bootstrap": "^4.0.0",
         "cross-env": "^7.0",
         "jquery": "^3.2",
@@ -25,6 +25,15 @@
         "sass-loader": "^8.0.0"
     },
     "dependencies": {
-        "react-router-dom": "^5.2.0"
+        "@babel/plugin-proposal-class-properties": "^7.12.1",
+        "mdbootstrap": "^4.19.1",
+        "mdbreact": "^4.27.0",
+        "react-alert": "^7.0.2",
+        "react-alert-template-basic": "^1.0.0",
+        "react-autocomplete-input": "^1.0.14",
+        "react-ckeditor-component": "^1.1.0",
+        "react-images-upload": "^1.2.8",
+        "react-router-dom": "^5.2.0",
+        "react-tagsinput": "^3.19.0"
     }
 }
