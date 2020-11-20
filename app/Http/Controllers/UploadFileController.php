@@ -4,46 +4,55 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Products;
+use App\Models\Media;
 use Illuminate\Support\Str;
 
 class UploadFileController extends Controller
 {
     public function index()
     {
-        $data = [
-            'name' => 'truong Npt'
-        ];
-
-        return response()->json($data, 201);
+        $result = Media::all();
+        
+        return response()->json($result, 201);
     }
 
     public function store(Request $request)
     {
-        $products = new Products();
+        $media = new Media();
+        $all_media = $media->all();
+        $exist_file = false;
 
         $path = base_path('public/uploads/asset');
 
         $file = $request->file('file');
-        $file_name = $file->getClientOriginalName() ;
+        $file_name = $file->getClientOriginalName();
 
-        $file->move( $path, $file_name);
         $path_image =  '/uploads/asset/'.$file_name.'';
+        $alt = explode('.', $file_name);
 
-        $products->title = $request->title;
-        $products->slugs = Str::slug($request->title, '-');
-        $products->description = $request->description;
-        $products->feature_image = $path_image;
-        $products->tags = 'color';
-        $products->product_type = 'admin';
-        $products->vendor = 'admin';
-        $products->collection = 'admin';
-        $products->media = $path_image;
-        $products->variants = 'color';
-        $products->status = 'Instork';
+        $media->file_name = $file_name;
+        $media->src = $path_image;
+        $media->size = $request->size;
+        $media->type = $request->type;
+        $media->alt = $alt[0];
 
-        $products->save();
+        foreach ($all_media as $item) {
+            if($item->src == $path_image) {
+                $exist_file = true;
+                break;
+            }
+        }
 
-        return response()->json('status', 201);
+        if($exist_file == false) {
+            $file->move( $path, $file_name);
+            $media->save();
+        }
+
+        $result = [
+            'src' => $path_image
+        ];
+
+        return response()->json($result);
     }
 
     public function update(Request $request)

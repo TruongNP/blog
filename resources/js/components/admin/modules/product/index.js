@@ -1,32 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useAlert } from "react-alert";
+import ProductItem from '../../ProductItem';
+import Pagination from '../../Pagination';
 
 function MainPage() {
+
+    const alert = useAlert();
 
     const prefixAdmin = '/admin/products';
 
     const [productList, setProductList] = useState([]);
+    const totalItem = productList.length;
+    const [currentPage, setCurrentPage] = useState(1);
+    const itemsPerPage = 10;
+    const lastItem = currentPage * itemsPerPage;
+    const firstItem = lastItem - itemsPerPage;
+
+    const onClickPagination = (currentPage) => {
+        
+        setCurrentPage(currentPage);
+    };
 
     const categoryProduct = (tags) => {
-        const tag = tags.filter(t => t.startsWith('category:'));
-        var catName = tag[0].replace('category:', '');
+        if(tags != null) {
+             const tag = tags.split(',').filter(t => t.startsWith('category:'));
+            var catName = tag[0].replace('category:', '');
 
-        return catName;
+            return catName;
+        }
+       
     };
 
     const deleteProduct = (id) => {
-        console.log('id:', id);
+        const product = document.getElementById('product-'+id+'');
+        var value = product.innerText;
+        product.innerText = value + '...';
+        axios.get(`/api/v1/product/delete/${id}`).then(res => {
+            alert.success('Product deleted');
+            getProductList();
+            product.innerText = value;
+        }).catch(err => {
+            product.innerText = value;
+        })
     };
 
     function getProductList() {
         axios.get('/api/v1/products').then(res => {
-            setProductList(res.data)
+            setProductList(res.data.products);
         })
-    }
+    };
 
     useEffect(() => {
         getProductList();
-    })
+    },[]);
 
     return (
         <div className="container-fluid pl-5 pb-5 pr-5">
@@ -51,32 +78,18 @@ function MainPage() {
                             </th>
                             <th scope="col">Image</th>
                             <th scope="col">Title</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Inventory</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Vendor</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                    {
-                        productList.map((item, index) => {
-                            return (
-                            <tr key={index}>
-                                <th scope="row">
-                                    <div className="form-check pl-0">
-                                    <input type="checkbox" className="form-check-input filled-in" id="check-1" />
-                                    <label className="form-check-label small text-uppercase card-a-secondary" htmlFor="check-1"></label>
-                                    </div>
-                                </th> 
-                                <td><a href={`${prefixAdmin}/edit/${item.id}`}><img src={item.feature_image} width="50" alt={item.title} /></a></td>
-                                <td><a href={`${prefixAdmin}/edit/${item.id}`} className="text-primary">{item.title}</a></td>
-                                <td>
-                                    <button className="btn btn-dark-green bg-danger btn-sm m-0 py-1 px-2 mr-1 text-light" onClick={() => {deleteProduct(item.id)}} >Delete</button>
-                                    <a href={`${prefixAdmin}/edit/${item.id}`} className="btn btn-primary btn-sm m-0 py-1 px-2 text-light" >Edit</a>
-                                </td>
-                            </tr>
-                            )
-                        })
-                    }
+                    <ProductItem prefixAdmin={prefixAdmin} currentProductList={ productList } firstItem={ firstItem } lastItem={ lastItem } categoryProduct={categoryProduct} deleteProduct={deleteProduct} />
                     </tbody>
                 </table>
+                <Pagination totalItem={ totalItem } itemsPerPage={ itemsPerPage } paginate={ onClickPagination } currentPage={ currentPage } />
             </div>
         </div>
     )

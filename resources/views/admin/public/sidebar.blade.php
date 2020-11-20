@@ -30,7 +30,7 @@
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
       <a class="nav-link collapsed" href="{{ route('products.index') }}" data-toggle="collapse" data-target="#collapseProducts" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fas fa-fw fa-cog"></i>
+        <i class="fab fa-product-hunt"></i>
         <span>Product</span>
       </a>
       <div id="collapseProducts" class="collapse" aria-labelledby="headingTwo" data-parent="#collapseProducts">

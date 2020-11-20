@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Validator;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //login page 
+Route::get('/test', function() {
+    $v = '{"variant":[{"color":"red","size":"no","quantity":"0"}]}';
+    return response()->json($v);
+});
+
+
 Route::get('/admin/login', 'UserController@getLogin')->name('admin.login');
 Route::post('/admin/login', 'UserController@postLogin');
 
