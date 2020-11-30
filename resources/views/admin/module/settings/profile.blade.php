@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('title')
-    Media
+    Profile
 @endsection
 
 @section('main-content')

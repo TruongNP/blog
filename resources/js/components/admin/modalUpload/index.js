@@ -103,15 +103,19 @@ onChangeFileInMedia = (src, currentIndex) => {
     this.setState({indexFileInMedia: indexResult});
   }
 
+  if(this.props.onlyUpload == true) {
+    window.location.reload();
+  }
+
 };
 
 render() {
   
-  const {onchangeFileSelected} = this.props;
+  const {onchangeFileSelected, className, buttonName,doneUpload, onlyUpload} = this.props;
 
   return (
-    <MDBContainer className="p-0 w-auto float-right">
-      <a className="text-primary" onClick={this.toggle(4)}>Add Media</a>
+    <MDBContainer className="p-0 w-auto float-right m-0">
+      <a className={`${className && className != '' ? className : 'text-primary'}`} onClick={this.toggle(4)}>{buttonName ? buttonName : 'Add Media'}</a>
       <MDBModal isOpen={this.state.modal4} toggle={this.toggle(4)} size="lg">
         <MDBModalHeader toggle={this.toggle(4)}>Media</MDBModalHeader>
         <MDBModalBody>
@@ -121,7 +125,7 @@ render() {
             onClick={this.selectFileTab}
             >Select File</a>
           </li>
-          <li className="nav-item">
+          <li className={`nav-item ${onlyUpload == true ? 'd-none' : ''}`}>
             <a className={`nav-link ${this.state.selectFile == false ? 'active' : null}`} href="#"
             onClick={this.libraryTab}
             >Library</a>
@@ -133,7 +137,7 @@ render() {
               withIcon={true}
               buttonText='Choose images'
               onChange={this.onDrop}
-              imgExtension={['.jpg', '.png']}
+              imgExtension={['.jpg', '.png', 'gif']}
               maxFileSize={5242880}
               withPreview={false}
               withLabel={false}
@@ -164,7 +168,8 @@ render() {
         </MDBModalBody>
         <MDBModalFooter>
           <MDBBtn color="secondary" onClick={this.toggle(4)}>Close</MDBBtn>
-          <MDBBtn color="primary" onClick={() => onchangeFileSelected(this.state.fileSelectedInMedia)}>Save changes</MDBBtn>
+          <MDBBtn color="primary" className={onlyUpload != true ? 'd-none' : ''} onClick={() => doneUpload(true)}>Save</MDBBtn>
+          <MDBBtn color="primary" className={onlyUpload == true ? 'd-none' : ''} onClick={() => onchangeFileSelected(this.state.fileSelectedInMedia)}>Save changes</MDBBtn>
         </MDBModalFooter>
       </MDBModal>
     </MDBContainer>

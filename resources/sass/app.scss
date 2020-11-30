@@ -88,6 +88,10 @@
 
   //custom
 
+  .rounded-5 {
+    border-radius: 5px !important;
+  }
+
   .rounded-10 {
     border-radius: 10px !important;
   }
@@ -156,6 +160,27 @@
   .dropdown .dropdown-menu .dropdown-item:active, .dropdown .dropdown-menu .dropdown-item:hover, .dropleft .dropdown-menu .dropdown-item:active, .dropleft .dropdown-menu .dropdown-item:hover, .dropright .dropdown-menu .dropdown-item:active, .dropright .dropdown-menu .dropdown-item:hover, .dropup .dropdown-menu .dropdown-item:active, .dropup .dropdown-menu .dropdown-item:hover {
     background-color: #2ab9ad !important;
   }
+
+  .item-setting__icon {
+    height: 40px;
+    width: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e7e7e7;
+  }
+
+  .item-setting:hover {
+    border-color: #2ab9ad !important;
+    transition: 0.3s ease-in-out;
+  }
+
+  .icon-user {
+    height: 40px;
+    width: 40px;
+    text-align: center;
+  }
+  
   hr {
     box-sizing: content-box;
     height: 0;
@@ -6184,7 +6209,7 @@
   }
   
   .modal-open {
-    overflow: hidden;
+    overflow: auto;
   
     .modal {
       overflow-x: hidden;

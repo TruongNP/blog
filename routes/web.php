@@ -29,6 +29,10 @@ $prefixAdmin = 'admin';
 
 Route::group(['prefix' => $prefixAdmin, 'middleware' => 'adminLogin'], function () {
 
+    Route::get('/', function () {
+        return view('admin.module.dashboard.index');
+    })->name('admin.index');
+
     Route::group(['prefix' => 'dashboard'], function () {
         Route::get('/', function () {
             return view('admin.module.dashboard.index');
@@ -50,6 +54,18 @@ Route::group(['prefix' => $prefixAdmin, 'middleware' => 'adminLogin'], function 
     });
 
     Route::group(['prefix' => 'settings'], function () {
+        Route::get('/', function () {
+            return view('admin.module.settings.index');
+        })->name('settings.index');
+
+        Route::get('/general', function () {
+            return view('admin.module.settings.general');
+        })->name('settings.general');
+
+        Route::get('/profile', function () {
+            return view('admin.module.settings.profile');
+        })->name('settings.profile');
+
         Route::get('/media', function () {
             return view('admin.module.settings.media');
         })->name('settings.media');

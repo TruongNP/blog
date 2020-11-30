@@ -25,7 +25,4 @@
   <!-- Custom styles for this template-->
 <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 
-<script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
-<script src="{{ asset('/ckeditor/ckfinder.js') }}"></script>
-
 </head>

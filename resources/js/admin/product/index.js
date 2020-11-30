@@ -6,7 +6,7 @@ import EditPage from '../../components/admin/modules/product/EditPage';
 import AddPage from '../../components/admin/modules/product/AddPage';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic'
-// import ModalUpload from '../../components/admin/modalUpload';
+
 const options = {
     position: positions.TOP_RIGHT,
     timeout: 5000,
@@ -22,10 +22,10 @@ class Product extends Component {
                         <Route exact path="/admin/products">
                             <MainPage />
                         </Route>
-                        <Route path="/admin/products/add">
+                        <Route exact path="/admin/products/add">
                             <AddPage />
                         </Route>
-                        <Route path="/admin/products/edit/:id">
+                        <Route exact path="/admin/products/edit/:id">
                             <EditPage />
                         </Route>
                     </Switch>

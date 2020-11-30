@@ -5,7 +5,8 @@ import CKEditor from "react-ckeditor-component";
 import { useAlert } from "react-alert";
 import Loader from '../../loader';
 import ModalUpload from '../../modalUpload';
-import ColorOption from '../../colorOption';
+import ProductOption from '../../productOption';
+import NumberFormat from 'react-number-format';
 
 function AddPage() {
     const alert = useAlert();
@@ -26,9 +27,20 @@ function AddPage() {
     const [totalQuantity, setTotalQuantity] = useState('');
     const [errors, setErrors] = useState([]);
     const [variants, setVariants] = useState([]);
+    const [currencyCode, setCurrencyCode] = useState('');
+    const [currency, setCurrency] = useState('');
+
+    function getGeneralSetting() {
+        axios.get(`/api/v1/settings/general`).then(res => {
+            const generalSetting = res.data;
+
+            setCurrencyCode(generalSetting[0].currency_code);
+            setCurrency(generalSetting[0].currency);
+        })
+    }
 
     useEffect(() => {
-
+        getGeneralSetting();
     },[]);
 
     const onDrop = (picture) => {
@@ -36,7 +48,7 @@ function AddPage() {
         setSelectedFile(file)
     };
     
-    const onChangTitle = (e) => {
+    const onChangeTitle = (e) => {
         setTitle(e.target.value)
     };
 
@@ -77,11 +89,13 @@ function AddPage() {
     };
 
     const onChangPrice = (e) => {
-        setPrice(e.target.value)
+        var value = e.target.value.replaceAll(',', '');
+        setPrice(value);
     };
 
     const onChangComparePrice = (e) => {
-        setComparePrice(e.target.value)
+        var value = e.target.value.replaceAll(',', '');
+        setComparePrice(value)
     };
 
     const onChangProductCode = (e) => {
@@ -110,7 +124,7 @@ function AddPage() {
         }
     }
 
-    const addMoreColorOption = (e) => {
+    const addMoreProductOption = (e) => {
         e.preventDefault();
         const newOption = {
             color: '', 
@@ -197,7 +211,7 @@ function AddPage() {
                 <h1 className="h3 mb-2 text-gray-800">Add New Products</h1>
                 <div id="scroll-top" className="col-12 mb-3 p-0 d-flex justify-content-between">
                     <nav className="nav">
-                        <a className="nav-link pl-0" onClick={() => window.history.back()}>Go Back</a>
+                        <a className="nav-link pl-0" onClick={() => window.history.back()}><i className="fas fa-arrow-left"></i> Go Back</a>
                     </nav>
                     <button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>Save {submiting == true ? <Loader with="20" /> : null}</button>
                 </div>
@@ -210,7 +224,7 @@ function AddPage() {
                                     type="text"
                                     className={`form-control ${errors.title ? 'is-invalid' : ''}`}
                                     id="txt-title"
-                                    onChange={(e) => {onChangTitle(e)}}
+                                    onChange={(e) => {onChangeTitle(e)}}
                                 />
                                 <div className="invalid-feedback">{errors.title ? errors.title : ''}</div>
                             </div>
@@ -253,11 +267,12 @@ function AddPage() {
                                         <label htmlFor="txt-price">Price</label>
                                         <div className="input-group mb-3">
                                             <div className="input-group-prepend">
-                                                <span className="input-group-text">$</span>
+                                                <span className="input-group-text text-uppercase">{currency == 'VND' ? currency : currencyCode}</span>
                                             </div>
-                                            <input type="text" id="txt-price" onChange={(e) => {onChangPrice(e)}} className="form-control" aria-label="Amount (to the nearest dollar)" />
+                                            <NumberFormat onChange={(e) => {onChangPrice(e)}} className="form-control" thousandSeparator={true} />
+                                            {/* <input type="text" id="txt-price" onChange={(e) => {onChangPrice(e)}} className="form-control" aria-label="Amount (to the nearest dollar)" /> */}
                                             <div className="input-group-append">
-                                                <span className="input-group-text">.00</span>
+                                                <span className="input-group-text text-uppercase">{currency == 'VND' ? currencyCode : currency}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -265,11 +280,12 @@ function AddPage() {
                                         <label htmlFor="txt-compare-price">Compare at price</label>
                                         <div className="input-group mb-3">
                                             <div className="input-group-prepend">
-                                                <span className="input-group-text">$</span>
+                                                <span className="input-group-text text-uppercase">{currency == 'VND' ? currency : currencyCode}</span>
                                             </div>
-                                            <input type="text" id="txt-compare-price" onChange={(e) => {onChangComparePrice(e)}} className="form-control" aria-label="Amount (to the nearest dollar)" />
+                                            <NumberFormat onChange={(e) => {onChangComparePrice(e)}} className="form-control" thousandSeparator={true} />
+                                            {/* <input type="text" id="txt-compare-price" onChange={(e) => {onChangComparePrice(e)}} className="form-control" aria-label="Amount (to the nearest dollar)" /> */}
                                             <div className="input-group-append">
-                                                <span className="input-group-text">.00</span>
+                                                <span className="input-group-text text-uppercase">{currency == 'VND' ? currencyCode : currency}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -317,7 +333,7 @@ function AddPage() {
                                             variants.map((item, index) => {
                                                 return (
                                                     <div key={index}>
-                                                        <ColorOption 
+                                                        <ProductOption 
                                                         indexToRemove={index} 
                                                         color={item.color} 
                                                         size={item.size} 
@@ -372,7 +388,7 @@ function AddPage() {
                                             })
                                         }
                                     </div>
-                                    <button className={`btn mt-3 ${displayVariantOption == true ? 'd-block' : 'd-none'}`} onClick={(e) => addMoreColorOption(e)}>Add More Option</button>
+                                    <button className={`btn mt-3 ${displayVariantOption == true ? 'd-block' : 'd-none'}`} onClick={(e) => addMoreProductOption(e)}>Add More Option</button>
                                 </div>
                             </div>
                         </form>

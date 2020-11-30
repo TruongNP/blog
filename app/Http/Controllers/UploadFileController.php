@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Media;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class UploadFileController extends Controller
 {
@@ -62,10 +63,10 @@ class UploadFileController extends Controller
         return response()->json($article, 200);
     }
 
-    public function delete(Article $article)
+    function delete($id)
     {
-        $article->delete();
-
-        return response()->json(null, 204);
+        $media = Media::find($id);
+        
+        $media->delete();
     }
 }

@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('title')
-    Media
+    Genneral
 @endsection
 
 @section('main-content')

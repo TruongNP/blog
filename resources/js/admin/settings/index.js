@@ -3,7 +3,11 @@ import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import ReactDOM from 'react-dom';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic'
-// import ModalUpload from '../../components/admin/modalUpload';
+import MainPage from '../../components/admin/modules/settings';
+import GeneralPage from '../../components/admin/modules/settings/GeneralPage';
+import ProfilePage from '../../components/admin/modules/settings/ProfilePage';
+import MediaPage from '../../components/admin/modules/settings/MediaPage';
+
 const options = {
     position: positions.TOP_RIGHT,
     timeout: 5000,
@@ -16,8 +20,17 @@ class Settings extends Component {
             <AlertProvider template={AlertTemplate} {...options}>
                 <Router>
                     <Switch>
+                        <Route exact path="/admin/settings">
+                            <MainPage />
+                        </Route>
+                        <Route exact path="/admin/settings/general">
+                            <GeneralPage />
+                        </Route>
+                        <Route exact path="/admin/settings/profile">
+                            <ProfilePage />
+                        </Route>
                         <Route exact path="/admin/settings/media">
-                            <h3>Media</h3>
+                            <MediaPage />
                         </Route>
                     </Switch>
                 </Router>
@@ -28,6 +41,6 @@ class Settings extends Component {
 
 export default Settings;
 
-if (document.getElementById('media')) {
-    ReactDOM.render(<Settings />, document.getElementById('media'));
+if (document.getElementById('settings')) {
+    ReactDOM.render(<Settings />, document.getElementById('settings'));
 }

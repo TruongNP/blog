@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 
 
-function ColorOption(props) {
+function ProductOption(props) {
 
     const {indexToRemove, color, size, quantity, onChangeColorName, onChangeSizeName, onChangeQuantity, onBlurQuantity, removeVariants} = props;
 
@@ -37,4 +37,4 @@ function ColorOption(props) {
     );
 }
 
-export default ColorOption;
+export default ProductOption;

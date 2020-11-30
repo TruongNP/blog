@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('title')
-    Media
+    Settings
 @endsection
 
 @section('main-content')
