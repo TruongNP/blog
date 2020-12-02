@@ -40,4 +40,8 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/uploads', 'UploadFileController@index');
     Route::get('/upload/delete/{id}', 'UploadFileController@delete');
     Route::post('/uploads', 'UploadFileController@store');
+
+    //orders
+    Route::get('/orders', 'ApiOrdersController@index');
+    Route::post('/orders/add', 'ApiOrdersController@store');
 });

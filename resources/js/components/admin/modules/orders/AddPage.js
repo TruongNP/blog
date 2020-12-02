@@ -227,6 +227,61 @@ function AddPage() {
         getGeneralSetting();
     },[]);
 
+    const submitForm = () => {
+        var orderItem = '';
+
+        if(selectedProdList.length > 0) {
+            const prodLength = selectedProdList.length - 1;
+            orderItem = '{"orders":[';
+            selectedProdList.forEach((item, index) => {
+                if(index != prodLength) {
+                    orderItem += '{"id":"'+item.id+'","feature_image":"'+item.feature_image+'","title":"'+item.title+'","price":"'+item.price+'","quantity":"'+item.quantity+'","total_price":"'+item.total_price+'"},'; 
+                }
+                else {
+                    orderItem += '{"id":"'+item.id+'","feature_image":"'+item.feature_image+'","title":"'+item.title+'","price":"'+item.price+'","quantity":"'+item.quantity+'","total_price":"'+item.total_price+'"}'; 
+                }
+                
+            });
+            orderItem += ']}';
+        }
+
+        var data = new FormData();
+        data.append('first_name', firstName);
+        data.append('last_name', lastName);
+        data.append('phone_number', phoneNumber);
+        data.append('contact_email', email);
+        data.append('shipping_address', shippingAddress);
+        data.append('city', city);
+        data.append('country', country);
+        data.append('note', notes);
+        data.append('payment_method', paymentMethod);
+        data.append('order_items', orderItem);
+        data.append('total', totalPrice);
+        data.append('status', statusOrder);
+        data.append('payment_status', paymentStatus);
+        data.append('fulfillment_status', fulfillmentStatus);
+
+        setSubmiting(true)
+
+        axios.post('/api/v1/orders/add', data, {
+            
+        }).then(res => {
+            setSubmiting(false)
+            if(res.data.error) {
+                alert.error(res.data.error);
+                setErrors(res.data.error_detail);
+            }
+            else if(res.data.success) {
+                alert.success(res.data.success);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 500);
+            }
+        }).catch((err)=>{
+
+        })
+    };
+
     //scroll to top on add page
     const onScrollTop = () => {
         var scrollItem = document.getElementById("scroll-top");
@@ -312,9 +367,9 @@ function AddPage() {
                                                                         &nbsp;{currencyCode != '$' ? currencyCode : ''}</td>
                                                                     <td>
                                                                         <div className="row">
-                                                                            <button className="btn border col-3 p-0 minus" onClick={() => quantityMinus(index)}>-</button>
+                                                                            <a className="btn border col-3 p-0 minus" onClick={() => quantityMinus(index)}>-</a>
                                                                             <input type="text" className="col-4 form-control text-center p-0 quantity" onChange={(e) => onChangeQuantity(e, index)} value={item.quantity} />
-                                                                            <button className="btn border col-3 p-0 plus" onClick={() => quantityPlus(index)}>+</button>
+                                                                            <a className="btn border col-3 p-0 plus" onClick={() => quantityPlus(index)}>+</a>
                                                                         </div>
                                                                     </td>
                                                                     <td>

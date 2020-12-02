@@ -4,7 +4,7 @@ import React from 'react';
 function Loader(props) {
     
     return (
-        <img src="/uploads/asset/loader.gif" width={props.with ? props.with : '30'} />
+        <img src="/images/loader.gif" width={props.with ? props.with : '30'} />
     );
 }
 

@@ -12,6 +12,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
+            'avata' => '/uploads/asset/npt.jpg',
             'first_name' => 'Truong',
             'last_name' => 'Npt',
             'filter_name' => 'Truong Npt',
@@ -25,6 +26,7 @@ class UserSeeder extends Seeder
             'role' => 'administrator'
         ]);
         DB::table('users')->insert([
+            'avata' => '/uploads/asset/npt.jpg',
             'first_name' => 'Master',
             'last_name' => 'Admin',
             'filter_name' => 'Master Admin',

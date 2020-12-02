@@ -36,6 +36,7 @@
         "react-ckeditor-component": "^1.1.0",
         "react-copy-to-clipboard": "^5.0.2",
         "react-images-upload": "^1.2.8",
+        "react-moment": "^1.0.0",
         "react-number-format": "^4.4.1",
         "react-router-dom": "^5.2.0",
         "react-tagsinput": "^3.19.0"

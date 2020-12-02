@@ -27,7 +27,7 @@ function StoreInfo(props) {
     return (
         <a className="sidebar-brand d-flex align-items-center justify-content-center" href="/">
             <div className={`sidebar-brand-icon ${storeLogo != '' ? 'd-block' : 'd-none'}`}>
-                <img src={storeLogo} width="80" />
+                <img src={storeLogo} width="40" />
             </div>
             <div className="sidebar-brand-text">{storeName != '' ? storeName : 'My Store'}</div>
         </a>

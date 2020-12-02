@@ -186,12 +186,20 @@
       box-shadow: none;
       border-radius: 0;
       height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #6e707e !important;
     }
 
     &.plus {
       box-shadow: none;
       border-radius: 0;
       height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #6e707e !important;
     }
   }
 
@@ -202,6 +210,8 @@
     border-right: 0;
     font-size: 12px;
   }
+
+  //end custom style
   
   hr {
     box-sizing: content-box;

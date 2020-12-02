@@ -73,3 +73,14 @@
 
   </ul>
   <!-- End of Sidebar -->
+
+<script>
+    $(document).ready(function(){
+      //   $('li.nav-item').mouseenter(function() {
+      //   $( this ).find( "div" ).slideDown();
+      // })
+      // .mouseleave(function() {
+      //   $( this ).find( "div" ).slideUp();
+      // });
+    });
+</script>
