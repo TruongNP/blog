@@ -29,6 +29,7 @@ class ApiProductsController extends Controller
             $data['slug'] = $result->slugs;
             $data['description'] = $result->description;
             $data['feature_image'] = $result->feature_image;
+            $data['price'] = $result->price;
             $data['tags'] = $result->tags;
             $data['product_type'] = $result->product_type;
             $data['vendor'] = $result->vendor;

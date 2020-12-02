@@ -37,6 +37,19 @@
     </li>
 
     <li class="nav-item">
+      <a class="nav-link collapsed" href="{{ route('orders.index') }}" data-toggle="collapse" data-target="#collapseOrders" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fab fa-product-hunt"></i>
+        <span>Orders</span>
+      </a>
+      <div id="collapseOrders" class="collapse" aria-labelledby="headingTwo" data-parent="#collapseOrders">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" href="{{ route('orders.index') }}">All Orders</a>
+          <a class="collapse-item" href="{{ route('orders.add') }}">Create Order</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item">
       <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseSettings" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-fw fa-cog"></i>
         <span>Settings</span>

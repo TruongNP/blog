@@ -2,8 +2,6 @@
 /public/hot
 /public/storage
 /public/uploads
-/public/css/app.css
-/public/css/app.js
 /storage/*.key
 /vendor
 .env
@@ -13,3 +11,4 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+yarn.lock

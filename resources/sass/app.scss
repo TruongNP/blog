@@ -180,6 +180,28 @@
     width: 40px;
     text-align: center;
   }
+
+  .btn {
+    &.minus {
+      box-shadow: none;
+      border-radius: 0;
+      height: 30px;
+    }
+
+    &.plus {
+      box-shadow: none;
+      border-radius: 0;
+      height: 30px;
+    }
+  }
+
+  input.quantity {
+    border-radius: 0;
+    height: 30px;
+    border-left: 0;
+    border-right: 0;
+    font-size: 12px;
+  }
   
   hr {
     box-sizing: content-box;
@@ -1981,9 +2003,9 @@
     &:focus {
       color: #6e707e;
       background-color: #fff;
-      border-color: #bac8f3;
+      border-color: #2bbbad;
       outline: 0;
-      box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+      box-shadow: 0 0 0 0.2rem rgb(42 184 173 / 18%);
     }
   
     &::-webkit-input-placeholder, &::-moz-placeholder, &:-ms-input-placeholder, &::-ms-input-placeholder, &::placeholder {
@@ -2540,7 +2562,7 @@
   
     &:focus, &.focus {
       outline: 0;
-      box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+      box-shadow: 0 0 0 0.2rem rgb(42 184 173 / 18%);
     }
   
     &.disabled, &:disabled {
@@ -3842,7 +3864,9 @@
   .input-group-prepend .btn:focus, .input-group-append .btn:focus {
     z-index: 3;
   }
-  
+  .btn:focus {
+    box-shadow: none !important;
+  }
   .input-group-prepend {
     .btn + {
       .btn, .input-group-text {
@@ -4004,7 +4028,7 @@
   
     &:focus {
       ~ .custom-control-label::before {
-        box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+        box-shadow: 0 0 0 0.2rem rgb(42 184 173 / 18%);
       }
   
       &:not(:checked) ~ .custom-control-label::before {
@@ -4163,7 +4187,7 @@
     &:focus {
       border-color: #bac8f3;
       outline: 0;
-      box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+      box-shadow: 0 0 0 0.2rem rgb(42 184 173 / 18%);
   
       &::-ms-value {
         color: #6e707e;
@@ -4220,8 +4244,8 @@
     opacity: 0;
   
     &:focus ~ .custom-file-label {
-      border-color: #bac8f3;
-      box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+      border-color: #2bbbad;
+      box-shadow: 0 0 0 0.2rem rgb(42 184 173 / 18%);
     }
   
     &:disabled ~ .custom-file-label {
@@ -5253,7 +5277,7 @@
     &:focus {
       z-index: 2;
       outline: 0;
-      box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+      box-shadow: 0 0 0 0.2rem rgb(42 184 173 / 18%);
     }
   }
   

@@ -32,6 +32,7 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('/settings/general/update', 'ApiGeneralSettingController@update');
 
     //setting -> profile
+    Route::get('/user', 'ApiProfileSettingController@index');
     Route::get('/user/{id}', 'ApiProfileSettingController@getUserById');
     Route::post('/user/update', 'ApiProfileSettingController@update');
 

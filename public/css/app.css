@@ -88,6 +88,10 @@ body {
   outline: 0 !important;
 }
 
+.rounded-5 {
+  border-radius: 5px !important;
+}
+
 .rounded-10 {
   border-radius: 10px !important;
 }
@@ -167,6 +171,46 @@ label.btn input[type=checkbox].filled-in:checked + label:after {
 .dropup .dropdown-menu .dropdown-item:active,
 .dropup .dropdown-menu .dropdown-item:hover {
   background-color: #2ab9ad !important;
+}
+
+.item-setting__icon {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #e7e7e7;
+}
+
+.item-setting:hover {
+  border-color: #2ab9ad !important;
+  transition: 0.3s ease-in-out;
+}
+
+.icon-user {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+}
+
+.btn.minus {
+  box-shadow: none;
+  border-radius: 0;
+  height: 30px;
+}
+
+.btn.plus {
+  box-shadow: none;
+  border-radius: 0;
+  height: 30px;
+}
+
+input.quantity {
+  border-radius: 0;
+  height: 30px;
+  border-left: 0;
+  border-right: 0;
+  font-size: 12px;
 }
 
 hr {
@@ -2095,9 +2139,9 @@ pre code {
 .form-control:focus {
   color: #6e707e;
   background-color: #fff;
-  border-color: #bac8f3;
+  border-color: #2bbbad;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(42, 184, 173, 0.18);
 }
 
 .form-control::-webkit-input-placeholder,
@@ -2663,7 +2707,7 @@ textarea.form-control.is-invalid {
 .btn:focus,
 .btn.focus {
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(42, 184, 173, 0.18);
 }
 
 .btn.disabled,
@@ -3979,6 +4023,10 @@ input[type=button].btn-block {
   z-index: 3;
 }
 
+.btn:focus {
+  box-shadow: none !important;
+}
+
 .input-group-prepend .btn + .btn,
 .input-group-prepend .btn + .input-group-text {
   margin-left: -1px;
@@ -4128,7 +4176,7 @@ input[type=button].btn-block {
 }
 
 .custom-control-input:focus ~ .custom-control-label::before {
-  box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(42, 184, 173, 0.18);
 }
 
 .custom-control-input:focus:not(:checked) ~ .custom-control-label::before {
@@ -4271,7 +4319,7 @@ input[type=button].btn-block {
 .custom-select:focus {
   border-color: #bac8f3;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(42, 184, 173, 0.18);
 }
 
 .custom-select:focus::-ms-value {
@@ -4329,8 +4377,8 @@ input[type=button].btn-block {
 }
 
 .custom-file-input:focus ~ .custom-file-label {
-  border-color: #bac8f3;
-  box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+  border-color: #2bbbad;
+  box-shadow: 0 0 0 0.2rem rgba(42, 184, 173, 0.18);
 }
 
 .custom-file-input:disabled ~ .custom-file-label {
@@ -5353,7 +5401,7 @@ input[type=button].btn-block {
 .page-link:focus {
   z-index: 2;
   outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+  box-shadow: 0 0 0 0.2rem rgba(42, 184, 173, 0.18);
 }
 
 .page-item:first-child .page-link {
@@ -6272,7 +6320,7 @@ a.close.disabled {
 }
 
 .modal-open {
-  overflow: hidden;
+  overflow: auto;
 }
 
 .modal-open .modal {
