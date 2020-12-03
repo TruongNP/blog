@@ -49,11 +49,11 @@ function OrderItem(props) {
                         <NumberFormat thousandSeparator={true} displayType={'text'} value={item.total}/>
                         &nbsp;{currencyCode != '$' ? currencyCode : ''}
                     </td>
-                    <td>{item.payment_status}</td>
-                    <td><span className={`${item.fulfillment_status == 'Fulfilled' ? 'bg-primary text-light' : 'bg-warning text-dark'} pt-1 pl-2 pb-1 pr-2 rounded-15`}>{item.fulfillment_status}</span></td>
+                    <td><span className={`${item.payment_status == 'Paid' ? 'bg-primary text-light' : 'bg-warning text-dark'} pl-2 pr-2 rounded-15`}>{item.payment_status}</span></td>
+                    <td><span className={`${item.fulfillment_status == 'Fulfilled' ? 'bg-primary text-light' : 'bg-warning text-dark'} pl-2 pr-2 rounded-15`}>{item.fulfillment_status}</span></td>
                     <td>{JSON.parse(item.order_items).orders.length} items</td>
                     <td>{item.payment_method}</td>
-                    <td><span className={`${item.status == 'Open' ? 'bg-primary' : 'bg-danger'} pt-1 pl-2 pb-1 pr-2 rounded-15 text-light`}>{item.status}</span></td>
+                    <td><span className={`${item.status == 'Open' ? 'bg-primary' : 'bg-danger'} pl-2 pr-2 rounded-15 text-light`}>{item.status}</span></td>
                     <td>
                         <a href={`${prefixAdmin}/edit/${item.id}`} className="btn btn-primary btn-sm m-0 py-1 px-2 text-light" >Edit</a>
                     </td>

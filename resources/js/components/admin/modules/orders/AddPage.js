@@ -125,6 +125,7 @@ function AddPage() {
 
     const selectedProduct = (id) => {
         const product = allProduct.find(p => p && p.id == id);
+        const variants = JSON.parse(product.variants).variants;
         const newProductItem = {
             id: product.id,
             feature_image: product.feature_image,
@@ -132,7 +133,11 @@ function AddPage() {
             price: product.price,
             quantity: 1,
             total_price: product.price,
-            variants: JSON.parse(product.variants).variants
+            variant_selected: {
+                color: variants[0].color,
+                size: variants[0].size,
+            },
+            variants: variants
         }
 
         setSelectedProdList([
@@ -360,7 +365,13 @@ function AddPage() {
                                                                 return (
                                                                     <tr key={index}>
                                                                     <td><a href={`${prefixAdmin}/edit/${item.id}`}><img src={item.feature_image} width="30" alt={item.title} /></a></td>
-                                                                    <td><a href={`${prefixAdmin}/edit/${item.id}`} className="text-primary">{item.title}</a></td>
+                                                                    <td>
+                                                                        <a href={`${prefixAdmin}/edit/${item.id}`} className="text-primary">{item.title}</a>
+                                                                        <br></br>
+                                                                        <sub>Color: {item.variant_selected.color}</sub>
+                                                                        <br></br>
+                                                                        <sub>Size: {item.variant_selected.size}</sub>
+                                                                    </td>
                                                                     <td>
                                                                         {currencyCode == '$' ? currencyCode : ''}&nbsp;
                                                                         <NumberFormat thousandSeparator={true} displayType={'text'} value={item.price}/>
@@ -377,7 +388,8 @@ function AddPage() {
                                                                         <NumberFormat thousandSeparator={true} displayType={'text'} value={item.total_price}/>
                                                                         &nbsp;{currencyCode != '$' ? currencyCode : ''}</td>
                                                                     <td>
-                                                                        <a href="#" id={`product-${item.id}`} className="text-danger" onClick={() => {deleteSelectedProduct(index)}} ><i className="fa fa-times ml-1"></i></a>
+                                                                        <a href="#" className="text-danger mr-3" onClick={() => {deleteSelectedProduct(index)}} ><i className="fa fa-times ml-1"></i></a>
+                                                                        <a href="#" className="text-info" onClick={() => {deleteSelectedProduct(index)}} ><i className="fa fa-pencil-alt"></i></a>
                                                                     </td>
                                                                 </tr>
                                                                 )

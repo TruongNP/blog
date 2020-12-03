@@ -10900,12 +10900,12 @@ a.text-success:focus {
 }
 
 .text-info {
-  color: #36b9cc !important;
+  color: #169dff !important;
 }
 
 a.text-info:hover,
 a.text-info:focus {
-  color: #258391 !important;
+  color: #169dff !important;
 }
 
 .text-warning {

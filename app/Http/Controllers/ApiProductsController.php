@@ -12,7 +12,7 @@ class ApiProductsController extends Controller
 {
     public function index()
     {
-        $get_data = Products::all();
+        $get_data = Products::orderBy('id', 'desc')->get();
         $response = [];
 
         foreach ($get_data as $result) {

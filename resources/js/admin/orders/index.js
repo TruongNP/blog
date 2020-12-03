@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import ReactDOM from 'react-dom';
 import MainPage from '../../components/admin/modules/orders';
-import EditPage from '../../components/admin/modules/product/EditPage';
+import EditPage from '../../components/admin/modules/orders/EditPage';
 import AddPage from '../../components/admin/modules/orders/AddPage';
 import { transitions, positions, Provider as AlertProvider } from 'react-alert'
 import AlertTemplate from 'react-alert-template-basic'
@@ -26,7 +26,7 @@ class Orders extends Component {
                             <AddPage />
                         </Route>
                         <Route exact path="/admin/orders/edit/:id">
-                            {/* <EditPage /> */}
+                            <EditPage />
                         </Route>
                     </Switch>
                 </Router>

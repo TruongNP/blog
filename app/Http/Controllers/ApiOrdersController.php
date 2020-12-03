@@ -9,9 +9,16 @@ class ApiOrdersController extends Controller
 {
     public function index()
     {
-        $result = Orders::all();
+        $result = Orders::orderBy('id', 'desc')->get();
         
         return response()->json($result, 201);
+    }
+
+    function getOrderById($id)
+    {
+        $order = Orders::find($id);
+
+        return response()->json($order, 201);
     }
 
     public function store(Request $request) 
@@ -37,6 +44,27 @@ class ApiOrdersController extends Controller
 
         $return=[
             "success" => "Prder has been create"
+        ];
+        return response()->json($return);
+    }
+
+    public function update(Request $request) 
+    {
+        $orders = Orders::find($request->id);
+
+        $orders->phone_number = $request->phone_number;
+        $orders->contact_email = $request->contact_email;
+        $orders->shipping_address = $request->shipping_address;
+        $orders->note = $request->note;
+        $orders->status = $request->status;
+        $orders->payment_status = $request->payment_status;
+        $orders->payment_method = $request->payment_method;
+        $orders->fulfillment_status = $request->fulfillment_status;
+
+        $orders->save();
+
+        $return=[
+            "success" => "Product has been saved"
         ];
         return response()->json($return);
     }
