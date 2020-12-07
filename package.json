@@ -34,6 +34,7 @@
         "react-alert-template-basic": "^1.0.0",
         "react-autocomplete-input": "^1.0.14",
         "react-ckeditor-component": "^1.1.0",
+        "react-color": "^2.19.3",
         "react-copy-to-clipboard": "^5.0.2",
         "react-images-upload": "^1.2.8",
         "react-moment": "^1.0.0",

@@ -83,6 +83,10 @@ Route::group(['prefix' => $prefixAdmin, 'middleware' => 'adminLogin'], function 
         Route::get('/media', function () {
             return view('admin.module.settings.media');
         })->name('settings.media');
+
+        Route::get('/swatches', function () {
+            return view('admin.module.settings.swatches');
+        })->name('settings.swatches');
     });
     
 });

@@ -237,7 +237,14 @@ function AddPage() {
         setFulfillmentStatus(e.target.value)
     }
 
+    const getSwatches = () => {
+        axios.get('/api/v1/swatches').then(res => {
+          window.swatches = res.data;
+        })
+      };
+
     useEffect(() => {
+        getSwatches();
         getAllCustomer();
         getAllProduct();
         getGeneralSetting();

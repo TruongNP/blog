@@ -7,6 +7,7 @@ import MainPage from '../../components/admin/modules/settings';
 import GeneralPage from '../../components/admin/modules/settings/GeneralPage';
 import ProfilePage from '../../components/admin/modules/settings/ProfilePage';
 import MediaPage from '../../components/admin/modules/settings/MediaPage';
+import SwatchesPage from '../../components/admin/modules/settings/SwatchesPage';
 
 const options = {
     position: positions.TOP_RIGHT,
@@ -31,6 +32,9 @@ class Settings extends Component {
                         </Route>
                         <Route exact path="/admin/settings/media">
                             <MediaPage />
+                        </Route>
+                        <Route exact path="/admin/settings/swatches">
+                            <SwatchesPage />
                         </Route>
                     </Switch>
                 </Router>

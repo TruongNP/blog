@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
+import axios from 'axios';
 
 class ChangeProductOption extends Component {
   constructor(props) {
@@ -23,8 +24,16 @@ class ChangeProductOption extends Component {
 
   colorOptionList = () => {
     this.state.variantsOption.forEach(v => {
-      if(!this.state.colorOption.find(co => co == v.color) )
-        this.state.colorOption.push(v.color);
+      if(!this.state.colorOption.find(co => co.color_name == v.color) ) {
+        const swatch = window.swatches.find(s => s && s.color_name == v.color);
+        const color = {
+          color_name: v.color,
+          color_code: swatch.color_code
+        }
+
+        this.state.colorOption.push(color);
+      }
+        
     });
   }
 
@@ -45,9 +54,19 @@ class ChangeProductOption extends Component {
     this.setState({sizeSelected: size});
   }
 
+
+  // addColorCode = () => {
+  //   this.state.colorOption.forEach((c, i) => {
+  //     this.state.swatches.forEach(s => {
+  //       if(c.)
+  //     })
+  //   })
+  // }
+
   componentDidMount() {
     this.colorOptionList();
     this.onChangeColor(this.state.colorSelected);
+    // this.addColorCode();
   }
 
 render() {
@@ -66,7 +85,7 @@ render() {
                   {
                     this.state.colorOption.map((item, index) => {
                       return (
-                      <span key={index} className={`color-option__item cursor-pointer ml-2 mr-2 ${item == this.state.colorSelected ? 'selected' : ''}`} onClick={() => this.onChangeColor(item)}>{item}</span>
+                      <span key={index} style={{background: item.color_code}} className={`color-option__item cursor-pointer border p-3 rounded-circle ml-2 mr-2 ${item.color_name == this.state.colorSelected ? 'selected' : ''}`} onClick={() => this.onChangeColor(item.color_name)}></span>
                       )
                     })
                   }

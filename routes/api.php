@@ -46,4 +46,9 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/order/{id}', 'ApiOrdersController@getOrderById');
     Route::post('/orders/add', 'ApiOrdersController@store');
     Route::post('/orders/update', 'ApiOrdersController@update');
+
+    //swatches
+    Route::get('/swatches', 'ApiSwatchesController@index');
+    Route::post('/swatches/add', 'ApiSwatchesController@store');
+    Route::post('/swatches/update', 'ApiSwatchesController@update');
 });
