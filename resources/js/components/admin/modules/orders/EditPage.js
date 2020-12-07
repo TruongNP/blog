@@ -224,7 +224,6 @@ function EditPage() {
         }
     }
 
-
     window.onscroll = function() {onScrollTop()};
 
     return (
@@ -265,7 +264,13 @@ function EditPage() {
                                                                 return (
                                                                     <tr key={index}>
                                                                     <td><a href={`${prefixAdmin}/edit/${item.id}`}><img src={item.feature_image} width="30" alt={item.title} /></a></td>
-                                                                    <td><a href={`${prefixAdmin}/edit/${item.id}`} className="text-primary">{item.title}</a></td>
+                                                                    <td>
+                                                                        <a href={`${prefixAdmin}/edit/${item.id}`} className="text-primary">{item.title}</a>
+                                                                        <br></br>
+                                                                        <sub>Color: {item.color_selected}</sub>
+                                                                        <br></br>
+                                                                        <sub>Size: {item.size_selected}</sub>
+                                                                    </td>
                                                                     <td>
                                                                         {currencyCode == '$' ? currencyCode : ''}&nbsp;
                                                                         <NumberFormat thousandSeparator={true} displayType={'text'} value={item.price}/>

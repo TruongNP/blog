@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 import ImageUploader from 'react-images-upload';
-import Loader from '../loader';
 import axios from 'axios';
 
 class ModalUpload extends Component {

@@ -4,6 +4,7 @@ import { useAlert } from "react-alert";
 import Loader from '../../loader';
 import NumberFormat from 'react-number-format';
 import { paymentMethodList, statusOrderList, paymentStatusList, fulfillmentStatusList } from '../../../../data/admin/order';
+import ChangeProductOption from '../../modalChangeProductOption';
 
 function AddPage() {
     const alert = useAlert();
@@ -147,6 +148,16 @@ function AddPage() {
         setResultProdFilter(false);
     }
 
+    const updateVariantSelected = (indexToUpdate, color, size) => {
+
+        selectedProdList[indexToUpdate].variant_selected.color = color;
+        selectedProdList[indexToUpdate].variant_selected.size = size;
+
+        setSelectedProdList([...selectedProdList]);
+
+        console.log('selectedProdList:', selectedProdList);
+    }
+
     const onBlurProduct = () => {
         setFilterProductName('');
         setTimeout(() => {
@@ -240,10 +251,10 @@ function AddPage() {
             orderItem = '{"orders":[';
             selectedProdList.forEach((item, index) => {
                 if(index != prodLength) {
-                    orderItem += '{"id":"'+item.id+'","feature_image":"'+item.feature_image+'","title":"'+item.title+'","price":"'+item.price+'","quantity":"'+item.quantity+'","total_price":"'+item.total_price+'"},'; 
+                    orderItem += '{"id":"'+item.id+'","feature_image":"'+item.feature_image+'","title":"'+item.title+'","price":"'+item.price+'","quantity":"'+item.quantity+'","total_price":"'+item.total_price+'","color_selected":"'+item.variant_selected.color+'","size_selected":"'+item.variant_selected.size+'"},'; 
                 }
                 else {
-                    orderItem += '{"id":"'+item.id+'","feature_image":"'+item.feature_image+'","title":"'+item.title+'","price":"'+item.price+'","quantity":"'+item.quantity+'","total_price":"'+item.total_price+'"}'; 
+                    orderItem += '{"id":"'+item.id+'","feature_image":"'+item.feature_image+'","title":"'+item.title+'","price":"'+item.price+'","quantity":"'+item.quantity+'","total_price":"'+item.total_price+'","color_selected":"'+item.variant_selected.color+'","size_selected":"'+item.variant_selected.size+'"}'; 
                 }
                 
             });
@@ -387,9 +398,14 @@ function AddPage() {
                                                                         {currencyCode == '$' ? currencyCode : ''}&nbsp;
                                                                         <NumberFormat thousandSeparator={true} displayType={'text'} value={item.total_price}/>
                                                                         &nbsp;{currencyCode != '$' ? currencyCode : ''}</td>
-                                                                    <td>
+                                                                    <td className="d-flex">
                                                                         <a href="#" className="text-danger mr-3" onClick={() => {deleteSelectedProduct(index)}} ><i className="fa fa-times ml-1"></i></a>
-                                                                        <a href="#" className="text-info" onClick={() => {deleteSelectedProduct(index)}} ><i className="fa fa-pencil-alt"></i></a>
+                                                                        <ChangeProductOption 
+                                                                        indexToUpdate={index}
+                                                                        variants={item.variants} 
+                                                                        sizeSelected={item.variant_selected.size} 
+                                                                        colorSelected={item.variant_selected.color}
+                                                                        updateVariantSelected={updateVariantSelected} />
                                                                     </td>
                                                                 </tr>
                                                                 )

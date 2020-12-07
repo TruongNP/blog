@@ -221,6 +221,10 @@ input.quantity {
   font-size: 12px;
 }
 
+.product-option .selected {
+  border-color: #2bb8ad !important;
+}
+
 hr {
   box-sizing: content-box;
   height: 0;

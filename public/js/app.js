@@ -81419,6 +81419,184 @@ function Loader(props) {
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/modalChangeProductOption/index.js":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/admin/modalChangeProductOption/index.js ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var mdbreact__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mdbreact */ "./node_modules/mdbreact/dist/mdbreact.esm.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+var ChangeProductOption = /*#__PURE__*/function (_Component) {
+  _inherits(ChangeProductOption, _Component);
+
+  var _super = _createSuper(ChangeProductOption);
+
+  function ChangeProductOption(props) {
+    var _this;
+
+    _classCallCheck(this, ChangeProductOption);
+
+    _this = _super.call(this, props);
+
+    _defineProperty(_assertThisInitialized(_this), "toggle", function (nr) {
+      return function () {
+        var modalNumber = 'modal' + nr;
+
+        _this.setState(_defineProperty({}, modalNumber, !_this.state[modalNumber]));
+      };
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "colorOptionList", function () {
+      _this.state.variantsOption.forEach(function (v) {
+        if (!_this.state.colorOption.find(function (co) {
+          return co == v.color;
+        })) _this.state.colorOption.push(v.color);
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "onChangeColor", function (color) {
+      var arrSize = [];
+
+      _this.state.variantsOption.forEach(function (v) {
+        if (v.color == color) arrSize.push(v.size);
+      });
+
+      _this.setState({
+        sizeOption: arrSize
+      });
+
+      _this.setState({
+        colorSelected: color
+      });
+
+      _this.setState({
+        sizeSelected: arrSize[0]
+      });
+    });
+
+    _defineProperty(_assertThisInitialized(_this), "onChangeSize", function (size) {
+      _this.setState({
+        sizeSelected: size
+      });
+    });
+
+    _this.state = {
+      variantsOption: props.variants,
+      colorSelected: props.colorSelected,
+      sizeSelected: props.sizeSelected,
+      modal14: false,
+      colorOption: [],
+      sizeOption: []
+    };
+    return _this;
+  }
+
+  _createClass(ChangeProductOption, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.colorOptionList();
+      this.onChangeColor(this.state.colorSelected);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _this$props = this.props,
+          updateVariantSelected = _this$props.updateVariantSelected,
+          indexToUpdate = _this$props.indexToUpdate;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(mdbreact__WEBPACK_IMPORTED_MODULE_1__["MDBContainer"], {
+        className: "p-0"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        className: "text-info",
+        onClick: this.toggle(14)
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+        className: "fa fa-pencil-alt"
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(mdbreact__WEBPACK_IMPORTED_MODULE_1__["MDBModal"], {
+        isOpen: this.state.modal14,
+        toggle: this.toggle(14),
+        centered: true
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(mdbreact__WEBPACK_IMPORTED_MODULE_1__["MDBModalHeader"], {
+        toggle: this.toggle(14)
+      }, "Change product option"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(mdbreact__WEBPACK_IMPORTED_MODULE_1__["MDBModalBody"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "product-option color mb-4"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Color: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "text-primary"
+      }, this.state.colorSelected)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "color-option d-flex"
+      }, this.state.colorOption.map(function (item, index) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          key: index,
+          className: "color-option__item cursor-pointer ml-2 mr-2 ".concat(item == _this2.state.colorSelected ? 'selected' : ''),
+          onClick: function onClick() {
+            return _this2.onChangeColor(item);
+          }
+        }, item);
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "product-option size"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Size: ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+        className: "text-primary"
+      }, this.state.sizeSelected)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "size-option d-flex"
+      }, this.state.sizeOption.map(function (item, index) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+          key: index,
+          className: "size-option__item border cursor-pointer ml-2 mr-2 p-2 ".concat(item == _this2.state.sizeSelected ? 'selected' : ''),
+          onClick: function onClick() {
+            return _this2.onChangeSize(item);
+          }
+        }, item);
+      })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(mdbreact__WEBPACK_IMPORTED_MODULE_1__["MDBModalFooter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(mdbreact__WEBPACK_IMPORTED_MODULE_1__["MDBBtn"], {
+        color: "secondary",
+        onClick: this.toggle(14)
+      }, "Close"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(mdbreact__WEBPACK_IMPORTED_MODULE_1__["MDBBtn"], {
+        color: "primary",
+        onClick: function onClick() {
+          return updateVariantSelected(indexToUpdate, _this2.state.colorSelected, _this2.state.sizeSelected);
+        }
+      }, "Save changes"))));
+    }
+  }]);
+
+  return ChangeProductOption;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (ChangeProductOption);
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/modalUpload/index.js":
 /*!************************************************************!*\
   !*** ./resources/js/components/admin/modalUpload/index.js ***!
@@ -81433,9 +81611,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var mdbreact__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! mdbreact */ "./node_modules/mdbreact/dist/mdbreact.esm.js");
 /* harmony import */ var react_images_upload__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-images-upload */ "./node_modules/react-images-upload/compiled.js");
 /* harmony import */ var react_images_upload__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(react_images_upload__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _loader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../loader */ "./resources/js/components/admin/loader/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
@@ -81471,7 +81648,6 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 
@@ -81516,7 +81692,7 @@ var ModalUpload = /*#__PURE__*/function (_Component) {
         progress: 0
       });
 
-      axios__WEBPACK_IMPORTED_MODULE_4___default.a.post('/api/v1/uploads', data, {
+      axios__WEBPACK_IMPORTED_MODULE_3___default.a.post('/api/v1/uploads', data, {
         onUploadProgress: function onUploadProgress(progressEvent) {
           _this.setState({
             progress: Math.round(progressEvent.loaded / progressEvent.total * 100)
@@ -81568,7 +81744,7 @@ var ModalUpload = /*#__PURE__*/function (_Component) {
     });
 
     _defineProperty(_assertThisInitialized(_this), "getMediaList", function () {
-      axios__WEBPACK_IMPORTED_MODULE_4___default.a.get('/api/v1/uploads').then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default.a.get('/api/v1/uploads').then(function (res) {
         _this.setState({
           mediaList: res.data
         });
@@ -81809,6 +81985,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _loader__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../loader */ "./resources/js/components/admin/loader/index.js");
 /* harmony import */ var react_number_format__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-number-format */ "./node_modules/react-number-format/dist/react-number-format.es.js");
 /* harmony import */ var _data_admin_order__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../../../data/admin/order */ "./resources/js/data/admin/order.js");
+/* harmony import */ var _modalChangeProductOption__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../modalChangeProductOption */ "./resources/js/components/admin/modalChangeProductOption/index.js");
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
 
 function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -81828,6 +82005,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -82066,6 +82244,13 @@ function AddPage() {
     setResultProdFilter(false);
   };
 
+  var updateVariantSelected = function updateVariantSelected(indexToUpdate, color, size) {
+    selectedProdList[indexToUpdate].variant_selected.color = color;
+    selectedProdList[indexToUpdate].variant_selected.size = size;
+    setSelectedProdList(_toConsumableArray(selectedProdList));
+    console.log('selectedProdList:', selectedProdList);
+  };
+
   var onBlurProduct = function onBlurProduct() {
     setFilterProductName('');
     setTimeout(function () {
@@ -82154,9 +82339,9 @@ function AddPage() {
       orderItem = '{"orders":[';
       selectedProdList.forEach(function (item, index) {
         if (index != prodLength) {
-          orderItem += '{"id":"' + item.id + '","feature_image":"' + item.feature_image + '","title":"' + item.title + '","price":"' + item.price + '","quantity":"' + item.quantity + '","total_price":"' + item.total_price + '"},';
+          orderItem += '{"id":"' + item.id + '","feature_image":"' + item.feature_image + '","title":"' + item.title + '","price":"' + item.price + '","quantity":"' + item.quantity + '","total_price":"' + item.total_price + '","color_selected":"' + item.variant_selected.color + '","size_selected":"' + item.variant_selected.size + '"},';
         } else {
-          orderItem += '{"id":"' + item.id + '","feature_image":"' + item.feature_image + '","title":"' + item.title + '","price":"' + item.price + '","quantity":"' + item.quantity + '","total_price":"' + item.total_price + '"}';
+          orderItem += '{"id":"' + item.id + '","feature_image":"' + item.feature_image + '","title":"' + item.title + '","price":"' + item.price + '","quantity":"' + item.quantity + '","total_price":"' + item.total_price + '","color_selected":"' + item.variant_selected.color + '","size_selected":"' + item.variant_selected.size + '"}';
         }
       });
       orderItem += ']}';
@@ -82336,7 +82521,9 @@ function AddPage() {
       thousandSeparator: true,
       displayType: 'text',
       value: item.total_price
-    }), "\xA0", currencyCode != '$' ? currencyCode : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    }), "\xA0", currencyCode != '$' ? currencyCode : ''), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", {
+      className: "d-flex"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "#",
       className: "text-danger mr-3",
       onClick: function onClick() {
@@ -82344,15 +82531,13 @@ function AddPage() {
       }
     }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
       className: "fa fa-times ml-1"
-    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-      href: "#",
-      className: "text-info",
-      onClick: function onClick() {
-        deleteSelectedProduct(index);
-      }
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
-      className: "fa fa-pencil-alt"
-    }))));
+    })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modalChangeProductOption__WEBPACK_IMPORTED_MODULE_6__["default"], {
+      indexToUpdate: index,
+      variants: item.variants,
+      sizeSelected: item.variant_selected.size,
+      colorSelected: item.variant_selected.color,
+      updateVariantSelected: updateVariantSelected
+    })));
   })))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "align-items-end justify-content-end text-primary mt-2 ".concat(totalPrice == 0 ? 'd-none' : 'd-flex')
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -82957,7 +83142,7 @@ function EditPage() {
     }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "".concat(prefixAdmin, "/edit/").concat(item.id),
       className: "text-primary"
-    }, item.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, currencyCode == '$' ? currencyCode : '', "\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_number_format__WEBPACK_IMPORTED_MODULE_4__["default"], {
+    }, item.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("sub", null, "Color: ", item.color_selected), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("sub", null, "Size: ", item.size_selected)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, currencyCode == '$' ? currencyCode : '', "\xA0", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_number_format__WEBPACK_IMPORTED_MODULE_4__["default"], {
       thousandSeparator: true,
       displayType: 'text',
       value: item.price
@@ -84074,8 +84259,6 @@ function EditPage() {
       _useState38 = _slicedToArray(_useState37, 2),
       currency = _useState38[0],
       setCurrency = _useState38[1];
-
-  console.log('variants:', variants);
 
   var getProduct = function getProduct() {
     axios__WEBPACK_IMPORTED_MODULE_2___default.a.get("/api/v1/product/".concat(id)).then(function (res) {

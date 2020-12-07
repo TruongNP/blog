@@ -35,8 +35,6 @@ function EditPage() {
     const [currencyCode, setCurrencyCode] = useState('');
     const [currency, setCurrency] = useState('');
 
-    console.log('variants:', variants);
-
     const getProduct = () => {
         axios.get(`/api/v1/product/${id}`).then(res => {
             const product = res.data;
