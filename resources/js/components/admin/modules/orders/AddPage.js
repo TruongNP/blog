@@ -301,7 +301,8 @@ function AddPage() {
                 }, 500);
             }
         }).catch((err)=>{
-
+            setSubmiting(false);
+            alert.error("There was an error sending");
         })
     };
 

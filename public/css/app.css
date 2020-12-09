@@ -225,6 +225,11 @@ input.quantity {
   border-color: #2bb8ad !important;
 }
 
+.swatches-list {
+  height: 60vh;
+  overflow: auto;
+}
+
 hr {
   box-sizing: content-box;
   height: 0;

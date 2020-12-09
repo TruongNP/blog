@@ -43,7 +43,7 @@ class ApiOrdersController extends Controller
         $orders->save();
 
         $return=[
-            "success" => "Prder has been create"
+            "success" => "Order has been create"
         ];
         return response()->json($return);
     }
@@ -64,7 +64,7 @@ class ApiOrdersController extends Controller
         $orders->save();
 
         $return=[
-            "success" => "Product has been saved"
+            "success" => "Order has been update"
         ];
         return response()->json($return);
     }

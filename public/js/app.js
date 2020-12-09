@@ -103176,7 +103176,10 @@ function AddPage() {
           window.location.reload();
         }, 500);
       }
-    })["catch"](function (err) {});
+    })["catch"](function (err) {
+      setSubmiting(false);
+      alert.error("There was an error sending");
+    });
   }; //scroll to top on add page
 
 
@@ -103853,7 +103856,10 @@ function EditPage() {
           window.location.reload();
         }, 500);
       }
-    })["catch"](function (err) {});
+    })["catch"](function (err) {
+      setSubmiting(false);
+      alert.error("There was an error sending");
+    });
   }; //scroll to top on add page
 
 
@@ -104571,7 +104577,10 @@ function AddPage() {
         setErrors([]);
         getProduct();
       }
-    })["catch"](function (err) {});
+    })["catch"](function (err) {
+      setSubmiting(false);
+      alert.error("There was an error sending");
+    });
   }; //scroll to top on add page
 
 
@@ -105267,7 +105276,10 @@ function EditPage() {
       } else if (res.data.success) {
         alert.success(res.data.success);
       }
-    })["catch"](function (err) {});
+    })["catch"](function (err) {
+      setSubmiting(false);
+      alert.error("There was an error sending");
+    });
   }; //scroll to top on add page
 
 
@@ -106059,7 +106071,10 @@ function GeneralPage() {
           window.location.reload();
         }, 500);
       }
-    })["catch"](function (err) {});
+    })["catch"](function (err) {
+      setSubmiting(false);
+      alert.error("There was an error sending");
+    });
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
@@ -106633,7 +106648,10 @@ function ProfilePage(props) {
           window.location.reload();
         }, 500);
       }
-    })["catch"](function (err) {});
+    })["catch"](function (err) {
+      setSubmiting(false);
+      alert.error("There was an error sending");
+    });
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
@@ -106976,7 +106994,10 @@ function SwatchesPage() {
         setFileSelectedInMedia([]);
         getSwatches();
       }
-    })["catch"](function (err) {});
+    })["catch"](function (err) {
+      setSubmiting(false);
+      alert.error("There was an error sending");
+    });
   };
 
   var resetForm = function resetForm() {
@@ -107006,7 +107027,10 @@ function SwatchesPage() {
         alert.success(res.data.success);
         getSwatches();
       }
-    })["catch"](function (err) {});
+    })["catch"](function (err) {
+      setSubmiting(false);
+      alert.error("There was an error sending");
+    });
   };
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
@@ -107030,48 +107054,39 @@ function SwatchesPage() {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
     className: "fas fa-arrow-left"
-  }), " Go Back")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "btn btn-primary bg-primary ".concat(updateColor == true ? 'd-none' : 'd-block'),
-    onClick: function onClick() {
-      submitForm();
-    }
-  }, " Add ", submiting == true ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_loader__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    "with": "20"
-  }) : null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: updateColor == true ? 'd-flex' : 'd-none'
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "btn bg-light text-dark mr-3",
-    onClick: function onClick() {
-      resetForm();
-    }
-  }, " Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "btn btn-primary bg-primary",
-    onClick: function onClick() {
-      updateSwatchColor();
-    }
-  }, " Update ", submiting == true ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_loader__WEBPACK_IMPORTED_MODULE_5__["default"], {
-    "with": "20"
-  }) : null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }), " Go Back"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row mt-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-4"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
     className: "text-dark"
   }, "Swatch List"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "list-group"
+    className: "swatches-list list-group"
   }, swatches.map(function (item, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       key: index,
       href: "#",
       id: "color-".concat(item.id),
-      className: "color-option list-group-item list-group-item-action text-uppercase ".concat(colorActive == item.id ? 'active' : ''),
+      className: "color-option d-flex align-items-center list-group-item list-group-item-action text-uppercase p-2 ".concat(colorActive == item.id ? 'active' : ''),
       onClick: function onClick() {
         return getColorById(item.id);
       }
-    }, item.color_name);
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+      style: {
+        background: item.color_code
+      },
+      className: "border rounded-5 m-0 mr-2 p-3 ".concat(item.color_image == 'undefined' ? '' : 'd-none')
+    }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: item.color_image,
+      width: "35",
+      height: "35",
+      className: "border rounded-5 mr-2 ".concat(item.color_image == 'undefined' ? 'd-none' : '')
+    }), item.color_name);
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-8"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", {
+    className: "text-dark"
+  }, updateColor == true ? 'Update Swatch' : 'New Swatch'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "bg-white border rounded-5 p-3"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
@@ -107100,7 +107115,8 @@ function SwatchesPage() {
     src: fileSelectedInMedia[0],
     className: "border rounded-5",
     alt: "Logo",
-    height: "60"
+    width: "35",
+    height: "35"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "position-absolute ml-1 text-danger cursor-pointer",
     onClick: function onClick() {
@@ -107113,12 +107129,12 @@ function SwatchesPage() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
     htmlFor: "txt-swatch-color"
   }, "Swatch color"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "border rounded-5",
+    className: "border rounded-5 p-3",
     style: currentColor,
     onClick: function onClick() {
       return handleClickColorPicker();
     }
-  }, "\xA0\xA0\xA0\xA0\xA0\xA0\xA0"), displayColorPicker ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }), displayColorPicker ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: popover
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: cover,
@@ -107129,7 +107145,37 @@ function SwatchesPage() {
     color: swatchColor,
     onChange: onChangeSwatchColor,
     onChangeComplete: handleChangeComplete
-  })) : null))))));
+  })) : null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "float-right mt-4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: updateColor == false ? 'd-flex' : 'd-none'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn bg-light text-dark mr-3",
+    onClick: function onClick() {
+      resetForm();
+    }
+  }, " Reset"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn btn-primary bg-primary",
+    onClick: function onClick() {
+      submitForm();
+    }
+  }, " Add ", submiting == true ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_loader__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    "with": "20"
+  }) : null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: updateColor == true ? 'd-flex' : 'd-none'
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn bg-light text-dark mr-3",
+    onClick: function onClick() {
+      resetForm();
+    }
+  }, " Cancel"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn btn-primary bg-primary",
+    onClick: function onClick() {
+      updateSwatchColor();
+    }
+  }, " Update ", submiting == true ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_loader__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    "with": "20"
+  }) : null)))))));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (SwatchesPage);

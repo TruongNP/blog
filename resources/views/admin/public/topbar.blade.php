@@ -140,7 +140,7 @@
       <li class="nav-item dropdown no-arrow">
        @if (isset($admin))
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <span class="mr-2 text-gray-600 small">{{ $admin->first_name }} {{ $admin->last_name }}</span>
+            <span class="mr-2 text-gray-600">{{ $admin->first_name }} {{ $admin->last_name }}</span>
             @if ($admin->avata == null)
               <div class="icon-user p-2 border rounded-circle"><i class="fas fa-user"></i></div>
             @else

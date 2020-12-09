@@ -106,7 +106,8 @@ function SwatchesPage() {
                 getSwatches();
             }
         }).catch((err)=>{
-
+            setSubmiting(false);
+            alert.error("There was an error sending");
         })
     };
 
@@ -142,7 +143,8 @@ function SwatchesPage() {
                 getSwatches();
             }
         }).catch((err)=>{
-
+            setSubmiting(false);
+            alert.error("There was an error sending");
         })
     };
 
@@ -158,22 +160,21 @@ function SwatchesPage() {
                     <nav className="nav">
                         <a className="nav-link pl-0" onClick={() => window.history.back()}><i className="fas fa-arrow-left"></i> Go Back</a>
                     </nav>
-                    <button className={`btn btn-primary bg-primary ${updateColor == true ? 'd-none' : 'd-block'}`} onClick={() => {submitForm()}}> Add {submiting == true ? <Loader with="20" /> : null}</button>
-                    <div className={updateColor == true ? 'd-flex' : 'd-none'}>
-                        <button className={`btn bg-light text-dark mr-3`} onClick={() => {resetForm()}}> Cancel</button>
-                        <button className={`btn btn-primary bg-primary`} onClick={() => {updateSwatchColor()}}> Update {submiting == true ? <Loader with="20" /> : null}</button>
-                    </div>
                 </div>
                 <div className="row mt-4">
                     <div className="col-4">
                         <h5 className="text-dark">Swatch List</h5>
-                        <div className="list-group">
+                        <div className="swatches-list list-group">
                             {
                                 swatches.map((item, index) => {
                                     return (
                                         <a key={index} href="#" id={`color-${item.id}`} 
-                                        className={`color-option list-group-item list-group-item-action text-uppercase ${colorActive == item.id ? 'active' : ''}`} 
-                                        onClick={() => getColorById(item.id)}>{item.color_name}</a>
+                                        className={`color-option d-flex align-items-center list-group-item list-group-item-action text-uppercase p-2 ${colorActive == item.id ? 'active' : ''}`} 
+                                        onClick={() => getColorById(item.id)}>
+                                            <label style={{ background: item.color_code }} className={`border rounded-5 m-0 mr-2 p-3 ${item.color_image == 'undefined' ? '' : 'd-none'}`}></label>
+                                            <img src={item.color_image} width="35" height="35" className={`border rounded-5 mr-2 ${item.color_image == 'undefined' ? 'd-none' : ''}`} />
+                                            {item.color_name}
+                                        </a>
                                     )
                                 })
                             }
@@ -181,6 +182,7 @@ function SwatchesPage() {
                         </div>
                     </div>
                     <div className="col-8">
+                        <h5 className="text-dark">{updateColor == true ? 'Update Swatch' : 'New Swatch'}</h5>
                         <div className="bg-white border rounded-5 p-3">
                         <div className="form-group">
                                 <label htmlFor="txt-swatch-name">Color name</label>
@@ -197,14 +199,14 @@ function SwatchesPage() {
                                 <label htmlFor="txt-swatch-image">Swatch image</label>
                                 <ModalUpload onchangeFileSelected={setFileSelectedInMedia} buttonName={fileSelectedInMedia.length > 0 ? 'Change image' : 'Select image'}/>
                                 <div className={`store-logo ${fileSelectedInMedia.length > 0 ? 'd-block' : 'd-none' }`}>
-                                    <img src={fileSelectedInMedia[0]} className="border rounded-5" alt="Logo" height="60" />
+                                    <img src={fileSelectedInMedia[0]} className="border rounded-5" alt="Logo" width="35" height="35" />
                                     <span className="position-absolute ml-1 text-danger cursor-pointer" onClick={() => removeSwatchImage()}><i className="fa fa-times ml-1"></i></span>
                                 </div>
                             </div>
                             <div className="form-group">
                                 <label htmlFor="txt-swatch-color">Swatch color</label>
                                 <br></br>
-                                <button className="border rounded-5" style={currentColor} onClick={ () => handleClickColorPicker() }>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                                <button className="border rounded-5 p-3" style={currentColor} onClick={ () => handleClickColorPicker() }></button>
                                 { displayColorPicker ? <div style={ popover }>
                                 <div style={ cover } onClick={() => handleClose() }/>
                                 <ChromePicker
@@ -212,6 +214,16 @@ function SwatchesPage() {
                                 onChange={onChangeSwatchColor} 
                                 onChangeComplete={handleChangeComplete} />
                                 </div> : null }
+                            </div>
+                        </div>
+                        <div className="float-right mt-4">
+                            <div className={updateColor == false ? 'd-flex' : 'd-none'}>
+                                <button className={`btn bg-light text-dark mr-3`} onClick={() => {resetForm()}}> Reset</button>
+                                <button className={`btn btn-primary bg-primary`} onClick={() => {submitForm()}}> Add {submiting == true ? <Loader with="20" /> : null}</button>
+                            </div>
+                            <div className={updateColor == true ? 'd-flex' : 'd-none'}>
+                                <button className={`btn bg-light text-dark mr-3`} onClick={() => {resetForm()}}> Cancel</button>
+                                <button className={`btn btn-primary bg-primary`} onClick={() => {updateSwatchColor()}}> Update {submiting == true ? <Loader with="20" /> : null}</button>
                             </div>
                         </div>
                     </div>
