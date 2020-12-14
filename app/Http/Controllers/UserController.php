@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password]))
         {
-            return redirect('/admin/dashboard');
+            return redirect('/admin');
         }
         else {
             return redirect('/admin/login')->with('message' , 'Email or Password incorrect!');

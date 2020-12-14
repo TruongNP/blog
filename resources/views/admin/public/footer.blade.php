@@ -48,5 +48,6 @@
   <script src="{{ asset('js/admin/sb-admin-2.min.js') }}"></script>
 
   <script src="{{ asset('js/admin/fontawesome-free/js/all.min.js') }}"></script>
+  <script src="{{ asset('js/app.js') }}"></script>
 
   @yield('script')

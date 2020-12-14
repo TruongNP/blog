@@ -1,38 +1,27 @@
 export const Menu = [
     {
+        id: 1,
         name: 'Dashboard',
-        slug: '',
-        sub_menu: []
-    },
-    {
-        name: 'Order',
-        slug: 'order',
+        slug: 'dashboard',
         sub_menu: [
             {
-                name: 'Order',
-                slug: 'all',
+                name: 'Dashboard',
+                slug: 'dashboard',
             },
-            {
-                name: 'Drafts',
-                slug: 'drafts',
-            }
         ]
     },
     {
-        name: 'Product',
-        slug: 'product',
+        id: 2,
+        name: 'Products',
+        slug: 'products/all',
         sub_menu: [
             {
+                name: 'All Products',
+                slug: 'products/all',
+            },
+            {
                 name: 'Add New',
-                slug: 'add',
-            },
-            {
-                name: 'Categories',
-                slug: 'categories',
-            },
-            {
-                name: 'Tags',
-                slug: 'tags',
+                slug: 'products/add',
             }
         ]
     }

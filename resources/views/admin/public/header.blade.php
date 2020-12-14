@@ -24,8 +24,6 @@
         <link rel="canonical" href="https://mdbootstrap.com/snippets/jquery/mdbootstrap/102535/">
   <!-- Custom styles for this template-->
 <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
-
-<script src="{{ asset('/ckeditor/ckeditor.js') }}"></script>
-<script src="{{ asset('/ckeditor/ckfinder.js') }}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
