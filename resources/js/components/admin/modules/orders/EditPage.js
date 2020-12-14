@@ -231,7 +231,10 @@ function EditPage() {
         <main className="main">
             <div className="container pt-5 pl-5 pb-0 pr-5">
                 <h1 className="h3 mb-2 text-gray-800">Order #{currentOrder}</h1>
-                <h6 className="pb-2"><Moment calendar={calendarStrings}>{createAt}</Moment></h6>
+                <h6 className="pb-2">
+                    <Moment calendar={calendarStrings}>{createAt}</Moment> 
+                    <span className={`${statusOrder == 'Open' ? 'bg-primary' : 'bg-danger'} ml-2 pl-2 pr-2 rounded-15 text-light`}>{statusOrder}</span>
+                </h6>
                 <div id="scroll-top" className="col-12 mb-3 p-0 d-flex justify-content-between">
                     <nav className="nav">
                         <a className="nav-link pl-0" onClick={() => window.history.back()}><i className="fas fa-arrow-left"></i> Go Back</a>

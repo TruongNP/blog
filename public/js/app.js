@@ -101985,7 +101985,7 @@ function OrderItem(props) {
       className: "".concat(item.status == 'Open' ? 'bg-primary' : 'bg-danger', " pl-2 pr-2 rounded-15 text-light")
     }, item.status)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       href: "".concat(prefixAdmin, "/edit/").concat(item.id),
-      className: "btn btn-primary btn-sm m-0 py-1 px-2 text-light"
+      className: "btn btn-primary border-0 btn-sm m-0 py-1 px-2 text-light"
     }, "Edit")));
   });
 }
@@ -103456,11 +103456,16 @@ function AddPage() {
   }, customerFilter.map(function (item, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
       key: index,
-      className: "list-group-item list-group-item-action",
+      className: "list-group-item list-group-item-action d-flex align-items-center",
       onClick: function onClick() {
         selectedCustomer(item.id);
       }
-    }, item.first_name, "\xA0", item.last_name);
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+      src: item.avata,
+      width: "30",
+      height: "30",
+      className: "border rounded-circle mr-2"
+    }), item.first_name, "\xA0", item.last_name);
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "form-group"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
@@ -103888,7 +103893,9 @@ function EditPage() {
     className: "pb-2"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_moment__WEBPACK_IMPORTED_MODULE_6___default.a, {
     calendar: calendarStrings
-  }, createAt)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, createAt), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "".concat(statusOrder == 'Open' ? 'bg-primary' : 'bg-danger', " ml-2 pl-2 pr-2 rounded-15 text-light")
+  }, statusOrder)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "scroll-top",
     className: "col-12 mb-3 p-0 d-flex justify-content-between"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {

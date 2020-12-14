@@ -544,7 +544,10 @@ function AddPage() {
                                 {
                                     customerFilter.map((item, index) => {
                                         return (
-                                            <a key={index} className="list-group-item list-group-item-action" onClick={() => {selectedCustomer(item.id)}}>{item.first_name}&nbsp;{item.last_name}</a>
+                                            <a key={index} className="list-group-item list-group-item-action d-flex align-items-center" onClick={() => {selectedCustomer(item.id)}}>
+                                                <img src={item.avata} width="30" height="30" className="border rounded-circle mr-2" />
+                                                {item.first_name}&nbsp;{item.last_name}
+                                            </a>
                                         )
                                     })
                                 }

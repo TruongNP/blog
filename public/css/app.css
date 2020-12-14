@@ -230,6 +230,13 @@ input.quantity {
   overflow: auto;
 }
 
+span.size-option__item {
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  line-height: 18px;
+}
+
 hr {
   box-sizing: content-box;
   height: 0;

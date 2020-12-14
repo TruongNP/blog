@@ -55,7 +55,7 @@ function OrderItem(props) {
                     <td>{item.payment_method}</td>
                     <td><span className={`${item.status == 'Open' ? 'bg-primary' : 'bg-danger'} pl-2 pr-2 rounded-15 text-light`}>{item.status}</span></td>
                     <td>
-                        <a href={`${prefixAdmin}/edit/${item.id}`} className="btn btn-primary btn-sm m-0 py-1 px-2 text-light" >Edit</a>
+                        <a href={`${prefixAdmin}/edit/${item.id}`} className="btn btn-primary border-0 btn-sm m-0 py-1 px-2 text-light" >Edit</a>
                     </td>
                 </tr>
             )
