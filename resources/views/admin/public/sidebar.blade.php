@@ -37,8 +37,21 @@
     </li>
 
     <li class="nav-item">
+      <a class="nav-link collapsed" href="{{ route('collections.index') }}" data-toggle="collapse" data-target="#collapseCollections" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-ethernet"></i>
+        <span>Collections</span>
+      </a>
+      <div id="collapseCollections" class="collapse" aria-labelledby="headingTwo" data-parent="#collapseCollections">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" href="{{ route('collections.index') }}">All Collections</a>
+          <a class="collapse-item" href="{{ route('collections.add') }}">Add New</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item">
       <a class="nav-link collapsed" href="{{ route('orders.index') }}" data-toggle="collapse" data-target="#collapseOrders" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fab fa-product-hunt"></i>
+        <i class="fab fa-jedi-order"></i>
         <span>Orders</span>
       </a>
       <div id="collapseOrders" class="collapse" aria-labelledby="headingTwo" data-parent="#collapseOrders">

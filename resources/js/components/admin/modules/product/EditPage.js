@@ -255,6 +255,9 @@ function EditPage() {
             }
             else if(res.data.success) {
                 alert.success(res.data.success);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 500);
             }
 
         }).catch((err)=>{
