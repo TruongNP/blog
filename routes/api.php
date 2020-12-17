@@ -26,6 +26,13 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/product/delete/{id}', 'ApiProductsController@delete');
     Route::post('/product/edit', 'ApiProductsController@update');
 
+    //collections
+    Route::get('/collections', 'ApiCollectionsController@index');
+    Route::post('/collection', 'ApiCollectionsController@store');
+    Route::get('/collection/{id}', 'ApiCollectionsController@getCollectionById');
+    Route::post('/collection/edit', 'ApiCollectionsController@update');
+    Route::get('/collection/delete/{id}', 'ApiCollectionsController@delete');
+
     //setting -> general
     Route::get('/settings/general', 'ApiGeneralSettingController@index');
     Route::post('/settings/general', 'ApiGeneralSettingController@store');
