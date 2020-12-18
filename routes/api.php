@@ -58,4 +58,10 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/swatches', 'ApiSwatchesController@index');
     Route::post('/swatches/add', 'ApiSwatchesController@store');
     Route::post('/swatches/update', 'ApiSwatchesController@update');
+
+    //facebook chat
+    //swatches
+    Route::get('/facebook-chat', 'ApiFacebookChatController@index');
+    Route::post('/facebook-chat/add', 'ApiFacebookChatController@store');
+    Route::post('/facebook-chat/update', 'ApiFacebookChatController@update');
 });
