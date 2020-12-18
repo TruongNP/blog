@@ -19,6 +19,9 @@ Route::get('/test', function() {
 });
 
 
+Route::get('/', function() {
+    return view('website.public.footer');
+});
 Route::get('/admin/login', 'UserController@getLogin')->name('admin.login');
 Route::post('/admin/login', 'UserController@postLogin');
 
@@ -101,6 +104,12 @@ Route::group(['prefix' => $prefixAdmin, 'middleware' => 'adminLogin'], function 
         Route::get('/swatches', function () {
             return view('admin.module.settings.swatches');
         })->name('settings.swatches');
+    });
+
+    Route::group(['prefix' => 'facebook-chat'], function () {
+        Route::get('/', function () {
+            return view('admin.module.facebook_chat.index');
+        })->name('facebook_chat.index');
     });
     
 });
