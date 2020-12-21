@@ -40,8 +40,10 @@ Route::group(['prefix' => 'v1'], function () {
 
     //setting -> profile
     Route::get('/user', 'ApiProfileSettingController@index');
+    Route::post('/user/add', 'ApiProfileSettingController@store');
     Route::get('/user/{id}', 'ApiProfileSettingController@getUserById');
     Route::post('/user/update', 'ApiProfileSettingController@update');
+    Route::get('/user/delete/{id}', 'ApiProfileSettingController@delete');
 
     //upload
     Route::get('/uploads', 'UploadFileController@index');

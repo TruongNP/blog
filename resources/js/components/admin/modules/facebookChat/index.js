@@ -3,6 +3,8 @@ import Editor from 'react-simple-code-editor';
 import { highlight, languages } from 'prismjs/components/prism-core';
 import 'prismjs/components/prism-clike';
 import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-markup';
+import 'prismjs/components/prism-jsx';
 import Loader from '../../loader';
 import axios from 'axios';
 import { useAlert } from "react-alert";
@@ -62,7 +64,8 @@ import $ from "jquery";
                 style={{
                     fontFamily: '"Fira code", "Fira Mono", monospace',
                     fontSize: 12,
-                    minHeight: 400
+                    minHeight: 400,
+                    background: '#f9f9f9'
                 }}
                 />
             </div>

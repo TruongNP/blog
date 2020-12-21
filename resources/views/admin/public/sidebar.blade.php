@@ -63,6 +63,19 @@
     </li>
 
     <li class="nav-item">
+      <a class="nav-link collapsed" href="{{ route('customers.index') }}" data-toggle="collapse" data-target="#collapseCustomers" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-user"></i>
+        <span>Customers</span>
+      </a>
+      <div id="collapseCustomers" class="collapse" aria-labelledby="headingTwo" data-parent="#collapseCustomers">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" href="{{ route('customers.index') }}">All Customers</a>
+          <a class="collapse-item" href="{{ route('customers.add') }}">Add New</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item">
       <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseSettings" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-fw fa-cog"></i>
         <span>Settings</span>

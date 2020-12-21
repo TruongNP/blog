@@ -15,6 +15,9 @@ function ProfilePage(props) {
     const [lastName, setLastName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
     const [website, setWebsite] = useState('');
+    const [address, setAddress] = useState('');
+    const [city, setCity] = useState('');
+    const [country, setCountry] = useState('');
     const [role, setRole] = useState('');
 
     let id = document.getElementById("current-user-id").value;
@@ -33,6 +36,18 @@ function ProfilePage(props) {
 
     const onChangeWebsite = (e) => {
         setWebsite(e.target.value)
+    };
+
+    const onChangeAddress = (e) => {
+        setAddress(e.target.value)
+    };
+
+    const onChangeCity = (e) => {
+        setCity(e.target.value)
+    };
+
+    const onChangeCountry = (e) => {
+        setCountry(e.target.value)
     };
 
     const onChangeRole = (e) => {
@@ -77,6 +92,24 @@ function ProfilePage(props) {
             else {
                 setWebsite('');
             }
+            if(user.address != null) {
+                setAddress(user.address);
+            }
+            else {
+                setAddress('');
+            }
+            if(user.city != null) {
+                setCity(user.city);
+            }
+            else {
+                setCity('');
+            }
+            if(user.country != null) {
+                setCountry(user.country);
+            }
+            else {
+                setCountry('');
+            }
         });
 
     };
@@ -91,6 +124,9 @@ function ProfilePage(props) {
         data.append('last_name', lastName);
         data.append('phone_number', phoneNumber);
         data.append('website', website);
+        data.append('address', address);
+        data.append('city', city);
+        data.append('country', country);
 
         setSubmiting(true);
 
@@ -206,6 +242,36 @@ function ProfilePage(props) {
                                     id="txt-website"
                                     onChange={(e) => {onChangeWebsite(e)}}
                                     value={website}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="txt-address">Address</label>
+                                <input
+                                    type="text"
+                                    className={`form-control`}
+                                    id="txt-address"
+                                    onChange={(e) => {onChangeAddress(e)}}
+                                    value={address}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="txt-city">City</label>
+                                <input
+                                    type="text"
+                                    className={`form-control`}
+                                    id="txt-city"
+                                    onChange={(e) => {onChangeCity(e)}}
+                                    value={city}
+                                />
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="txt-country">Country</label>
+                                <input
+                                    type="text"
+                                    className={`form-control`}
+                                    id="txt-country"
+                                    onChange={(e) => {onChangeCountry(e)}}
+                                    value={country}
                                 />
                             </div>
                         </div>
