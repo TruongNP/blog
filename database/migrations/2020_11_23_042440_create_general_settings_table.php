@@ -27,6 +27,7 @@ class CreateGeneralSettingsTable extends Migration
             $table->string('timezone', 255)->nullable();
             $table->string('currency', 255)->nullable();
             $table->string('currency_code', 255)->nullable();
+            $table->string('language', 50)->nullable();
             $table->timestamps();
         });
     }

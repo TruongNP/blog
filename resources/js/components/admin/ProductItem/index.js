@@ -1,7 +1,8 @@
 import React from 'react';
+import {useTranslation} from "react-i18next";
 
 function ProductItem(props) {
-
+    const {t, i18n} = useTranslation('common');
     const { currentProductList, firstItem, lastItem, prefixAdmin, categoryProduct, deleteProduct } = props;
     return (
         currentProductList.slice(firstItem, lastItem).map((item, index) => {
@@ -20,8 +21,8 @@ function ProductItem(props) {
                     <td>{item.product_type}</td>
                     <td>{item.vendor}</td>
                     <td>
-                        <button id={`product-${item.id}`} className="btn bg-danger btn-sm m-0 py-1 px-2 mr-1 text-light" onClick={() => {deleteProduct(item.id)}} >Delete</button>
-                        <a href={`${prefixAdmin}/edit/${item.id}`} className="btn btn-primary btn-sm m-0 py-1 px-2 text-light" >Edit</a>
+                        <button id={`product-${item.id}`} className="btn bg-danger btn-sm m-0 py-1 px-2 mr-1 text-light" onClick={() => {deleteProduct(item.id)}} >{t('general.delete')}</button>
+                        <a href={`${prefixAdmin}/edit/${item.id}`} className="btn btn-primary btn-sm m-0 py-1 px-2 text-light" >{t('general.edit')}</a>
                     </td>
                 </tr>
             )

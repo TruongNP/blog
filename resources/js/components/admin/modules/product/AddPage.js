@@ -7,8 +7,10 @@ import Loader from '../../loader';
 import ModalUpload from '../../modalUpload';
 import ProductOption from '../../productOption';
 import NumberFormat from 'react-number-format';
+import {useTranslation} from "react-i18next";
 
 function AddPage() {
+    const {t, i18n} = useTranslation('common');
     const alert = useAlert();
 
     const [selectedFile, setSelectedFile] = useState([]);
@@ -209,18 +211,18 @@ function AddPage() {
     return (
         <main className="main">
             <div className="container pt-5 pl-5 pb-5 pr-5">
-                <h1 className="h3 mb-2 text-gray-800">Add New Products</h1>
+                <h1 className="h3 mb-2 text-gray-800">{t('module.products.page_add_lable')}</h1>
                 <div id="scroll-top" className="col-12 mb-3 p-0 d-flex justify-content-between">
                     <nav className="nav">
-                        <a className="nav-link pl-0" onClick={() => window.history.back()}><i className="fas fa-arrow-left"></i> Go Back</a>
+                        <a className="nav-link pl-0" onClick={() => window.history.back()}><i className="fas fa-arrow-left"></i> {t('general.go_back')}</a>
                     </nav>
-                    <button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>Save {submiting == true ? <Loader with="20" /> : null}</button>
+                    <button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>{t('general.save')} {submiting == true ? <Loader with="20" /> : null}</button>
                 </div>
                 <div className="row mt-4">
                     <div className="col-8">
                         <form>
                             <div className="form-group">
-                                <label htmlFor="txt-title">Title</label>
+                                <label htmlFor="txt-title">{t('module.products.title')}</label>
                                 <input
                                     type="text"
                                     className={`form-control ${errors.title ? 'is-invalid' : ''}`}
@@ -230,7 +232,7 @@ function AddPage() {
                                 <div className="invalid-feedback">{errors.title ? errors.title : ''}</div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="txt-description">Description</label>
+                                <label htmlFor="txt-description">{t('module.products.description')}</label>
                                 <CKEditor 
                                 activeclassName="p10" 
                                 content={description} 
@@ -240,15 +242,15 @@ function AddPage() {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="txt-media">Media</label>
-                                <ModalUpload onchangeFileSelected={setFileSelectedInMedia}/>
+                                <label htmlFor="txt-media">{t('module.products.media')}</label>
+                                <ModalUpload onchangeFileSelected={setFileSelectedInMedia} buttonName={t('module.products.add_media')}/>
                                 <input
                                     type="hidden"
                                     className="form-control"
                                     id="txt-media"
                                 />
                                 <div className={`media-list d-flex flex-wrap border rounded-10 p-2 ${fileSelectedInMedia.length > 0 ? '' : 'justify-content-center'}`}>
-                                    <h4 className={`m-4 ${fileSelectedInMedia.length > 0 ? 'd-none' : 'd-block'}`}>No image choosed</h4>
+                                    <h4 className={`m-4 ${fileSelectedInMedia.length > 0 ? 'd-none' : 'd-block'}`}>{t('module.products.no_image_choosed')}</h4>
                                     {
                                         fileSelectedInMedia.map((item, index) => {
                                             return (
@@ -262,29 +264,27 @@ function AddPage() {
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="txt-price">Pricing</label>
+                                <label htmlFor="txt-price">{t('module.products.pricing')}</label>
                                 <div className="row border rounded-10 m-0 p-3">
                                     <div className="col">
-                                        <label htmlFor="txt-price">Price</label>
+                                        <label htmlFor="txt-price">{t('module.products.price')}</label>
                                         <div className="input-group mb-3">
                                             <div className="input-group-prepend">
                                                 <span className="input-group-text text-uppercase">{currency == 'VND' ? currency : currencyCode}</span>
                                             </div>
                                             <NumberFormat onChange={(e) => {onChangPrice(e)}} className="form-control" thousandSeparator={true} />
-                                            {/* <input type="text" id="txt-price" onChange={(e) => {onChangPrice(e)}} className="form-control" aria-label="Amount (to the nearest dollar)" /> */}
                                             <div className="input-group-append">
                                                 <span className="input-group-text text-uppercase">{currency == 'VND' ? currencyCode : currency}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div className="col">
-                                        <label htmlFor="txt-compare-price">Compare at price</label>
+                                        <label htmlFor="txt-compare-price">{t('module.products.compare_price')}</label>
                                         <div className="input-group mb-3">
                                             <div className="input-group-prepend">
                                                 <span className="input-group-text text-uppercase">{currency == 'VND' ? currency : currencyCode}</span>
                                             </div>
                                             <NumberFormat onChange={(e) => {onChangComparePrice(e)}} className="form-control" thousandSeparator={true} />
-                                            {/* <input type="text" id="txt-compare-price" onChange={(e) => {onChangComparePrice(e)}} className="form-control" aria-label="Amount (to the nearest dollar)" /> */}
                                             <div className="input-group-append">
                                                 <span className="input-group-text text-uppercase">{currency == 'VND' ? currencyCode : currency}</span>
                                             </div>
@@ -293,10 +293,10 @@ function AddPage() {
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="txt-inventory">Inventory</label>
+                                <label htmlFor="txt-inventory">{t('module.products.inventory')}</label>
                                 <div className="row border rounded-10 m-0 p-3">
                                     <div className="col">
-                                        <label htmlFor="txt-product-code">Product Code</label>
+                                        <label htmlFor="txt-product-code">{t('module.products.product_code')}</label>
                                         <input
                                             type="text"
                                             className="form-control"
@@ -305,7 +305,7 @@ function AddPage() {
                                         />
                                     </div>
                                     <div className="col">
-                                        <label htmlFor="txt-quantity">Quantity</label>
+                                        <label htmlFor="txt-quantity">{t('module.products.total_quantity')}</label>
                                         <input
                                             type="text"
                                             className="form-control"
@@ -317,18 +317,18 @@ function AddPage() {
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="txt-variants">Variants</label>
+                                <label htmlFor="txt-variants">{t('module.products.variants')}</label>
                                 <div className="border rounded-10 m-0 p-3">
                                     <div className="form-check pl-0">
                                         <input type="checkbox" className="form-check-input filled-in" id="check-variant" onChange={() => checkDisplayVariantOption()} />
-                                        <label className="form-check-label small card-a-secondary text-capitalize"  htmlFor="check-variant">This product has multiple variants, like different sizes or colors</label>
+                                        <label className="form-check-label small card-a-secondary text-capitalize"  htmlFor="check-variant">{t('module.products.variant_message')}</label>
                                     </div>
                                     <hr />
                                     <div id="append" className={`${displayVariantOption == true ? 'd-block' : 'd-none'}`}>
                                         <div className="row">
-                                            <div className="col"> <label >Color</label></div>
-                                            <div className="col"> <label >Size</label></div>
-                                            <div className="col"> <label >Quantity</label></div>
+                                            <div className="col"> <label >{t('module.products.color')}</label></div>
+                                            <div className="col"> <label >{t('module.products.size')}</label></div>
+                                            <div className="col"> <label >{t('module.products.quantity')}</label></div>
                                         </div>
                                         {
                                             variants.map((item, index) => {
@@ -396,11 +396,11 @@ function AddPage() {
                     </div>
                     <div className="col-4">
                         <div className="form-group">
-                            <h4>Feature Image</h4>
+                            <h4>{t('module.products.feature_image')}</h4>
                             <div className="input-group">
                             <ImageUploader
                             withIcon={true}
-                            buttonText='Choose images'
+                            buttonText={t('module.products.choose_images')}
                             onChange={onDrop}
                             imgExtension={['.jpg', '.png']}
                             maxFileSize={5242880}
@@ -411,8 +411,8 @@ function AddPage() {
                             </div>
                         </div>
                         <div className="form-group">
-                            <h4>Organization</h4>
-                            <label htmlFor="txt-product-type">Product Type</label>
+                            <h4>{t('module.products.organization')}</h4>
+                            <label htmlFor="txt-product-type">{t('module.products.product_type')}</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -421,7 +421,7 @@ function AddPage() {
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="txt-vendor">Vendor</label>
+                            <label htmlFor="txt-vendor">{t('module.products.vendor')}</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -430,7 +430,7 @@ function AddPage() {
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="txt-collection">Collection</label>
+                            <label htmlFor="txt-collection">{t('module.products.collection')}</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -448,7 +448,7 @@ function AddPage() {
                             </div>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="txt-tags">Tags</label>
+                            <label htmlFor="txt-tags">{t('module.products.tags')}</label>
                             <input
                                 type="text"
                                 className="form-control"

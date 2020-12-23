@@ -4,9 +4,11 @@ import { useAlert } from "react-alert";
 import ModalUpload from '../../modalUpload';
 import { ChromePicker } from 'react-color';
 import Loader from '../../loader';
+import {useTranslation} from "react-i18next";
 
 function SwatchesPage() {
 
+    const {t, i18n} = useTranslation('common');
     const alert = useAlert();
 
     const [submiting, setSubmiting] = useState(false);
@@ -155,15 +157,15 @@ function SwatchesPage() {
     return (
         <main className="main">
             <div className="container pl-5 pb-5 pr-5">
-                <h1 className="h3 mb-2 text-gray-800 d-flex align-items-center">Swatches</h1>
+                <h1 className="h3 mb-2 text-gray-800 d-flex align-items-center">{t('module.swatches.page_lable')}</h1>
                 <div id="scroll-top" className="col-12 mb-3 p-0 d-flex justify-content-between">
                     <nav className="nav">
-                        <a className="nav-link pl-0" onClick={() => window.history.back()}><i className="fas fa-arrow-left"></i> Go Back</a>
+                        <a className="nav-link pl-0" onClick={() => window.history.back()}><i className="fas fa-arrow-left"></i> {t('general.go_back')}</a>
                     </nav>
                 </div>
                 <div className="row mt-4">
                     <div className="col-4">
-                        <h5 className="text-dark">Swatch List</h5>
+                        <h5 className="text-dark">{t('module.swatches.swatch_list')}</h5>
                         <div className="swatches-list list-group">
                             {
                                 swatches.map((item, index) => {
@@ -182,10 +184,10 @@ function SwatchesPage() {
                         </div>
                     </div>
                     <div className="col-8">
-                        <h5 className="text-dark">{updateColor == true ? 'Update Swatch' : 'New Swatch'}</h5>
+                        <h5 className="text-dark">{updateColor == true ? t('general.update') : t('general.add_new')}</h5>
                         <div className="bg-white border rounded-5 p-3">
                         <div className="form-group">
-                                <label htmlFor="txt-swatch-name">Color name</label>
+                                <label htmlFor="txt-swatch-name">{t('module.swatches.swatch_name')}</label>
                                 <input
                                     type="text"
                                     className={`form-control ${errors.color_name ? 'is-invalid' : ''}`}
@@ -196,15 +198,15 @@ function SwatchesPage() {
                                 <div className="invalid-feedback">{errors.color_name ? errors.color_name : ''}</div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="txt-swatch-image">Swatch image</label>
-                                <ModalUpload onchangeFileSelected={setFileSelectedInMedia} buttonName={fileSelectedInMedia.length > 0 ? 'Change image' : 'Select image'}/>
+                                <label htmlFor="txt-swatch-image">{t('module.swatches.swatch_image')}</label>
+                                <ModalUpload onchangeFileSelected={setFileSelectedInMedia} buttonName={fileSelectedInMedia.length > 0 ? t('module.swatches.change_image') : t('module.swatches.select_image')}/>
                                 <div className={`store-logo ${fileSelectedInMedia.length > 0 ? 'd-block' : 'd-none' }`}>
                                     <img src={fileSelectedInMedia[0]} className="border rounded-5" alt="Logo" width="35" height="35" />
                                     <span className="position-absolute ml-1 text-danger cursor-pointer" onClick={() => removeSwatchImage()}><i className="fa fa-times ml-1"></i></span>
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="txt-swatch-color">Swatch color</label>
+                                <label htmlFor="txt-swatch-color">{t('module.swatches.swatch_color')}</label>
                                 <br></br>
                                 <button className="border rounded-5 p-3" style={currentColor} onClick={ () => handleClickColorPicker() }></button>
                                 { displayColorPicker ? <div style={ popover }>
@@ -218,12 +220,12 @@ function SwatchesPage() {
                         </div>
                         <div className="float-right mt-4">
                             <div className={updateColor == false ? 'd-flex' : 'd-none'}>
-                                <button className={`btn bg-light text-dark mr-3`} onClick={() => {resetForm()}}> Reset</button>
-                                <button className={`btn btn-primary bg-primary`} onClick={() => {submitForm()}}> Add {submiting == true ? <Loader with="20" /> : null}</button>
+                                <button className={`btn bg-light text-dark mr-3`} onClick={() => {resetForm()}}> {t('module.swatches.reset')}</button>
+                                <button className={`btn btn-primary bg-primary`} onClick={() => {submitForm()}}> {t('general.add_new')} {submiting == true ? <Loader with="20" /> : null}</button>
                             </div>
                             <div className={updateColor == true ? 'd-flex' : 'd-none'}>
-                                <button className={`btn bg-light text-dark mr-3`} onClick={() => {resetForm()}}> Cancel</button>
-                                <button className={`btn btn-primary bg-primary`} onClick={() => {updateSwatchColor()}}> Update {submiting == true ? <Loader with="20" /> : null}</button>
+                                <button className={`btn bg-light text-dark mr-3`} onClick={() => {resetForm()}}> {t('general.cancel')}</button>
+                                <button className={`btn btn-primary bg-primary`} onClick={() => {updateSwatchColor()}}> {t('general.update')} {submiting == true ? <Loader with="20" /> : null}</button>
                             </div>
                         </div>
                     </div>
