@@ -5,8 +5,10 @@ import Loader from '../../loader';
 import NumberFormat from 'react-number-format';
 import { paymentMethodList, statusOrderList, paymentStatusList, fulfillmentStatusList } from '../../../../data/admin/order';
 import Moment from 'react-moment';
+import {useTranslation} from "react-i18next";
 
 function EditPage() {
+    const {t, i18n} = useTranslation('common');
     const alert = useAlert();
     const prefixAdmin = "/admin/orders";
 
@@ -112,11 +114,11 @@ function EditPage() {
     const onChangePhoneInfo = (e) => {
         var label = e.target;
 
-        if(label.textContent == 'Edit') {
-            label.textContent = 'Cancel';
+        if(label.textContent == t('general.edit')) {
+            label.textContent = t('general.cancel');
         }
         else {
-            label.textContent = 'Edit';
+            label.textContent = t('general.edit');
                 setPhoneNumber(phoneDefault);
         }
 
@@ -130,11 +132,11 @@ function EditPage() {
     const onChangeEmailInfo = (e) => {
         var label = e.target;
 
-        if(label.textContent == 'Edit') {
-            label.textContent = 'Cancel';
+        if(label.textContent == t('general.edit')) {
+            label.textContent = t('general.cancel');
         }
         else {
-            label.textContent = 'Edit';
+            label.textContent = t('general.edit');
                 setEmail(emailDefault);
         }
 
@@ -148,11 +150,11 @@ function EditPage() {
     const onChangeAddressInfo = (e) => {
         var label = e.target;
 
-        if(label.textContent == 'Edit') {
-            label.textContent = 'Cancel';
+        if(label.textContent == t('general.edit')) {
+            label.textContent = t('general.cancel');
         }
         else {
-            label.textContent = 'Edit';
+            label.textContent = t('general.edit');
             setShippingAddress(addressDefault);
         }
 
@@ -230,36 +232,36 @@ function EditPage() {
     return (
         <main className="main">
             <div className="container pt-5 pl-5 pb-0 pr-5">
-                <h1 className="h3 mb-2 text-gray-800">Order #{currentOrder}</h1>
+                <h1 className="h3 mb-2 text-gray-800">{t('module.orders.page_add_lable')} #{currentOrder}</h1>
                 <h6 className="pb-2">
                     <Moment calendar={calendarStrings}>{createAt}</Moment> 
                     <span className={`${statusOrder == 'Open' ? 'bg-primary' : 'bg-danger'} ml-2 pl-2 pr-2 rounded-15 text-light`}>{statusOrder}</span>
                 </h6>
                 <div id="scroll-top" className="col-12 mb-3 p-0 d-flex justify-content-between">
                     <nav className="nav">
-                        <a className="nav-link pl-0" onClick={() => window.history.back()}><i className="fas fa-arrow-left"></i> Go Back</a>
+                        <a className="nav-link pl-0" onClick={() => window.history.back()}><i className="fas fa-arrow-left"></i> {t('general.go_back')}</a>
                     </nav>
-                    <button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>Update {submiting == true ? <Loader with="20" /> : null}</button>
+                    <button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>{t('general.update')} {submiting == true ? <Loader with="20" /> : null}</button>
                 </div>
                 <div className="row mt-4">
                     <div className="col-8">
                         <form>
                             <div className="form-group">
-                                <h4>Order details</h4>
+                                <h4>{t('module.orders.order_details')}</h4>
                                 <div className="row border rounded-10 m-0 p-3">
                                     <div className="col-12">
                                         <div className="form-group">
-                                            <label htmlFor="txt-product">Product selected</label>
+                                            <label htmlFor="txt-product">{t('module.orders.select_product')}</label>
                                             <span className={`float-right ${fulfillmentStatus == 'Fulfilled' ? 'bg-primary text-light' : 'bg-warning text-dark'} pl-2 pr-2 rounded-15`}>{fulfillmentStatus}</span>
                                             <div className="table-responsive text-nowrap">
                                                 <table className="table">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col">Image</th>
-                                                            <th scope="col">Title</th>
-                                                            <th scope="col">Price</th>
-                                                            <th scope="col">Quantity</th>
-                                                            <th scope="col">Total Price</th>
+                                                            <th scope="col">{t('general.image')}</th>
+                                                            <th scope="col">{t('module.orders.title_product')}</th>
+                                                            <th scope="col">{t('module.orders.price')}</th>
+                                                            <th scope="col">{t('module.orders.quantity')}</th>
+                                                            <th scope="col">{t('module.orders.total_price')}</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -271,9 +273,9 @@ function EditPage() {
                                                                     <td>
                                                                         <a href={`${prefixAdmin}/edit/${item.id}`} className="text-primary">{item.title}</a>
                                                                         <br></br>
-                                                                        <sub>Color: {item.color_selected}</sub>
+                                                                        <sub>{t('module.orders.color')}: {item.color_selected}</sub>
                                                                         <br></br>
-                                                                        <sub>Size: {item.size_selected}</sub>
+                                                                        <sub>{t('module.orders.size')}: {item.size_selected}</sub>
                                                                     </td>
                                                                     <td>
                                                                         {currencyCode == '$' ? currencyCode : ''}&nbsp;
@@ -295,7 +297,7 @@ function EditPage() {
                                             </div>
                                             <div className="d-flex align-items-end justify-content-end text-primary mt-2">
                                                 <span className={`${paymentStatus == 'Paid' ? 'd-flex align-items-center bg-primary text-light' : 'bg-warning text-dark'} mr-2 pl-2 pr-2 rounded-15`}>{paymentStatus}</span>
-                                                <label className="m-0">Total:</label>
+                                                <label className="m-0">{t('module.orders.total_price')}:</label>
                                                 <span>{currencyCode == '$' ? currencyCode : ''}&nbsp;
                                                     <NumberFormat thousandSeparator={true} displayType={'text'} value={totalPrice}/>
                                                     &nbsp;{currencyCode != '$' ? currencyCode : ''}</span>
@@ -304,7 +306,7 @@ function EditPage() {
                                     </div>
                                     <div className="col-12">
                                         <div className="form-group">
-                                            <label htmlFor="txt-description">Notes</label>
+                                            <label htmlFor="txt-description">{t('module.orders.notes')}</label>
                                             <textarea 
                                             className={`form-control`}
                                             id="txt-note"
@@ -318,11 +320,11 @@ function EditPage() {
                                 </div>
                             </div>
                             <div className="form-group">
-                                    <h4>Payment Info</h4>
+                                    <h4>{t('module.orders.payment_info')}</h4>
                                     <div className="row border rounded-10 m-0 p-3">
                                         <div className="col-12">
                                             <div className="form-group">
-                                                <label htmlFor="slt-payment-method">Payment Method</label>
+                                                <label htmlFor="slt-payment-method">{t('module.orders.payment_method')}</label>
                                                 <select
                                                 className={`form-control`}
                                                 id="slt-payment-method"
@@ -341,7 +343,7 @@ function EditPage() {
                                         </div>
                                         <div className="col-12">
                                             <div className="form-group">
-                                                <label htmlFor="slt-status-order">Status Order</label>
+                                                <label htmlFor="slt-status-order">{t('module.orders.status_order')}</label>
                                                 <select
                                                 className={`form-control`}
                                                 id="slt-status-order"
@@ -360,7 +362,7 @@ function EditPage() {
                                         </div>
                                         <div className="col-12">
                                             <div className="form-group">
-                                                <label htmlFor="slt-payment-status">Payment Status</label>
+                                                <label htmlFor="slt-payment-status">{t('module.orders.payment_status')}</label>
                                                 <select
                                                 className={`form-control`}
                                                 id="slt-payment-status"
@@ -379,7 +381,7 @@ function EditPage() {
                                         </div>
                                         <div className="col-12">
                                             <div className="form-group">
-                                                 <label htmlFor="slt-fulfillment-status">Fulfillment Status</label>
+                                                 <label htmlFor="slt-fulfillment-status">{t('module.orders.fulfillment_status')}</label>
                                                 <select
                                                 className={`form-control`}
                                                 id="slt-fulfillment-status"
@@ -401,25 +403,25 @@ function EditPage() {
                         </form>
                     </div>
                     <div className="col-4">
-                        <h4>Customer Info</h4>
+                        <h4>{t('module.orders.customer_info')}</h4>
                         <div className="border rounded-10 m-0 p-3">
                             <div className="form-group">
-                                <label htmlFor="txt-name">Full Name</label>
+                                <label htmlFor="txt-name">{t('module.orders.full_name')}</label>
                                 <br></br>
                                 <span className="text-primary">{firstName}&nbsp;{lastName}</span>
                             </div>
                             <hr></hr>
                             <div className="form-group">
-                                <label htmlFor="input-phone">Phone Number</label>
-                                <span className="float-right text-info cursor-pointer"><sub onClick={(e) => onChangePhoneInfo(e, phoneNumber)}>Edit</sub></span>
+                                <label htmlFor="input-phone">{t('module.orders.phone_number')}</label>
+                                <span className="float-right text-info cursor-pointer"><sub onClick={(e) => onChangePhoneInfo(e, phoneNumber)}>{t('general.edit')}</sub></span>
                                 <br></br>
                                 <NumberFormat id="txt-phone" format="+84 (###) ###-####" allowEmptyFormatting mask="_" displayType={'text'} value={phoneNumber}/>
                                 <NumberFormat id="input-phone" className="form-control d-none" onChange={(e) => onChangePhoneNumber(e)} format="+84 (###) ###-####" mask="_" value={phoneNumber}/>
                             </div>
                             <hr></hr>
                             <div className="form-group">
-                                <label htmlFor="input-email">Contact Email</label>
-                                <span className="float-right text-info cursor-pointer"><sub onClick={(e) => onChangeEmailInfo(e)}>Edit</sub></span>
+                                <label htmlFor="input-email">{t('module.orders.email')}</label>
+                                <span className="float-right text-info cursor-pointer"><sub onClick={(e) => onChangeEmailInfo(e)}>{t('general.edit')}</sub></span>
                                 <br></br>
                                 <span id="txt-email">{email}</span>
                                 <input
@@ -432,8 +434,8 @@ function EditPage() {
                             </div>
                             <hr></hr>
                             <div className="form-group">
-                                <label htmlFor="input-address">Shipping Address</label>
-                                <span className="float-right text-info cursor-pointer"><sub onClick={(e) => onChangeAddressInfo(e)}>Edit</sub></span>
+                                <label htmlFor="input-address">{t('module.orders.shipping_address')}</label>
+                                <span className="float-right text-info cursor-pointer"><sub onClick={(e) => onChangeAddressInfo(e)}>{t('general.edit')}</sub></span>
                                 <br></br>
                                 <span id="txt-address">{shippingAddress}</span>
                                 <textarea
@@ -446,7 +448,7 @@ function EditPage() {
                             </div>
                             <hr></hr>
                             <div className="form-group">
-                                <label htmlFor="txt-city-country">City/Country</label>
+                                <label htmlFor="txt-city-country">{t('module.orders.city')}/{t('module.orders.country')}</label>
                                 <br></br>
                                 <span className="font-weight-bold">{city}/{country}</span>
                             </div>

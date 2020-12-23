@@ -30,6 +30,7 @@ class ApiGeneralSettingController extends Controller
         $general_setting->timezone = $request->timezone;
         $general_setting->currency = $request->currency;
         $general_setting->currency_code = $request->currency_code;
+        $general_setting->language = $request->language;
 
         $general_setting->save();
 
@@ -55,6 +56,7 @@ class ApiGeneralSettingController extends Controller
         $general_setting->timezone = $request->timezone;
         $general_setting->currency = $request->currency;
         $general_setting->currency_code = $request->currency_code;
+        $general_setting->language = $request->language;
 
         $general_setting->save();
 

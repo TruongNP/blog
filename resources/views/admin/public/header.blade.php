@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<?php
+if(isset($language))
+    $lang = $language;
+else
+  $lang = "en";
+?>
+<html lang="{{$lang}}">
 
 <head>
 

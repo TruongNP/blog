@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAlert } from "react-alert";
 import { timeZoneList } from '../../../../data/admin/timezone';
+import { Language } from '../../../../data/admin/language';
 import { currencyList } from '../../../../data/admin/currency';
 import Loader from '../../loader';
 import ModalUpload from '../../modalUpload';
+import {useTranslation} from "react-i18next";
 
 function GeneralPage() {
 
+    const {t, i18n} = useTranslation('common');
     const alert = useAlert();
     
     const [submiting, setSubmiting] = useState(false);
@@ -24,6 +27,7 @@ function GeneralPage() {
     const [timeZone, setTimeZone] = useState('');
     const [currency, setCurrency] = useState('');
     const [currencyCode, setCurrencyCode] = useState('');
+    const [language, setLanguage] = useState('en');
 
     function getGeneralSetting() {
         axios.get(`/api/v1/settings/general`).then(res => {
@@ -115,6 +119,13 @@ function GeneralPage() {
                 else {
                     setCurrencyCode('');
                 }
+
+                if(generalSetting[0].language != null) {
+                    setLanguage(generalSetting[0].language);
+                }
+                else {
+                    setLanguage('');
+                }
             }
             
             
@@ -168,6 +179,10 @@ function GeneralPage() {
         setCurrencyCode(e.target.value);
     };
 
+    const onChangelanguage = (e) => {
+        setLanguage(e.target.value);
+    };
+
     const submitForm = () => {
 
         var url = '';
@@ -184,6 +199,7 @@ function GeneralPage() {
         data.append('timezone', timeZone);
         data.append('currency', currency);
         data.append('currency_code', currencyCode);
+        data.append('language', language);
 
         setSubmiting(true);
 
@@ -237,29 +253,29 @@ function GeneralPage() {
     return (
         <main className="main">
             <div className="container pl-5 pb-5 pr-5">
-                <h1 className="h3 mb-2 text-gray-800 d-flex align-items-center">General</h1>
+                <h1 className="h3 mb-2 text-gray-800 d-flex align-items-center">{t('module.general_settings.page_lable')}</h1>
                 <div id="scroll-top" className="col-12 mb-3 p-0 d-flex justify-content-between">
                     <nav className="nav">
-                        <a className="nav-link pl-0" onClick={() => window.history.back()}><i className="fas fa-arrow-left"></i> Go Back</a>
+                        <a className="nav-link pl-0" onClick={() => window.history.back()}><i className="fas fa-arrow-left"></i> {t('general.go_back')}</a>
                     </nav>
-                    <button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>{id != '' ? 'Update' : 'Save'} {submiting == true ? <Loader with="20" /> : null}</button>
+                    <button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>{id != '' ? t('general.update') : t('general.save')} {submiting == true ? <Loader with="20" /> : null}</button>
                 </div>
                 <div className="row mt-4">
                     <div className="col-4">
-                        <h5 className="text-dark">Store details</h5>
-                        <span>Your customers will use this information to contact you.</span>
+                        <h5 className="text-dark">{t('module.general_settings.store_details')}</h5>
+                        <span>{t('module.general_settings.store_sub_detail')}</span>
                     </div>
                     <div className="col-8">
                         <div className="bg-white border rounded-5 p-3">
                             <div className="form-group">
-                                <label htmlFor="txt-title">Store logo</label>
-                                <ModalUpload onchangeFileSelected={setFileSelectedInMedia} buttonName={fileSelectedInMedia.length > 0 ? 'Change logo' : 'Select logo'}/>
+                                <label htmlFor="txt-title">{t('module.general_settings.store_logo')}</label>
+                                <ModalUpload onchangeFileSelected={setFileSelectedInMedia} buttonName={fileSelectedInMedia.length > 0 ? t('module.general_settings.change_logo') : t('module.general_settings.select_logo')}/>
                                 <div className={`store-logo ${fileSelectedInMedia.length > 0 ? 'd-block' : 'd-none' }`}>
                                     <img src={fileSelectedInMedia[0]} className="border rounded-5" alt="Logo" height="60" />
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="txt-title">Store name</label>
+                                <label htmlFor="txt-title">{t('module.general_settings.store_name')}</label>
                                 <input
                                     type="text"
                                     className={`form-control`}
@@ -270,7 +286,7 @@ function GeneralPage() {
                             </div>
                             <div className="row m-0">
                                 <div className="col-6 form-group p-0 pr-2">
-                                    <label htmlFor="txt-title">Account email</label>
+                                    <label htmlFor="txt-title">{t('module.general_settings.account_email')}</label>
                                     <input
                                         type="text"
                                         className={`form-control`}
@@ -280,7 +296,7 @@ function GeneralPage() {
                                     />
                                 </div>
                                 <div className="col-6 form-group p-0 pl-2">
-                                    <label htmlFor="txt-sender-email">Sender email</label>
+                                    <label htmlFor="txt-sender-email">{t('module.general_settings.sender_email')}</label>
                                     <input
                                         type="text"
                                         className={`form-control`}
@@ -296,13 +312,13 @@ function GeneralPage() {
                 <hr/>
                 <div className="row">
                     <div className="col-4">
-                        <h5 className="text-dark">Store address</h5>
-                        <span>Your customers will use this information to contact you.</span>
+                        <h5 className="text-dark">{t('module.general_settings.store_address')}</h5>
+                        <span>{t('module.general_settings.store_sub_address')}</span>
                     </div>
                     <div className="col-8">
                         <div className="bg-white border rounded-5 p-3">
                             <div className="form-group">
-                                <label htmlFor="txt-legal-name">Legal name of business</label>
+                                <label htmlFor="txt-legal-name">{t('module.general_settings.legal_name')}</label>
                                 <input
                                     type="text"
                                     className={`form-control`}
@@ -312,7 +328,7 @@ function GeneralPage() {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="txt-phone">Phone</label>
+                                <label htmlFor="txt-phone">{t('module.general_settings.phone')}</label>
                                 <input
                                     type="text"
                                     className={`form-control`}
@@ -322,7 +338,7 @@ function GeneralPage() {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="txt-address">Address</label>
+                                <label htmlFor="txt-address">{t('module.general_settings.address')}</label>
                                 <input
                                     type="text"
                                     className={`form-control`}
@@ -333,7 +349,7 @@ function GeneralPage() {
                             </div>
                             <div className="row m-0">
                                 <div className="col-6 form-group p-0 pr-2">
-                                    <label htmlFor="txt-city">City</label>
+                                    <label htmlFor="txt-city">{t('module.general_settings.city')}</label>
                                     <input
                                         type="text"
                                         className={`form-control`}
@@ -343,7 +359,7 @@ function GeneralPage() {
                                     />
                                 </div>
                                 <div className="col-6 form-group p-0 pl-2">
-                                    <label htmlFor="txt-country">Country/Region</label>
+                                    <label htmlFor="txt-country">{t('module.general_settings.country')}</label>
                                     <input
                                         type="text"
                                         className={`form-control`}
@@ -354,11 +370,12 @@ function GeneralPage() {
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="slt-time-zone">Time zone</label>
+                                <label htmlFor="slt-time-zone">{t('module.general_settings.timezone')}</label>
                                 <select
                                 className={`form-control`}
                                 id="slt-time-zone"
                                 onChange={(e) => {onChangeTimeZone(e)}} 
+                                value={timeZone}
                                 >
                                     {
                                         timeZoneList.map((item, index) => {
@@ -375,18 +392,19 @@ function GeneralPage() {
                 <hr/>
                 <div className="row">
                     <div className="col-4">
-                        <h5 className="text-dark">Store currency</h5>
-                        <span>Your customers will use this information to contact you.</span>
+                        <h5 className="text-dark">{t('module.general_settings.store_currency')}</h5>
+                        <span>{t('module.general_settings.store_sub_currency')}</span>
                     </div>
                     <div className="col-8">
                         <div className="bg-white border rounded-5 p-3">
                             <div className="row m-0">
                                 <div className="col-8 form-group p-0 pr-2">
-                                    <label htmlFor="slt-currency">Store currency</label>
+                                    <label htmlFor="slt-currency">{t('module.general_settings.currency')}</label>
                                     <select
                                     className={`form-control`}
                                     id="slt-currency"
                                     onChange={(e) => {onChangeCurrency(e)}} 
+                                    value={currency}
                                     >
                                     {
                                             currencyList.map((item, index) => {
@@ -396,10 +414,10 @@ function GeneralPage() {
                                             })
                                         }
                                     </select>
-                                    <span>You've made your first sale, so you need to contact support if you want to change your currency.</span>
+                                    <span>{t('module.general_settings.sub_currency')}</span>
                                 </div>
                                 <div className="col-4 form-group p-0 pl-2">
-                                <label htmlFor="txt-city">Currency code</label>
+                                <label htmlFor="txt-currency-code">{t('module.general_settings.currency_code')}</label>
                                     <input
                                         type="text"
                                         className={`form-control`}
@@ -414,7 +432,35 @@ function GeneralPage() {
                     </div>
                 </div>
                 <hr/>
-                <div className="d-flex justify-content-end"><button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>{id != '' ? 'Update' : 'Save'} {submiting == true ? <Loader with="20" /> : null}</button></div>
+                <div className="row">
+                    <div className="col-4">
+                        <h5 className="text-dark">{t('module.general_settings.store_language')}</h5>
+                        <span>{t('module.general_settings.store_sublanguage')}</span>
+                    </div>
+                    <div className="col-8">
+                        <div className="bg-white border rounded-5 p-3">
+                        <div className="form-group">
+                                <label htmlFor="slt-language">{t('module.general_settings.language')}</label>
+                                <select
+                                className={`form-control`}
+                                id="slt-language"
+                                onChange={(e) => {onChangelanguage(e)}} 
+                                value={language}
+                                >
+                                    {
+                                        Language.map((item, index) => {
+                                            return (
+                                                <option key={index} value={item.value} selected={language == item.value ? true : null}>{item.title}</option>
+                                            )
+                                        })
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div className="d-flex justify-content-end"><button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>{id != '' ? t('general.update') : t('general.save')} {submiting == true ? <Loader with="20" /> : null}</button></div>
             </div>
         </main>
     )

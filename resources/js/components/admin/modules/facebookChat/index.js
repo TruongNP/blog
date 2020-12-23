@@ -9,9 +9,10 @@ import Loader from '../../loader';
 import axios from 'axios';
 import { useAlert } from "react-alert";
 import $ from "jquery";
+import {useTranslation} from "react-i18next";
    
   function MainPage() {
-
+    const {t, i18n} = useTranslation('common');
     const alert = useAlert();
     const [code, setCode] = useState('');
     const [id, setId] = useState(0);
@@ -69,7 +70,7 @@ import $ from "jquery";
                 }}
                 />
             </div>
-            <button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>Save {submiting == true ? <Loader with="20" /> : null}</button>
+            <button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>{t('general.save')} {submiting == true ? <Loader with="20" /> : null}</button>
         </div>
       );
   }

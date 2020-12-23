@@ -1,7 +1,8 @@
 import React from 'react';
+import {useTranslation} from "react-i18next";
 
 function CustomerItem(props) {
-
+    const {t, i18n} = useTranslation('common');
     const { currentCustomerList, firstItem, lastItem, prefixAdmin, deleteCustomer } = props;
     return (
         currentCustomerList.slice(firstItem, lastItem).map((item, index) => {
@@ -21,8 +22,8 @@ function CustomerItem(props) {
                     </td>
                     <td><span className="text-capitalize pl-2 pr-2 rounded-15 text-light bg-primary">{item.role}</span></td>
                     <td>
-                        <button id={`customer-${item.id}`} className="btn bg-danger btn-sm m-0 py-1 px-2 mr-1 text-light" onClick={() => {deleteCustomer(item.id)}} >Delete</button>
-                        <a href={`${prefixAdmin}/edit/${item.id}`} className="btn btn-primary btn-sm m-0 py-1 px-2 text-light" >Edit</a>
+                        <button id={`customer-${item.id}`} className="btn bg-danger btn-sm m-0 py-1 px-2 mr-1 text-light" onClick={() => {deleteCustomer(item.id)}} >{t('general.delete')}</button>
+                        <a href={`${prefixAdmin}/edit/${item.id}`} className="btn btn-primary btn-sm m-0 py-1 px-2 text-light" >{t('general.edit')}</a>
                     </td>
                 </tr>
             )

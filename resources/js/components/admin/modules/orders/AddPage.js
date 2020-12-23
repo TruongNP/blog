@@ -5,8 +5,10 @@ import Loader from '../../loader';
 import NumberFormat from 'react-number-format';
 import { paymentMethodList, statusOrderList, paymentStatusList, fulfillmentStatusList } from '../../../../data/admin/order';
 import ChangeProductOption from '../../modalChangeProductOption';
+import {useTranslation} from "react-i18next";
 
 function AddPage() {
+    const {t, i18n} = useTranslation('common');
     const alert = useAlert();
     const prefixAdmin = "/admin/products";
 
@@ -325,22 +327,22 @@ function AddPage() {
     return (
         <main className="main">
             <div className="container pt-5 pl-5 pb-5 pr-5">
-                <h1 className="h3 mb-2 text-gray-800">Create Order</h1>
+                <h1 className="h3 mb-2 text-gray-800">{t('module.orders.page_add_lable')}</h1>
                 <div id="scroll-top" className="col-12 mb-3 p-0 d-flex justify-content-between">
                     <nav className="nav">
-                        <a className="nav-link pl-0" onClick={() => window.history.back()}><i className="fas fa-arrow-left"></i> Go Back</a>
+                        <a className="nav-link pl-0" onClick={() => window.history.back()}><i className="fas fa-arrow-left"></i> {t('general.go_back')}</a>
                     </nav>
-                    <button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>Create {submiting == true ? <Loader with="20" /> : null}</button>
+                    <button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>{t('general.add_new')} {submiting == true ? <Loader with="20" /> : null}</button>
                 </div>
                 <div className="row mt-4">
                     <div className="col-8">
                         <form>
                             <div className="form-group">
-                                <h4>Order details</h4>
+                                <h4>{t('module.orders.order_details')}</h4>
                                 <div className="row border rounded-10 m-0 p-3">
                                     <div className="col-12">
                                         <div className="form-group position-relative">
-                                            <label htmlFor="txt-product">Select product</label>
+                                            <label htmlFor="txt-product">{t('module.orders.select_product')}</label>
                                             <input
                                                 type="text"
                                                 className={`form-control`}
@@ -365,17 +367,17 @@ function AddPage() {
                                     </div>
                                     <div className="col-12">
                                         <div className="form-group">
-                                            <label htmlFor="txt-product">Product selected</label>
+                                            <label htmlFor="txt-product">{t('module.orders.product_selected')}</label>
                                             <div className="table-responsive text-nowrap">
                                                 <table className="table">
                                                     <thead>
                                                         <tr>
-                                                            <th scope="col">Image</th>
-                                                            <th scope="col">Title</th>
-                                                            <th scope="col">Price</th>
-                                                            <th scope="col">Quantity</th>
-                                                            <th scope="col">Total Price</th>
-                                                            <th scope="col">Action</th>
+                                                            <th scope="col">{t('general.image')}</th>
+                                                            <th scope="col">{t('module.orders.title_product')}</th>
+                                                            <th scope="col">{t('module.orders.price')}</th>
+                                                            <th scope="col">{t('module.orders.quantity')}</th>
+                                                            <th scope="col">{t('module.orders.total_price')}</th>
+                                                            <th scope="col">{t('general.action')}</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -387,9 +389,9 @@ function AddPage() {
                                                                     <td>
                                                                         <a href={`${prefixAdmin}/edit/${item.id}`} className="text-primary">{item.title}</a>
                                                                         <br></br>
-                                                                        <sub>Color: {item.variant_selected.color}</sub>
+                                                                        <sub>{t('module.orders.color')}: {item.variant_selected.color}</sub>
                                                                         <br></br>
-                                                                        <sub>Size: {item.variant_selected.size}</sub>
+                                                                        <sub>{t('module.orders.size')}: {item.variant_selected.size}</sub>
                                                                     </td>
                                                                     <td>
                                                                         {currencyCode == '$' ? currencyCode : ''}&nbsp;
@@ -424,7 +426,7 @@ function AddPage() {
                                                 </table>
                                             </div>
                                             <div className={`align-items-end justify-content-end text-primary mt-2 ${totalPrice == 0 ? 'd-none' : 'd-flex'}`}>
-                                                <label className="m-0">Total:</label>
+                                                <label className="m-0">{t('module.orders.total_price')}:</label>
                                                 <span>{currencyCode == '$' ? currencyCode : ''}&nbsp;
                                                     <NumberFormat thousandSeparator={true} displayType={'text'} value={totalPrice}/>
                                                     &nbsp;{currencyCode != '$' ? currencyCode : ''}</span>
@@ -433,7 +435,7 @@ function AddPage() {
                                     </div>
                                     <div className="col-12">
                                         <div className="form-group">
-                                            <label htmlFor="txt-description">Notes</label>
+                                            <label htmlFor="txt-description">{t('module.orders.notes')}</label>
                                             <textarea 
                                             className={`form-control`}
                                             id="txt-note"
@@ -446,11 +448,11 @@ function AddPage() {
                                 </div>
                             </div>
                             <div className="form-group">
-                                    <h4>Payment Info</h4>
+                                    <h4>{t('module.orders.payment_info')}</h4>
                                     <div className="row border rounded-10 m-0 p-3">
                                         <div className="col-12">
                                             <div className="form-group">
-                                                <label htmlFor="slt-payment-method">Payment Method</label>
+                                                <label htmlFor="slt-payment-method">{t('module.orders.payment_method')}</label>
                                                 <select
                                                 className={`form-control`}
                                                 id="slt-payment-method"
@@ -469,7 +471,7 @@ function AddPage() {
                                         </div>
                                         <div className="col-12">
                                             <div className="form-group">
-                                                <label htmlFor="slt-status-order">Status Order</label>
+                                                <label htmlFor="slt-status-order">{t('module.orders.status_order')}</label>
                                                 <select
                                                 className={`form-control`}
                                                 id="slt-status-order"
@@ -488,7 +490,7 @@ function AddPage() {
                                         </div>
                                         <div className="col-12">
                                             <div className="form-group">
-                                                <label htmlFor="slt-payment-status">Payment Status</label>
+                                                <label htmlFor="slt-payment-status">{t('module.orders.payment_status')}</label>
                                                 <select
                                                 className={`form-control`}
                                                 id="slt-payment-status"
@@ -507,7 +509,7 @@ function AddPage() {
                                         </div>
                                         <div className="col-12">
                                             <div className="form-group">
-                                                 <label htmlFor="slt-fulfillment-status">Fulfillment Status</label>
+                                                 <label htmlFor="slt-fulfillment-status">{t('module.orders.fulfillment_status')}</label>
                                                 <select
                                                 className={`form-control`}
                                                 id="slt-fulfillment-status"
@@ -530,8 +532,8 @@ function AddPage() {
                     </div>
                     <div className="col-4">
                         <div className="form-group position-relative">
-                            <h4>Customer Info</h4>
-                            <label htmlFor="txt-customer">Find or create a customer</label>
+                            <h4>{t('module.orders.customer_info')}</h4>
+                            <label htmlFor="txt-customer">{t('module.orders.filter_customer')}</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -554,7 +556,7 @@ function AddPage() {
                             </div>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="txt-first-name">First Name</label>
+                            <label htmlFor="txt-first-name">{t('module.orders.first_name')}</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -564,7 +566,7 @@ function AddPage() {
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="txt-last-name">Last Name</label>
+                            <label htmlFor="txt-last-name">{t('module.orders.last_name')}</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -574,8 +576,8 @@ function AddPage() {
                             />
                         </div>
                         <div className="form-group">
-                            <h4>Contact Info</h4>
-                            <label htmlFor="txt-phone">Phone Number</label>
+                            <h4>{t('module.orders.contact_info')}</h4>
+                            <label htmlFor="txt-phone">{t('module.orders.phone_number')}</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -585,7 +587,7 @@ function AddPage() {
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="txt-email">Email</label>
+                            <label htmlFor="txt-email">{t('module.orders.email')}</label>
                             <input
                                 type="email"
                                 className="form-control"
@@ -595,7 +597,7 @@ function AddPage() {
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="txt-address">Shipping Address</label>
+                            <label htmlFor="txt-address">{t('module.orders.shipping_address')}</label>
                             <textarea
                             rows="3"
                             className="form-control"
@@ -605,7 +607,7 @@ function AddPage() {
                             ></textarea>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="txt-city">City</label>
+                            <label htmlFor="txt-city">{t('module.orders.city')}</label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -615,7 +617,7 @@ function AddPage() {
                             />
                         </div>
                         <div className="form-group">
-                            <label htmlFor="txt-country">Country/Region</label>
+                            <label htmlFor="txt-country">{t('module.orders.country')}</label>
                             <input
                                 type="text"
                                 className="form-control"
