@@ -4,8 +4,11 @@ import axios from 'axios';
 import CKEditor from "react-ckeditor-component";
 import { useAlert } from "react-alert";
 import Loader from '../../loader';
+import {useTranslation} from "react-i18next";
+import { Status } from '../../../../data/admin/collections';
 
 function AddPage() {
+    const {t, i18n} = useTranslation('common');
     const alert = useAlert();
 
     const [selectedFile, setSelectedFile] = useState([]);
@@ -86,18 +89,18 @@ function AddPage() {
     return (
         <main className="main">
             <div className="container pt-5 pl-5 pb-5 pr-5">
-                <h1 className="h3 mb-2 text-gray-800">Add New Collections</h1>
+                <h1 className="h3 mb-2 text-gray-800">{t('module.collections.page_add_lable')}</h1>
                 <div id="scroll-top" className="col-12 mb-3 p-0 d-flex justify-content-between">
                     <nav className="nav">
-                        <a className="nav-link pl-0" onClick={() => window.history.back()}><i className="fas fa-arrow-left"></i> Go Back</a>
+                        <a className="nav-link pl-0" onClick={() => window.history.back()}><i className="fas fa-arrow-left"></i> {t('general.go_back')}</a>
                     </nav>
-                    <button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>Save {submiting == true ? <Loader with="20" /> : null}</button>
+                    <button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>{t('general.save')} {submiting == true ? <Loader with="20" /> : null}</button>
                 </div>
                 <div className="row mt-4">
                     <div className="col-8">
                         <form>
                             <div className="form-group">
-                                <label htmlFor="txt-title">Title</label>
+                                <label htmlFor="txt-title">{t('module.collections.title')}</label>
                                 <input
                                     type="text"
                                     className={`form-control ${errors.title ? 'is-invalid' : ''}`}
@@ -107,7 +110,7 @@ function AddPage() {
                                 <div className="invalid-feedback">{errors.title ? errors.title : ''}</div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="txt-description">Description</label>
+                                <label htmlFor="txt-description">{t('module.collections.description')}</label>
                                 <CKEditor 
                                 activeclassName="p10" 
                                 content={description} 
@@ -121,11 +124,11 @@ function AddPage() {
                     </div>
                     <div className="col-4">
                         <div className="form-group">
-                            <h4>Feature Image</h4>
+                            <h4>{t('module.collections.feature_image')}</h4>
                             <div className="input-group">
                             <ImageUploader
                             withIcon={true}
-                            buttonText='Choose images'
+                            buttonText={t('module.collections.choose_images')}
                             onChange={onDrop}
                             imgExtension={['.jpg', '.png']}
                             maxFileSize={5242880}
@@ -136,15 +139,19 @@ function AddPage() {
                             </div>
                         </div>
                         <div className="form-group">
-                            <label htmlFor="txt-tags">Status</label>
+                            <label htmlFor="txt-tags">{t('module.collections.status')}</label>
                             <select
                             className={`form-control`}
                             id="slt-collection-status"
                             onChange={(e) => onChangeStatus(e)}
                             >
-                                <option value="">Select status</option>
-                                <option value="open">Open</option>
-                                <option value="close">Close</option>
+                                {
+                                    Status.map((item, index) => {
+                                        return (
+                                            <option key={index} value={item.value} selected={status == item.value ? true : null}>{item.title}</option>
+                                        )
+                                    })
+                                }
                             </select>
                         </div>
 

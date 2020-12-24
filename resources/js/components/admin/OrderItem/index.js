@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import NumberFormat from 'react-number-format';
 import axios from 'axios';
 import Moment from 'react-moment';
+import {useTranslation} from "react-i18next";
 
 function OrderItem(props) {
-
+    const {t, i18n} = useTranslation('common');
     const [currencyCode, setCurrencyCode] = useState('');
 
     const getGeneralSetting = () => {
@@ -55,7 +56,7 @@ function OrderItem(props) {
                     <td>{item.payment_method}</td>
                     <td><span className={`${item.status == 'Open' ? 'bg-primary' : 'bg-danger'} pl-2 pr-2 rounded-15 text-light`}>{item.status}</span></td>
                     <td>
-                        <a href={`${prefixAdmin}/edit/${item.id}`} className="btn btn-primary border-0 btn-sm m-0 py-1 px-2 text-light" >Edit</a>
+                        <a href={`${prefixAdmin}/edit/${item.id}`} className="btn btn-primary border-0 btn-sm m-0 py-1 px-2 text-light" >{t('general.edit')}</a>
                     </td>
                 </tr>
             )

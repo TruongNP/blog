@@ -4,9 +4,11 @@ import axios from 'axios';
 import ModalUpload from '../../modalUpload';
 import { Role } from '../../../../data/admin/role';
 import Loader from '../../loader';
+import {useTranslation} from "react-i18next";
 
 function ProfilePage(props) {
 
+    const {t, i18n} = useTranslation('common');
     const alert = useAlert();
 
     const [submiting, setSubmiting] = useState(false);
@@ -174,28 +176,28 @@ function ProfilePage(props) {
     return (
         <main className="main">
             <div className="container pl-5 pb-5 pr-5">
-                <h1 className="h3 mb-2 text-gray-800 d-flex align-items-center">Profile</h1>
+                <h1 className="h3 mb-2 text-gray-800 d-flex align-items-center">{t('module.profile.page_lable')}</h1>
                 <div id="scroll-top" className="col-12 mb-3 p-0 d-flex justify-content-between">
                     <nav className="nav">
-                        <a className="nav-link pl-0" onClick={() => window.history.back()}><i className="fas fa-arrow-left"></i> Go Back</a>
+                        <a className="nav-link pl-0" onClick={() => window.history.back()}><i className="fas fa-arrow-left"></i> {t('general.go_back')}</a>
                     </nav>
-                    <button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>{id != '' ? 'Update' : 'Save'} {submiting == true ? <Loader with="20" /> : null}</button>
+                    <button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>{id != '' ? t('general.update') : t('general.save')} {submiting == true ? <Loader with="20" /> : null}</button>
                 </div>
                 <div className="row mt-4">
                     <div className="col-4">
-                        <h5 className="text-dark">Profile info</h5>
+                        <h5 className="text-dark">{t('module.profile.profile_info')}</h5>
                     </div>
                     <div className="col-8">
                         <div className="bg-white border rounded-5 p-3">
                             <div className="form-group">
-                                <label htmlFor="txt-avata">Profile Picture</label>
-                                <ModalUpload onchangeFileSelected={setFileSelectedInMedia} buttonName={fileSelectedInMedia.length > 0 ? 'Change picture' : 'Select picture'}/>
+                                <label htmlFor="txt-avata">{t('module.profile.profile_picture')}</label>
+                                <ModalUpload onchangeFileSelected={setFileSelectedInMedia} buttonName={fileSelectedInMedia.length > 0 ? t('module.profile.change_picture') : t('general.select_picture')}/>
                                 <div className={`store-logo ${fileSelectedInMedia.length > 0 ? 'd-block' : 'd-none' }`}>
                                     <img src={fileSelectedInMedia[0]} className="border rounded-5" alt="Logo" height="60" />
                                 </div>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="txt-name">First name</label>
+                                <label htmlFor="txt-name">{t('module.profile.first_name')}</label>
                                 <input
                                     type="text"
                                     className={`form-control`}
@@ -205,7 +207,7 @@ function ProfilePage(props) {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="txt-last-name">Last name</label>
+                                <label htmlFor="txt-last-name">{t('module.profile.last_name')}</label>
                                 <input
                                     type="text"
                                     className={`form-control`}
@@ -220,12 +222,12 @@ function ProfilePage(props) {
                 <hr/>
                 <div className="row">
                     <div className="col-4">
-                        <h5 className="text-dark">Contact info</h5>
+                        <h5 className="text-dark">{t('module.profile.contact_info')}</h5>
                     </div>
                     <div className="col-8">
                         <div className="bg-white border rounded-5 p-3">
                             <div className="form-group">
-                                <label htmlFor="txt-phone-number">Phone number</label>
+                                <label htmlFor="txt-phone-number">{t('module.profile.phone_number')}</label>
                                 <input
                                     type="text"
                                     className={`form-control`}
@@ -235,7 +237,7 @@ function ProfilePage(props) {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="txt-website">Website</label>
+                                <label htmlFor="txt-website">{t('module.profile.website')}</label>
                                 <input
                                     type="text"
                                     className={`form-control`}
@@ -245,7 +247,7 @@ function ProfilePage(props) {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="txt-address">Address</label>
+                                <label htmlFor="txt-address">{t('module.profile.address')}</label>
                                 <input
                                     type="text"
                                     className={`form-control`}
@@ -255,7 +257,7 @@ function ProfilePage(props) {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="txt-city">City</label>
+                                <label htmlFor="txt-city">{t('module.profile.city')}</label>
                                 <input
                                     type="text"
                                     className={`form-control`}
@@ -265,7 +267,7 @@ function ProfilePage(props) {
                                 />
                             </div>
                             <div className="form-group">
-                                <label htmlFor="txt-country">Country</label>
+                                <label htmlFor="txt-country">{t('module.profile.country')}</label>
                                 <input
                                     type="text"
                                     className={`form-control`}
@@ -280,12 +282,12 @@ function ProfilePage(props) {
                 <hr/>
                 <div className="row">
                     <div className="col-4">
-                        <h5 className="text-dark">Profile role</h5>
+                        <h5 className="text-dark">{t('module.profile.profile_role')}</h5>
                     </div>
                     <div className="col-8">
                     <div className="bg-white border rounded-5 p-3">
                         <div className="form-group">
-                                <label htmlFor="slt-time-zone">Role</label>
+                                <label htmlFor="slt-time-zone">{t('module.profile.role')}</label>
                                 <select
                                 disabled={true}
                                 className={`form-control`}
@@ -300,13 +302,13 @@ function ProfilePage(props) {
                                         })
                                     }
                                 </select>
-                                <span>You cannot change the role while this account is logged on</span>
+                                <span>{t('module.profile.role_message')}</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 <hr/>
-                <div className="d-flex justify-content-end"><button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>{id != '' ? 'Update' : 'Save'} {submiting == true ? <Loader with="20" /> : null}</button></div>
+                <div className="d-flex justify-content-end"><button className="btn btn-primary bg-primary" onClick={() => {submitForm()}}>{id != '' ? t('general.update') : t('general.save')} {submiting == true ? <Loader with="20" /> : null}</button></div>
             </div>
         </main>
     )

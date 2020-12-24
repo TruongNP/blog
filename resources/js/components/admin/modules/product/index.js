@@ -3,9 +3,11 @@ import axios from 'axios';
 import { useAlert } from "react-alert";
 import ProductItem from '../../ProductItem';
 import Pagination from '../../Pagination';
+import {useTranslation} from "react-i18next";
 
 function MainPage() {
 
+    const {t, i18n} = useTranslation('common');
     const alert = useAlert();
 
     const prefixAdmin = '/admin/products';
@@ -57,14 +59,14 @@ function MainPage() {
 
     return (
         <div className="container-fluid pl-5 pb-5 pr-5">
-            <h1 className="h3 mb-2 text-gray-800">Products</h1>
+            <h1 className="h3 mb-2 text-gray-800">{t('module.products.page_main_lable')}</h1>
             <div className="col-12 mb-3 p-0 d-flex justify-content-between">
                 <nav className="nav">
-                    <a className="nav-a active mr-3" href="#">Export</a>
-                    <a className="nav-a mr-3" href="#">Import</a>
-                    <a className="nav-a  mr-3" href="#">More Action</a>
+                    <a className="nav-a active mr-3" href="#">{t('general.export')}</a>
+                    <a className="nav-a mr-3" href="#">{t('general.import')}</a>
+                    <a className="nav-a  mr-3" href="#">{t('general.more_action')}</a>
                 </nav>
-                <a href="/admin/products/add" className="btn btn-primary bg-primary">Add New</a>
+                <a href="/admin/products/add" className="btn btn-primary bg-primary">{t('general.add_new')}</a>
             </div>
             <div className="table-responsive text-nowrap">
                 <table className="table">
@@ -76,13 +78,13 @@ function MainPage() {
                                 <label className="form-check-label small text-uppercase card-a-secondary"  htmlFor="check-all"></label>
                                 </div>
                             </th>
-                            <th scope="col">Image</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Category</th>
-                            <th scope="col">Inventory</th>
-                            <th scope="col">Type</th>
-                            <th scope="col">Vendor</th>
-                            <th scope="col">Action</th>
+                            <th scope="col">{t('general.image')}</th>
+                            <th scope="col">{t('module.products.title')}</th>
+                            <th scope="col">{t('module.products.category')}</th>
+                            <th scope="col">{t('module.products.inventory')}</th>
+                            <th scope="col">{t('module.products.type')}</th>
+                            <th scope="col">{t('module.products.vendor')}</th>
+                            <th scope="col">{t('general.more_action')}</th>
                         </tr>
                     </thead>
                     <tbody>
