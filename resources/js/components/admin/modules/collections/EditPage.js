@@ -15,7 +15,6 @@ function AddPage() {
     let idArr = pathName.split('/');
     const id = idArr[idArr.length - 1]
 
-    const [selectedFile, setSelectedFile] = useState([]);
     const [products, setProducts] = useState([]);
     const [featureImage, setFeatureImage] = useState('');
     const [title, setTitle] = useState('');
@@ -49,11 +48,6 @@ function AddPage() {
     },[]);
 
     const productInCollection = products.filter(p => p && p.collection.filter(c => c && c.replaceAll(' ', '-').toLowerCase() === slug));
-
-    const onDrop = (picture) => {
-        const file = picture[0];
-        setSelectedFile(file)
-    };
     
     const onChangeTitle = (e) => {
         setTitle(e.target.value)
@@ -70,7 +64,7 @@ function AddPage() {
     
     const submitForm = () => {
         var data = new FormData();
-        data.append('file', selectedFile);
+        data.append('id', id);
         data.append('title', title);
         data.append('description', description);
         data.append('status', status);
@@ -180,22 +174,6 @@ function AddPage() {
                         </form>
                     </div>
                     <div className="col-4">
-                        <div className="form-group">
-                            <h4>{t('module.collections.feature_image')}</h4>
-                            <div className="input-group">
-                            <ImageUploader
-                            withIcon={true}
-                            buttonText={t('module.collections.choose_images')}
-                            onChange={onDrop}
-                            imgExtension={['.jpg', '.png']}
-                            maxFileSize={5242880}
-                            withPreview={true}
-                            withLabel={false}
-                            singleImage	={true}
-                            />
-                            <div className="d-block"><img src={featureImage} className="w-100 border rounded-10"/></div>
-                            </div>
-                        </div>
                         <div className="form-group">
                             <label htmlFor="slt-status">{t('module.collections.status')}</label>
                             <select

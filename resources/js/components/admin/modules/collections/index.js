@@ -68,7 +68,6 @@ function MainPage() {
                                 <label className="form-check-label small text-uppercase card-a-secondary"  htmlFor="check-all"></label>
                                 </div>
                             </th>
-                            <th scope="col">{t('general.image')}</th>
                             <th scope="col">{t('module.collections.title')}</th>
                             <th scope="col">{t('module.collections.status')}</th>
                             <th scope="col">{t('general.action')}</th>
