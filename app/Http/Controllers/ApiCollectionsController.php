@@ -45,39 +45,9 @@ class ApiCollectionsController extends Controller
             return response()->json($return);
         } 
         else {
-            $media = new Media();
-            $all_media = $media->all();
-            $exist_file = false;
-
-            $path = base_path('public/uploads/asset');
-
-            $file = $request->file('file');
-            $file_name = $file->getClientOriginalName();
-            $path_image =  '/uploads/asset/'.$file_name.'';
-            $alt = explode('.', $file_name);
-
-            $media->file_name = $file_name;
-            $media->src = $path_image;
-            $media->size = $request->size;
-            $media->type = $request->type;
-            $media->alt = $alt[0];
-
-            foreach ($all_media as $item) {
-                if($item->src == $path_image) {
-                    $exist_file = true;
-                    break;
-                }
-            }
-
-            if($exist_file == false) {
-                $file->move( $path, $file_name);
-                $media->save();
-            }
-
             $collection->title = $request->title;
             $collection->slug = Str::slug($request->title, '-');;
             $collection->description = $request->description;
-            $collection->feature_image = $path_image;
             $collection->status = $request->status;
 
             $collection->save();
@@ -91,7 +61,7 @@ class ApiCollectionsController extends Controller
 
     public function update(Request $request) 
     {
-        $collection = collectiones::find($request->id);
+        $collection = Collections::find($request->id);
 
         $rules=array(
             'title' => 'required',
@@ -110,39 +80,9 @@ class ApiCollectionsController extends Controller
             return response()->json($return);
         } 
         else {
-            $media = new Media();
-            $all_media = $media->all();
-            $exist_file = false;
-
-            $path = base_path('public/uploads/asset');
-
-            $file = $request->file('file');
-            $file_name = $file->getClientOriginalName();
-            $path_image =  '/uploads/asset/'.$file_name.'';
-            $alt = explode('.', $file_name);
-
-            $media->file_name = $file_name;
-            $media->src = $path_image;
-            $media->size = $request->size;
-            $media->type = $request->type;
-            $media->alt = $alt[0];
-
-            foreach ($all_media as $item) {
-                if($item->src == $path_image) {
-                    $exist_file = true;
-                    break;
-                }
-            }
-
-            if($exist_file == false) {
-                $file->move( $path, $file_name);
-                $media->save();
-            }
-
             $collection->title = $request->title;
             $collection->slug = Str::slug($request->title, '-');;
             $collection->description = $request->description;
-            $collection->feature_image = $path_image;
             $collection->status = $request->status;
 
             $collection->save();

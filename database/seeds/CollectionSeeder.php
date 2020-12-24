@@ -14,8 +14,6 @@ class CollectionSeeder extends Seeder
         DB::table('collections')->insert([
             'title' => 'All',
             'slug' => 'all',
-            'description' => 'All product',
-            'feature_image' => 'undefine',
             'status' => 'open'
         ]);
     }

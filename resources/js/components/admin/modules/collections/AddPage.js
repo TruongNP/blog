@@ -11,21 +11,11 @@ function AddPage() {
     const {t, i18n} = useTranslation('common');
     const alert = useAlert();
 
-    const [selectedFile, setSelectedFile] = useState([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [status, setStatus] = useState('');
     const [submiting, setSubmiting] = useState(false);
     const [errors, setErrors] = useState([]);
-
-    // useEffect(() => {
-
-    // },[]);
-
-    const onDrop = (picture) => {
-        const file = picture[0];
-        setSelectedFile(file)
-    };
     
     const onChangeTitle = (e) => {
         setTitle(e.target.value)
@@ -42,7 +32,6 @@ function AddPage() {
     
     const submitForm = () => {
         var data = new FormData();
-        data.append('file', selectedFile);
         data.append('title', title);
         data.append('description', description);
         data.append('status', status);
@@ -123,21 +112,6 @@ function AddPage() {
                         </form>
                     </div>
                     <div className="col-4">
-                        <div className="form-group">
-                            <h4>{t('module.collections.feature_image')}</h4>
-                            <div className="input-group">
-                            <ImageUploader
-                            withIcon={true}
-                            buttonText={t('module.collections.choose_images')}
-                            onChange={onDrop}
-                            imgExtension={['.jpg', '.png']}
-                            maxFileSize={5242880}
-                            withPreview={true}
-                            withLabel={false}
-                            singleImage	={true}
-                            />
-                            </div>
-                        </div>
                         <div className="form-group">
                             <label htmlFor="txt-tags">{t('module.collections.status')}</label>
                             <select
