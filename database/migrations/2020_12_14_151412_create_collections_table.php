@@ -18,7 +18,6 @@ class CreateCollectionsTable extends Migration
             $table->string('title', 255);
             $table->string('slug', 255);
             $table->string('description', 255)->nullable();
-            $table->string('feature_image', 255)->nullable();
             $table->string('status', 100);
             $table->timestamps();
         });
