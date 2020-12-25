@@ -62,8 +62,13 @@ Route::group(['prefix' => 'v1'], function () {
     Route::post('/swatches/update', 'ApiSwatchesController@update');
 
     //facebook chat
-    //swatches
     Route::get('/facebook-chat', 'ApiFacebookChatController@index');
     Route::post('/facebook-chat/add', 'ApiFacebookChatController@store');
     Route::post('/facebook-chat/update', 'ApiFacebookChatController@update');
+
+    //emails
+    Route::get('/emails', 'ApiSendMailController@index');
+    Route::get('/email/{id}', 'ApiSendMailController@getMailById');
+    Route::post('/send-email', 'ApiSendMailController@sendMail');
+    Route::get('/email/delete/{id}', 'ApiSendMailController@delete');
 });
