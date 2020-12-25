@@ -76,6 +76,21 @@
     </li>
 
     <li class="nav-item">
+      <a class="nav-link collapsed" href="{{ route('emails.index') }}" data-toggle="collapse" data-target="#collapseEmails" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-envelope"></i>
+        <span>Emails</span>
+      </a>
+      <div id="collapseEmails" class="collapse" aria-labelledby="headingTwo" data-parent="#collapseEmails">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" href="{{ route('emails.index') }}">All Email</a>
+          <a class="collapse-item" href="{{ route('emails.create') }}">Create New Email</a>
+          <a class="collapse-item" href="{{ route('emails.index') }}">Email Received</a>
+          <a class="collapse-item" href="{{ route('emails.index') }}">Email Sent</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item">
       <a class="nav-link collapsed" href="" data-toggle="collapse" data-target="#collapseSettings" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-fw fa-cog"></i>
         <span>Settings</span>

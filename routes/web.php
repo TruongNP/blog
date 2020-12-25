@@ -18,6 +18,8 @@ Route::get('/test', function() {
     return response()->json($v);
 });
 
+Route::get('/send-mail', 'SendMail@sendMail');
+
 
 Route::get('/', function() {
     return view('website.public.footer');
@@ -96,6 +98,20 @@ Route::group(['prefix' => $prefixAdmin, 'middleware' => 'adminLogin'], function 
         Route::get('/edit/{id}', function () {
             return view('admin.module.customers.edit');
         })->name('customers.edit');
+    });
+
+    Route::group(['prefix' => 'emails'], function () {
+        Route::get('/', function () {
+            return view('admin.module.emails.index');
+        })->name('emails.index');
+
+        Route::get('/create', function () {
+            return view('admin.module.emails.create');
+        })->name('emails.create');
+
+        Route::get('/view/{id}', function () {
+            return view('admin.module.emails.view');
+        })->name('emails.view');
     });
 
     Route::group(['prefix' => 'settings'], function () {

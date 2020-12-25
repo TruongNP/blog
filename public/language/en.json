@@ -136,6 +136,20 @@
             "role": "Role",
             "role_message": "You cannot change the role."
         },
+        "emails": {
+            "page_create_label": "Add New Email",
+            "page_view_label": "Emails",
+            "page_main_label": "Emails",
+            "mail_from": "Mail from",
+            "mail_to": "Mail to",
+            "customer": "Customer",
+            "subject": "Subject",
+            "message": "Message",
+            "all_mail_label": "All mail",
+            "create_new_mail": "Create new Email",
+            "from": "From:",
+            "to": "To:"
+        },
         "settings": {
             "page_label": "Settings",
             "general": "General",
