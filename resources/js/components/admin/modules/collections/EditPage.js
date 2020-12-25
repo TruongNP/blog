@@ -7,7 +7,7 @@ import Loader from '../../loader';
 import {useTranslation} from "react-i18next";
 import { Status } from '../../../../data/admin/collections';
 
-function AddPage() {
+function EditPage() {
     const {t, i18n} = useTranslation('common');
     const alert = useAlert();
 
@@ -198,4 +198,4 @@ function AddPage() {
     )
 }
 
-export default AddPage;
+export default EditPage;
