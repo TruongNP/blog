@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useAlert } from "react-alert";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
+import Moment from 'react-moment';
 
 function MainPage() {
 
@@ -10,6 +11,14 @@ function MainPage() {
     const alert = useAlert();
 
     const [allMail, setAllMail] = useState([]);
+    const calendarStrings = {
+        lastDay : '[Yesterday at] LT',
+        sameDay : '[Today at] LT',
+        nextDay : '[Tomorrow at] LT',
+        lastWeek : '[last] dddd [at] LT',
+        nextWeek : 'dddd [at] LT',
+        sameElse : 'L'
+    };
 
     const getAllMail = () => {
         axios.get(`/api/v1/emails`).then(res => {
@@ -52,6 +61,7 @@ function MainPage() {
                                         <Link to={`/admin/emails/view/${item.id}`} key={index} className="list-group-item-action d-flex align-items-center pl-3 pt-2 pr-3 pb-2 text-dark font-weight-lighter" >
                                             <span><strong>{item.sender}</strong> | {item.receive} - {item.subject}</span>
                                         </Link>
+                                        <small className="font-weight-lighter text-dark mr-3"><Moment calendar={calendarStrings}>{item.created_at}</Moment></small>
                                         <button id={`email-${item.id}`} className="btn bg-danger btn-sm m-0 py-1 px-2 mr-1 text-light" onClick={() => {deleteEmail(item.id)}} >{t('general.delete')}</button>
                                     </div>
                                 )

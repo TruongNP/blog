@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {useTranslation} from "react-i18next";
+import Moment from 'react-moment';
 
 function View(props) {
     const {t, i18n} = useTranslation('common');
@@ -10,6 +11,14 @@ function View(props) {
     const id = idArr[idArr.length - 1]
 
     const [mail, setMail] = useState([]);
+    const calendarStrings = {
+        lastDay : '[Yesterday at] LT',
+        sameDay : '[Today at] LT',
+        nextDay : '[Tomorrow at] LT',
+        lastWeek : '[last] dddd [at] LT',
+        nextWeek : 'dddd [at] LT',
+        sameElse : 'L'
+    };
 
     const getMailById = () => {
         axios.get(`/api/v1/email/${id}`).then(res => {
@@ -30,7 +39,7 @@ function View(props) {
                     </nav>
                 </div>
                 <div className="row mt-4">
-                    <div className="col-8 mb-3">
+                    <div className="col-12 mb-3">
                         <div className="d-flex mb-2 text-dark">
                             <label><strong>{t('module.emails.from')}&nbsp;</strong></label>
                             <span>{mail.sender} {`<${mail.mail_from}>`}</span>
@@ -38,6 +47,7 @@ function View(props) {
                         <div className="d-flex mb-2 text-dark">
                             <label><strong>{t('module.emails.to')}&nbsp;</strong></label>
                             <span>{mail.receive} {`<${mail.mail_to}>`}</span>
+                            <small className="ml-auto float-right font-weight-lighter text-dark"><Moment calendar={calendarStrings}>{mail.created_at}</Moment></small>
                         </div>
                         <hr></hr>
                         <div className="mb-3 text-dark font-weight-lighter" dangerouslySetInnerHTML={{__html: mail.message}}></div>
