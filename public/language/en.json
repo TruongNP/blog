@@ -62,6 +62,16 @@
             "collection": "Collection",
             "tags": "Tags"
         },
+        "discounts": {
+            "page_add_label": "Add New Discount",
+            "page_edit_label": "Edit Discount",
+            "page_main_label": "Discounts",
+            "product_price": "Product Price",
+            "product_tag": "Product Tag",
+            "discount_value": "Discount Value",
+            "title": "Title",
+            "status": "Status"
+        },
         "collections": {
             "page_add_lable": "Add New Collections",
             "page_edit_lable": "Edit Collections",

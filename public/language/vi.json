@@ -62,6 +62,16 @@
             "collection": "Bộ sưu tập",
             "tags": "Thẻ"
         },
+        "discounts": {
+            "page_add_label": "Thêm Giảm Giá Mới",
+            "page_edit_label": "Chỉnh Sửa Giảm Giá",
+            "page_main_label": "Giảm Giá",
+            "product_price": "Giá sản phẩm",
+            "product_tag": "Thẻ Sản Phẩm",
+            "discount_value": "Giá trị giảm",
+            "title": "Tiêu đề",
+            "status": "Trạng thái"
+        },
         "collections": {
             "page_add_lable": "Thêm mới bộ sưu tập",
             "page_edit_lable": "Chỉnh sửa bộ sưu tập",

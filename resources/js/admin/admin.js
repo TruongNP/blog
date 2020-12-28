@@ -1,5 +1,6 @@
 import '../admin/dashboard';
 import '../admin/product';
+import '../admin/discounts';
 import '../admin/collections';
 import '../admin/orders';
 import '../admin/customers';
