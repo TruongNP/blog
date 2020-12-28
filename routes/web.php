@@ -114,6 +114,12 @@ Route::group(['prefix' => $prefixAdmin, 'middleware' => 'adminLogin'], function 
         })->name('emails.view');
     });
 
+    Route::group(['prefix' => 'subscribes'], function () {
+        Route::get('/', function () {
+            return view('admin.module.subscribes.index');
+        })->name('subscribes.index');
+    });
+
     Route::group(['prefix' => 'settings'], function () {
         Route::get('/', function () {
             return view('admin.module.settings.index');

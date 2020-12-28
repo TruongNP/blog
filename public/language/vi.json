@@ -150,6 +150,9 @@
             "from": "Từ:",
             "to": "Đến:"
         },
+        "subscribes": {
+            "page_main_label": "Đăng ký"
+        },
         "settings": {
             "page_label": "Cài Đặt",
             "general": "Cài đặt chung",

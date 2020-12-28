@@ -71,4 +71,8 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/email/{id}', 'ApiSendMailController@getMailById');
     Route::post('/send-email', 'ApiSendMailController@sendMail');
     Route::get('/email/delete/{id}', 'ApiSendMailController@delete');
+
+     //subscribes
+     Route::get('/subscribes', 'ApiSubscribesController@index');
+     Route::get('/subscribe/delete/{id}', 'ApiSubscribesController@delete');
 });

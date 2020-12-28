@@ -14,7 +14,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             GeneralSettingSeeder::class,
-            CollectionSeeder::class
+            CollectionSeeder::class,
+            SubscribeSeeder::class
         ]);
     }
 }

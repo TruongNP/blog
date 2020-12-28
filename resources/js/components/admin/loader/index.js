@@ -2,9 +2,12 @@ import React from 'react';
 
 
 function Loader(props) {
-    
+    const style = {
+        width: `${props.with}px`,
+        height: `${props.with}px`
+    }
     return (
-        <img src="/images/loader.gif" width={props.with ? props.with : '30'} />
+        <div className="loading float-right ml-2" style={style}></div>
     );
 }
 
