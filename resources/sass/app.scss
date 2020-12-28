@@ -292,6 +292,24 @@
     margin-top: 0;
     margin-bottom: 0.5rem;
   }
+
+  .loading {
+    border: 3px solid #fefefe;
+    border-top: 3px solid #2bbbad;
+    border-radius: 50%;
+    animation:  loading 1s infinite linear;
+
+  }
+
+  @keyframes loading {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  } 
   
   p {
     margin-top: 0;

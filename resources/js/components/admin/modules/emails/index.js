@@ -57,7 +57,7 @@ function MainPage() {
                         {
                             allMail.map((item, index) => {
                                 return (
-                                    <div className="d-flex align-items-center border-bottom">
+                                    <div key={index} className="d-flex align-items-center border-bottom">
                                         <Link to={`/admin/emails/view/${item.id}`} key={index} className="list-group-item-action d-flex align-items-center pl-3 pt-2 pr-3 pb-2 text-dark font-weight-lighter" >
                                             <span><strong>{item.sender}</strong> | {item.receive} - {item.subject}</span>
                                         </Link>

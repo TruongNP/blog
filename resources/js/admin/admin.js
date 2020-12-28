@@ -4,6 +4,7 @@ import '../admin/collections';
 import '../admin/orders';
 import '../admin/customers';
 import '../admin/emails';
+import '../admin/subscribes';
 import '../admin/settings';
 import '../admin/facebookChat';
 import '../components/admin/storeInfo';
