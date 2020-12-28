@@ -150,6 +150,9 @@
             "from": "From:",
             "to": "To:"
         },
+        "subscribes": {
+            "page_main_label": "Subscribes"
+        },
         "settings": {
             "page_label": "Settings",
             "general": "General",
