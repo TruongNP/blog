@@ -169,13 +169,18 @@ function AddPage() {
                             </div>
                             <div className="form-group">
                                 <label htmlFor="txt-discount-value">{t('module.discounts.discount_value')}</label>
-                                <input
-                                    type="text"
-                                    className={`form-control ${errors.discount_value ? 'is-invalid' : ''}`}
-                                    id="txt-discount-value"
-                                    onChange={(e) => {onChangeDiscountValue(e)}}
-                                    value={discountValue}
-                                />
+                                <div className="input-group mb-3">
+                                    <input
+                                        type="text"
+                                        className={`form-control ${errors.discount_value ? 'is-invalid' : ''}`}
+                                        id="txt-discount-value"
+                                        onChange={(e) => {onChangeDiscountValue(e)}}
+                                        value={discountValue}
+                                    />  
+                                    <div className="input-group-append">
+                                        <span className="input-group-text text-uppercase">%</span>
+                                    </div>
+                                </div>
                                 <div className="invalid-feedback">{errors.discount_value ? errors.discount_value : ''}</div>
                             </div>
                             <div className="form-group">

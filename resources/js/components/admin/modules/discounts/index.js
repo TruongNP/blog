@@ -29,7 +29,7 @@ function MainPage() {
         const discount = document.getElementById('discount-'+id+'');
         var value = discount.innerText;
         discount.innerText = value + '...';
-        axios.get(`/api/v1/discount/delete/${id}`).then(res => {
+        axios.get(`/api/v1/discounts/delete/${id}`).then(res => {
             alert.success('discount deleted');
             getDiscountList();
             discount.innerText = value;
