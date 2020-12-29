@@ -1,10 +1,16 @@
 import React from 'react';
 import {useTranslation} from "react-i18next";
 import { Link } from 'react-router-dom';
+import Empty from '../Empty';
 
 function CustomerItem(props) {
     const {t, i18n} = useTranslation('common');
     const { currentCustomerList, firstItem, lastItem, prefixAdmin, deleteCustomer } = props;
+
+    if(currentCustomerList.length == 0) {
+        return <Empty colSpan="5" message="Customer not found"/>;
+    }
+
     return (
         currentCustomerList.slice(firstItem, lastItem).map((item, index) => {
             return (

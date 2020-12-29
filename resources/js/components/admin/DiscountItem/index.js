@@ -2,6 +2,7 @@ import React from 'react';
 import {useTranslation} from "react-i18next";
 import { Link } from 'react-router-dom';
 import Moment from 'react-moment';
+import Empty from '../Empty';
 
 function DiscountItem(props) {
     const {t, i18n} = useTranslation('common');
@@ -14,6 +15,10 @@ function DiscountItem(props) {
         nextWeek : 'dddd [at] LT',
         sameElse : 'L'
     };
+
+    if(currentDiscountList.length == 0) {
+        return <Empty colSpan="4" message="Discount not found"/>;
+    }
 
     return (
         currentDiscountList.slice(firstItem, lastItem).map((item, index) => {

@@ -4,6 +4,7 @@ import { useAlert } from "react-alert";
 import {useTranslation} from "react-i18next";
 import {Link} from "react-router-dom";
 import Moment from 'react-moment';
+import Empty from '../../Empty';
 
 function MainPage() {
 
@@ -51,6 +52,7 @@ function MainPage() {
             <div className="table-responsive text-nowrap">
                 <div className={`list-group`}>
                         {
+                            subscribes.length == 0 ? <Empty colSpan="5" message="Subscribes not found"/> :
                             subscribes.map((item, index) => {
                                 return (
                                     <div key={index} className="d-flex align-items-center border-bottom">
