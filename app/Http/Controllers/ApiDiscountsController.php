@@ -97,7 +97,7 @@ class ApiDiscountsController extends Controller
             $discounts->discount_value = $request->discount_value;
             $discounts->status = $request->status;
 
-            $discount->save();
+            $discounts->save();
 
             $return=[
                 "success" => "Discount has been update"
