@@ -1,10 +1,16 @@
 import React from 'react';
 import {useTranslation} from "react-i18next";
 import { Link } from 'react-router-dom';
+import Empty from '../Empty';
 
 function CollectionItem(props) {
     const {t, i18n} = useTranslation('common');
     const { currentCollectionList, firstItem, lastItem, prefixAdmin, deleteCollection } = props;
+
+    if(currentCollectionList.length == 0) {
+        return <Empty colSpan="4" message="Collections not found"/>;
+    }
+
     return (
         currentCollectionList.slice(firstItem, lastItem).map((item, index) => {
             return (

@@ -1,10 +1,15 @@
 import React from 'react';
 import {useTranslation} from "react-i18next";
 import { Link } from 'react-router-dom';
+import Empty from '../Empty';
 
 function ProductItem(props) {
     const {t, i18n} = useTranslation('common');
     const { currentProductList, firstItem, lastItem, prefixAdmin, categoryProduct, deleteProduct } = props;
+
+    if(currentProductList.length == 0) {
+        return <Empty colSpan="8" message="Product not found"/>;
+    }
     return (
         currentProductList.slice(firstItem, lastItem).map((item, index) => {
             return (

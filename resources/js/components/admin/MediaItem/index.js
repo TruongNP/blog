@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import { useAlert } from "react-alert";
 import {useTranslation} from "react-i18next";
+import Empty from '../Empty';
 
 function MediaItem(props) {
 
@@ -9,6 +10,11 @@ function MediaItem(props) {
     const alert = useAlert();
 
     const { currentMediaList, firstItem, lastItem, deleteMedia } = props;
+
+    if(currentMediaList.length == 0) {
+        return <Empty colSpan="7" message="Media not found"/>;
+    }
+
     return (
         currentMediaList.slice(firstItem, lastItem).map((item, index) => {
             return (
