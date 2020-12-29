@@ -4,6 +4,7 @@ import { useAlert } from "react-alert";
 import OrderItem from '../../OrderItem';
 import Pagination from '../../Pagination';
 import {useTranslation} from "react-i18next";
+import { Link } from 'react-router-dom';
 
 function MainPage() {
     const {t, i18n} = useTranslation('common');
@@ -42,7 +43,7 @@ function MainPage() {
                     <a className="nav-a mr-3" href="#">{t('general.import')}</a>
                     <a className="nav-a  mr-3" href="#">{t('general.more_action')}</a>
                 </nav>
-                <a href={`${prefixAdmin}/add`} className="btn btn-primary bg-primary">{t('general.add_new')}</a>
+                <Link to={`${prefixAdmin}/add`} className="btn btn-primary bg-primary">{t('general.add_new')}</Link>
             </div>
             <div className="table-responsive text-nowrap">
                 <table className="table">
