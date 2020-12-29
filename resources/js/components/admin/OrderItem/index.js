@@ -4,6 +4,7 @@ import axios from 'axios';
 import Moment from 'react-moment';
 import {useTranslation} from "react-i18next";
 import { Link } from 'react-router-dom';
+import Empty from '../Empty';
 
 function OrderItem(props) {
     const {t, i18n} = useTranslation('common');
@@ -31,6 +32,11 @@ function OrderItem(props) {
     useEffect(() => {
         getGeneralSetting();
     },[]);
+
+    if(currentOrderList.length == 0) {
+        return <Empty colSpan="11" message="Order not found"/>;
+    }
+    
     return (
         currentOrderList.slice(firstItem, lastItem).map((item, index) => {
             return (
