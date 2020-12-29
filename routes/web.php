@@ -58,6 +58,20 @@ Route::group(['prefix' => $prefixAdmin, 'middleware' => 'adminLogin'], function 
         })->name('products.edit');
     });
 
+    Route::group(['prefix' => 'discounts'], function () {
+        Route::get('/', function () {
+            return view('admin.module.discounts.index');
+        })->name('discounts.index');
+
+        Route::get('/add', function () {
+            return view('admin.module.discounts.add');
+        })->name('discounts.add');
+
+        Route::get('/edit/{id}', function () {
+            return view('admin.module.discounts.edit');
+        })->name('discounts.edit');
+    });
+
     Route::group(['prefix' => 'collections'], function () {
         Route::get('/', function () {
             return view('admin.module.collections.index');

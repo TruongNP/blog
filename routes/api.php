@@ -73,6 +73,13 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get('/email/delete/{id}', 'ApiSendMailController@delete');
 
      //subscribes
-     Route::get('/subscribes', 'ApiSubscribesController@index');
-     Route::get('/subscribe/delete/{id}', 'ApiSubscribesController@delete');
+    Route::get('/subscribes', 'ApiSubscribesController@index');
+    Route::get('/subscribe/delete/{id}', 'ApiSubscribesController@delete');
+
+    //discounts
+    Route::get('/discounts', 'ApiDiscountsController@index');
+    Route::post('/discounts', 'ApiDiscountsController@store');
+    Route::get('/discount/{id}', 'ApiDiscountsController@getDiscountById');
+    Route::get('/discounts/delete/{id}', 'ApiDiscountsController@delete');
+    Route::post('/discounts/edit', 'ApiDiscountsController@update');
 });

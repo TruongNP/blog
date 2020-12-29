@@ -37,6 +37,19 @@
     </li>
 
     <li class="nav-item">
+      <a class="nav-link collapsed" href="{{ route('discounts.index') }}" data-toggle="collapse" data-target="#collapseDiscounts" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fas fa-percentage"></i>
+        <span>Discounts</span>
+      </a>
+      <div id="collapseDiscounts" class="collapse" aria-labelledby="headingTwo" data-parent="#collapseDiscounts">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <a class="collapse-item" href="{{ route('discounts.index') }}">All Discounts</a>
+          <a class="collapse-item" href="{{ route('discounts.add') }}">Add New</a>
+        </div>
+      </div>
+    </li>
+
+    <li class="nav-item">
       <a class="nav-link collapsed" href="{{ route('collections.index') }}" data-toggle="collapse" data-target="#collapseCollections" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fas fa-ethernet"></i>
         <span>Collections</span>
