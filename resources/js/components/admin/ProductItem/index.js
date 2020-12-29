@@ -1,5 +1,6 @@
 import React from 'react';
 import {useTranslation} from "react-i18next";
+import { Link } from 'react-router-dom';
 
 function ProductItem(props) {
     const {t, i18n} = useTranslation('common');
@@ -14,15 +15,15 @@ function ProductItem(props) {
                         <label className="form-check-label small text-uppercase card-a-secondary" htmlFor={`check-${item.id}`}></label>
                         </div>
                     </th> 
-                    <td><a href={`${prefixAdmin}/edit/${item.id}`}><img src={item.feature_image} width="50" alt={item.title} /></a></td>
-                    <td><a href={`${prefixAdmin}/edit/${item.id}`} className="text-primary">{item.title}</a></td>
+                    <td><Link to={`${prefixAdmin}/edit/${item.id}`}><img src={item.feature_image} width="50" alt={item.title} /></Link></td>
+                    <td><Link to={`${prefixAdmin}/edit/${item.id}`} className="text-primary">{item.title}</Link></td>
                     <td>{categoryProduct(item.tags)}</td>
                     <td className="text-primary">{item.status}</td>
                     <td>{item.product_type}</td>
                     <td>{item.vendor}</td>
                     <td>
                         <button id={`product-${item.id}`} className="btn bg-danger btn-sm m-0 py-1 px-2 mr-1 text-light" onClick={() => {deleteProduct(item.id)}} >{t('general.delete')}</button>
-                        <a href={`${prefixAdmin}/edit/${item.id}`} className="btn btn-primary btn-sm m-0 py-1 px-2 text-light" >{t('general.edit')}</a>
+                        <Link to={`${prefixAdmin}/edit/${item.id}`} className="btn btn-primary btn-sm m-0 py-1 px-2 text-light" >{t('general.edit')}</Link>
                     </td>
                 </tr>
             )
