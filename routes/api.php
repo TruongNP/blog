@@ -74,6 +74,7 @@ Route::group(['prefix' => 'v1'], function () {
 
      //subscribes
     Route::get('/subscribes', 'ApiSubscribesController@index');
+    Route::post('/subscribe', 'ApiSubscribesController@store');
     Route::get('/subscribe/delete/{id}', 'ApiSubscribesController@delete');
 
     //discounts
